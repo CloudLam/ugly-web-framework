@@ -1,2 +1,2 @@
-# ugly-web-framework
+# Ugly Web Framework
 An ugly web framework
