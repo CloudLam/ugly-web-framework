@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+if [ ! -f build ]; then
+    echo 'build must be run within its container folder' 1>&2
+    exit 1
+fi
+
+TIMESTAMP=`date '+%Y%m%d%H%M%S'`
+INDEX=../src/index.html
+DIST=../dist
+CSS=./static/style/style$TIMESTAMP.css
+JS=./static/js/app$TIMESTAMP.js
+
+if [ -d $DIST ]; then
+    rm -rf $DIST/*
+fi
+
+mkdir -p $DIST/component
+mkdir -p $DIST/static/image
+mkdir -p $DIST/static/js
+mkdir -p $DIST/static/style
+
+while read line; do
+    if [[ $line == '<link'* || $line == '<script'* ]]; then
+        if [[ $line == *'./static/'* ]]; then
+            echo $line >> $DIST/index.html
+        fi
+    else
+        if [[ $line == '</head>' ]]; then
+            echo '<link rel="stylesheet" type="text/css" href="'$CSS'">' >> $DIST/index.html
+            echo '<script type="text/javascript" src="'$JS'"></script>' >> $DIST/index.html
+        fi
+        if [[ ${#line} -gt 1 ]]; then
+            echo $line >> $DIST/index.html
+        fi
+    fi
+done < $INDEX
+
+echo 'finished'
