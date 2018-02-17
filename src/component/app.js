@@ -1,12 +1,12 @@
 /* app.js | @cloudlam */
 
+'use strict';
+
 window.onload = function () {
   init();
 }
 
 function init () {
-  load({
-    node: document.getElementById('app'),
-    url: './component/hello/greeting.html'
-  }, function () {});
+  var sidebar = new Sidebar();
+  sidebar.init();
 }

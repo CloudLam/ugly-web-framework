@@ -1,5 +1,7 @@
 /* util.js | @cloudlam */
 
+'use strict'
+
 /**
  * XHR: create XMLHttpRequest object
  * @param
@@ -176,7 +178,7 @@ function load (object, callback) {
         node.innerHTML = child;
       }
 
-      return parseDOM(child);
+      return node.children;
     } else {
       throw new Error(xhr.status + ': ' + xhr.statusText);
     }
