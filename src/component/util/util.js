@@ -275,3 +275,11 @@ function insertAfter (element, target) {
     parent.insertBefore(element, target.nextElementSibling);
   }
 }
+
+/**
+ * isIE
+ * @return {boolean}
+ */
+function isIE () {
+  return navigator && navigator.userAgent.match(/msie/i);
+}

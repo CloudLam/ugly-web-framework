@@ -7,17 +7,26 @@ var SIDEBAR_BUTTON = {
   'person': {
     'icon': 'person',
     'name': 'PERSON',
-    'sub': {}
+    'sub': {
+      'info': {'name': 'INFORMATION', 'href': '#'},
+      'password': {'name': 'CHANGE PWD', 'href': '#'}
+    }
   },
   'group': {
     'icon': 'group',
     'name': 'GROUP',
-    'sub': {}
+    'sub':  {
+      'info': {'name': 'INFORMATION', 'href': '#'}
+    }
   },
   'subject': {
     'icon': 'subject',
     'name': 'SUBJECT',
-    'sub': {}
+    'sub':  {
+      'project': {'name': 'PROJECT', 'href': '#'},
+      'requirement': {'name': 'REQUIREMENT', 'href': '#'},
+      'task': {'name': 'TASK', 'href': '#'}
+    }
   },
   'share': {
     'icon': 'share',
@@ -95,12 +104,46 @@ function Sidebar (object) {
     });
   }
 
-  function _listenerInit () {}
+  function _listenerInit () {
+    delegate('uwf-sidebar-more', 'click', 'uwf-sidebar-more', function(event) {
+      console.log();
+      if (sidebar.node.getAttribute('class').indexOf('long') > -1) {
+        sidebar.node.setAttribute('class', sidebar.node.getAttribute('class').replace('long', ''));
+        if (isIE()) {
+          this.children[0].innerHTML = '&#xE315;';
+        } else {
+          this.children[0].innerHTML = 'keyboard_arrow_right';
+        }
+      } else {
+        sidebar.node.setAttribute('class', sidebar.node.getAttribute('class') + ' long');
+        if (isIE()) {
+          this.children[0].innerHTML = '&#xE314;';
+        } else {
+          this.children[0].innerHTML = 'keyboard_arrow_left';
+        }
+      }
+    });
+  }
 
   function _subMenuInit () {
-    var element = document.getElementById('person');
-    var submenu = '<div class="uwf-sidebar-submenu"><span class="triangle hide"></span></div>';
-    element.appendChild(parseDOM(submenu)[0]);
+    for (var button in SIDEBAR_BUTTON) {
+      if (!SIDEBAR_BUTTON[button]['sub'] || isEmptyObject(SIDEBAR_BUTTON[button]['sub'])) {
+        continue;
+      }
+      var element = document.getElementById(button);
+      var submenu = '<ul class="uwf-sidebar-submenu"><span class="triangle"></span>' + 
+        '<li><label class="uwf-sidebar-submenu-title">' + SIDEBAR_BUTTON[button]['name'] + '</label></li>';
+      for (var key in SIDEBAR_BUTTON[button]['sub']) {
+        submenu += '<li id="' + 
+          button + '_' + key + 
+          '" class="uwf-sidebar-submenu-button"><a href="' + 
+          SIDEBAR_BUTTON[button]['sub'][key]['href'] + '"><label>' + 
+          SIDEBAR_BUTTON[button]['sub'][key]['name'] + 
+          '</a></label></li>';
+      }
+      submenu += '</ul>';
+      element.appendChild(parseDOM(submenu)[0]);
+    }
   }
 
   function _setColor () {
