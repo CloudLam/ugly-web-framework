@@ -8,7 +8,7 @@ var SIDEBAR_BUTTON = {
     'icon': 'person',
     'name': 'PERSON',
     'sub': {
-      'info': {'name': 'INFORMATION', 'href': '#'},
+      'info': {'name': 'INFORMATION', 'href': '#person/info'},
       'password': {'name': 'CHANGE PWD', 'href': '#'}
     }
   },
@@ -48,8 +48,9 @@ var SIDEBAR_BUTTON = {
 function Sidebar (object) {
   object = object || {};
 
+  var parent = object.parent || document.getElementById('app');
+
   var sidebar = {
-    parent: object.parent || document.getElementById('app'),
     init: _init
   };
 
@@ -89,10 +90,10 @@ function Sidebar (object) {
       });
     }
     load({
-      node: this.parent,
       url: './component/sidebar/sidebar.html'
     }, function (xhr, dom) {
       sidebar.node = dom[0];
+      parent.appendChild(sidebar.node);
       _listenerInit();
       load({
         node: document.getElementById('uwf-sidebar-buttons'),
@@ -106,21 +107,12 @@ function Sidebar (object) {
 
   function _listenerInit () {
     delegate('uwf-sidebar-more', 'click', 'uwf-sidebar-more', function(event) {
-      console.log();
       if (sidebar.node.getAttribute('class').indexOf('long') > -1) {
         sidebar.node.setAttribute('class', sidebar.node.getAttribute('class').replace('long', ''));
-        if (isIE()) {
-          this.children[0].innerHTML = '&#xE315;';
-        } else {
-          this.children[0].innerHTML = 'keyboard_arrow_right';
-        }
+        this.children[0].innerHTML = 'keyboard_arrow_right';
       } else {
         sidebar.node.setAttribute('class', sidebar.node.getAttribute('class') + ' long');
-        if (isIE()) {
-          this.children[0].innerHTML = '&#xE314;';
-        } else {
-          this.children[0].innerHTML = 'keyboard_arrow_left';
-        }
+        this.children[0].innerHTML = 'keyboard_arrow_left';
       }
     });
   }

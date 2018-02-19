@@ -176,9 +176,9 @@ function load (object, callback) {
 
       if (node) {
         node.innerHTML = child;
+        return node.children;
       }
-
-      return node.children;
+      return parseDOM(child);
     } else {
       throw new Error(xhr.status + ': ' + xhr.statusText);
     }
@@ -278,8 +278,17 @@ function insertAfter (element, target) {
 
 /**
  * isIE
+ * @param {integer} version
  * @return {boolean}
  */
-function isIE () {
-  return navigator && navigator.userAgent.match(/msie/i);
+function isIE (version) {
+  if (version && version < 10) {
+    // test if IE6~9
+    var ie = document.createElement('test');
+    ie.innerHTML = '<!--[if IE ' + version + ']><ie></ie><![endif]-->';
+    return ie.getElementsByTagName('ie').length === 1;
+  } else {
+    // test if IE/IE10/IE11
+    return ('ActiveXObject' in window);
+  }
 }
