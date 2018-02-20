@@ -272,7 +272,7 @@ function insertAfter (element, target) {
   if (last == target) {
     parent.appendChild(element);
   } else {
-    parent.insertBefore(element, target.nextElementSibling);
+    parent.insertBefore(element, next);
   }
 }
 

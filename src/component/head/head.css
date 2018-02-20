@@ -9,12 +9,31 @@
   width: -webkit-calc(100% - 4rem);
   height: 6rem;
   line-height: 6rem;
+  background-color: #fcfcfc;
+}
+
+.uwf-head.short {
+  left: 10rem;
+  width: calc(100% - 10rem);
+  width: -moz-calc(100% - 10rem);
+  width: -webkit-calc(100% - 10rem);
+}
+
+.uwf-head .uwf-head-title {
+  padding-left: 2rem;
+  font-size: 2rem;
+}
+
+.uwf-head .uwf-head-subtitle {
+  padding-left: 1rem;
+  font-size: 1rem;
 }
 
 .uwf-head .uwf-head-user {
   position: relative;
   float: right;
-  margin: 1.5rem 0.75rem 1.5rem 0.75rem;
+  margin: 1rem 0.5rem 1rem 0.5rem;
+  padding: 0.5rem 0 0.5rem 0;
   width: 8rem;
   height: 3rem;
   line-height: 3rem;
@@ -37,21 +56,26 @@
   cursor: pointer;
 }
 
-.uwf-head .uwf-head-user label:nth-child(3) {
-  right: 0;
-  line-height: 4rem;
-  font-size: 1.5rem;
+.uwf-head .uwf-head-user span:nth-child(3) {
+  position: absolute;
+  top: 1.8rem;
+  right: 0.25rem;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width:  0.35rem 0.25rem 0 0.25rem;
+  border-color:  #000000 transparent transparent transparent;
 }
 
 .uwf-head .uwf-head-user .uwf-head-user-submenu {
   position: absolute;
-  top: 3rem;
+  top: 4rem;
   width: 8rem;
   font-size: 0.8rem;
   background-color: #fcfcfc;
-  border: 0.1rem solid rgba(150, 150, 150, 0.7);
-  box-shadow: 0.05rem 0.05rem 0 rgba(150, 150, 150, 0.5);
-  border-radius: 0.2rem;
+  border: 1px solid rgba(150, 150, 150, 0.7);
+  box-shadow: 1px 1px 0 rgba(150, 150, 150, 0.5);
+  border-radius: 2px;
   display: none;
 }
 
@@ -65,21 +89,22 @@
   display: block;
 }
 
-.uwf-head .uwf-head-user .uwf-head-user-submenu .triangle, span {
+.uwf-head .uwf-head-user .uwf-head-user-submenu .triangle, 
+.uwf-head .uwf-head-user .uwf-head-user-submenu span {
   position: absolute;
-  top: -0.55rem;
+  top: -10px;
   right: 2rem;
   width: 0;
   height: 0;
-  border-width: 0 0.45rem 0.55rem;
+  border-width: 0 8px 10px;
   border-style: solid;
-  border-color: transparent transparent rgba(150, 150, 150, 0.7);;
+  border-color: transparent transparent rgba(150, 150, 150, 0.7);
 }
 
 .uwf-head .uwf-head-user .uwf-head-user-submenu .triangle span {
-  top: 0.05rem;
-  left: -0.4rem;
-  border-width: 0 0.4rem 0.5rem;
+  top: 1px;
+  left: -7px;
+  border-width: 0 7px 9px;
   border-color: transparent transparent #fcfcfc;
 }
 
@@ -93,7 +118,7 @@
   height: 2.5rem;
   line-height: 2.5rem;
   font-size: 0.8rem;
-  border-bottom: 0.1rem solid rgba(150, 150, 150, 0.1);
+  border-bottom: 1px solid rgba(150, 150, 150, 0.1);
   text-align: center;
 }
 

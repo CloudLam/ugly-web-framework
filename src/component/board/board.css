@@ -1,0 +1,159 @@
+/* tab.css | @cloudlam */
+
+.uwf-board {
+  position: fixed;
+  top: calc(6rem + 1px);
+  top: -moz-calc(6rem + 1px);
+  top: -webkit-calc(6rem + 1px);
+  left: 4rem;
+  width: calc(100% - 4rem);
+  width: -moz-calc(100% - 4rem);
+  width: -webkit-calc(100% - 4rem);
+  height: calc(100% - 6rem);
+  height: -moz-calc(100% - 6rem);
+  height: -webkit-calc(100% - 6rem);
+  z-index: -1;
+}
+
+.uwf-board.short {
+  left: 10rem;
+  width: calc(100% - 10rem);
+  width: -moz-calc(100% - 10rem);
+  width: -webkit-calc(100% - 10rem);
+}
+
+.uwf-board #uwf-tabs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2rem;
+  line-height: 2rem;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #fcfcfc;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.7);
+  background-color: #fcfcfc;
+}
+
+.uwf-board #uwf-card {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.uwf-board #uwf-tabs .uwf-tab-prev,
+.uwf-board #uwf-tabs .uwf-tab-next,
+.uwf-board #uwf-tabs .uwf-tab-list {
+  position: relative;
+  height: 1.5rem;
+  width: 2rem;
+  cursor: pointer;
+}
+
+.uwf-board #uwf-tabs .uwf-tab-prev span,
+.uwf-board #uwf-tabs .uwf-tab-next span,
+.uwf-board #uwf-tabs .uwf-tab-list span {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.75rem;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.uwf-board #uwf-tabs .uwf-tab-prev span {
+  border-width: 0.4rem 0.5rem 0.4rem 0;
+  border-color: transparent #000000 transparent transparent;
+}
+
+.uwf-board #uwf-tabs .uwf-tab-next span {
+  border-width: 0.4rem 0 0.4rem 0.5rem;
+  border-color: transparent transparent transparent #000000;
+}
+
+.uwf-board #uwf-tabs .uwf-tab-list span {
+  top: 0.75rem;
+  left: 0.6rem;
+  border-width:  0.5rem 0.4rem 0 0.4rem;
+  border-color:  #000000 transparent transparent transparent;
+}
+
+.uwf-board #uwf-tabs .uwf-tab-prev,
+.uwf-board #uwf-tabs .uwf-tab-next {
+  display: inline-block;
+}
+
+.uwf-board #uwf-tabs .uwf-tab-list {
+  float: right;
+}
+
+.uwf-board #uwf-tabs .uwf-tab-prev:hover span,
+.uwf-board #uwf-tabs .uwf-tab-next:hover span,
+.uwf-board #uwf-tabs .uwf-tab-list:hover span {
+  opacity: 0.5;
+}
+
+.uwf-tab {
+  position: relative;
+  display: inline-block;
+  width: 7rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  margin-top: -1px;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  background-color: #fcfcfc;
+  cursor: pointer;
+}
+
+.uwf-tab.active {
+  border-left: 1px solid rgba(150, 150, 150, 0.7);
+  border-top: 1px solid rgba(150, 150, 150, 0.7);
+  border-right: 1px solid rgba(150, 150, 150, 0.7);
+  border-bottom: 1px solid #fcfcfc;
+  border-radius: 2px 2px 0 0;
+}
+
+.uwf-tab:hover {
+  background-color: #cfcfcf;
+}
+
+.uwf-tab.active:hover {
+  background-color: #fcfcfc;
+}
+
+.uwf-tab label {
+  font-size: 1rem;
+  display: inline-block;
+  width: 6rem;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+}
+
+.uwf-tab span {
+  font-weight: bold;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  right: 0.5rem;
+  opacity: 0;
+}
+
+.uwf-tab.active span {
+  opacity: 1.0;
+}
+
+.uwf-tab:hover span {
+  opacity: 1.0;
+}
+
+.uwf-tab span:hover,
+.uwf-tab.active span:hover {
+  opacity: 0.5;
+}

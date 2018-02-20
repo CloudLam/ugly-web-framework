@@ -51,7 +51,8 @@ function Sidebar (object) {
   var parent = object.parent || document.getElementById('app');
 
   var sidebar = {
-    init: _init
+    init: _init,
+    setType: _setType
   };
 
   var prop = {
@@ -79,7 +80,7 @@ function Sidebar (object) {
     }
   });
 
-  function _init () {
+  function _init (app) {
     // Sidebar Buttons
     var buttons = [];
     for (var button in SIDEBAR_BUTTON) {
@@ -107,13 +108,7 @@ function Sidebar (object) {
 
   function _listenerInit () {
     delegate('uwf-sidebar-more', 'click', 'uwf-sidebar-more', function(event) {
-      if (sidebar.node.getAttribute('class').indexOf('long') > -1) {
-        sidebar.node.setAttribute('class', sidebar.node.getAttribute('class').replace('long', ''));
-        this.children[0].innerHTML = 'keyboard_arrow_right';
-      } else {
-        sidebar.node.setAttribute('class', sidebar.node.getAttribute('class') + ' long');
-        this.children[0].innerHTML = 'keyboard_arrow_left';
-      }
+      if (app) app.type = app.type ? 0 : 1;
     });
   }
 
@@ -141,6 +136,16 @@ function Sidebar (object) {
   function _setColor () {
     if (this.node) {
       this.node.setAttribute('class', 'uwf-sidebar ' + this.color);
+    }
+  }
+
+  function _setType (type) {
+    if (type) {
+      this.node.setAttribute('class', this.node.getAttribute('class') + ' long');
+      this.node.lastChild.firstChild.innerHTML = 'keyboard_arrow_left';
+    } else {
+      this.node.setAttribute('class', this.node.getAttribute('class').replace(' long', ''));
+      this.node.lastChild.firstChild.innerHTML = 'keyboard_arrow_right';
     }
   }
 
