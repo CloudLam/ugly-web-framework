@@ -24,6 +24,20 @@ function Board (object) {
       board.tab.node = dom[0].children[0];
       board.tab.init();
       parent.appendChild(board.node);
+      _listenerInit();
+      board.tab.create({
+        'tab-id': 'welcome', 
+        'tab-title': 'WELCOME'
+      });
+    });
+  }
+
+  function _listenerInit () {
+    delegate('uwf-tabs', 'click', 'uwf-tab-close', function(event) {
+      board.tab.close(event.target.parentNode.id);
+    });
+    delegate('uwf-tabs', 'click', 'uwf-tab', function(event) {
+      board.tab.open(event.target.id || event.target.parentNode.id);
     });
   }
 
