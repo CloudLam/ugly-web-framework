@@ -1,0 +1,62 @@
+/* page.css | @cloudlam */
+
+.uwf-setting {
+  width: calc(100% - 4rem);
+  width: -moz-calc(100% - 4rem);
+  width: -webkit-calc(100% - 4rem);
+  padding: 2rem;
+}
+
+.uwf-setting table {
+  width: 100%;
+}
+
+.uwf-setting table tbody tr td {
+  width: 20%;
+  text-align: center;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-title {
+  width: 40%;
+  height: 5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #a3a3a3;
+  text-align: right;
+}
+
+.uwf-setting table tbody tr.uwf-setting-item + tr.uwf-setting-item td.uwf-setting-title {
+  border-top: 1px solid rgba(150, 150, 150, 0.3);
+}
+
+.uwf-setting table tbody tr td div.uwf-setting-colorbox {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(150, 150, 150, 0.7);
+  margin: 0.5rem auto;
+}
+
+.uwf-setting table tbody tr td div.uwf-setting-colorbox.blue {
+  background-color: #1e90ff;
+}
+
+.uwf-setting table tbody tr td div.uwf-setting-colorbox.red {
+  background-color: #b22222;
+}
+
+.uwf-setting table tbody tr td div.uwf-setting-colorbox.green {
+  background-color: #228b22;
+}
+
+.uwf-setting table tbody tr td div.uwf-setting-colorbox.yellow {
+  background-color: #daa520;
+}
+
+.uwf-setting table tbody tr td div.uwf-setting-colorbox.gray {
+  background-color: #696969;
+}
+
+.uwf-setting table tbody tr td input[type=radio], .uwf-setting table tbody tr td label {
+  cursor: pointer;
+  font-size: 1.0rem;
+}

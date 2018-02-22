@@ -38,11 +38,6 @@ function Application () {
     this.router = new Router();
     this.router.init();
 
-    // Routes
-    this.router.route('person/info', function () {
-      console.log('person/info');
-    });
-
     // Head
     this.head = new Head();
     this.head.init();
@@ -54,6 +49,24 @@ function Application () {
     // Board
     this.board = new Board();
     this.board.init();
+
+    // Routes
+    var _this = this;
+    this.router.route('person/info', function () {
+      console.log('person/info');
+    });
+    this.router.route('setting', function () {
+      _this.board.card.innerHTML = '';
+      _this.board.tab.create({
+        'tab-id': 'setting', 
+        'tab-title': 'SETTING'
+      }, function () {
+        load({
+          node: _this.board.card,
+          url: './component/page/setting.html'
+        }, function (xhr, dom) {});
+      });
+    });
   }
 
   function _setType() {

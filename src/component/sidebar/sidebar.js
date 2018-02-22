@@ -7,6 +7,7 @@ var SIDEBAR_BUTTON = {
   'person': {
     'icon': 'person',
     'name': 'PERSON',
+    'href': '',
     'sub': {
       'info': {'name': 'INFORMATION', 'href': '#person/info'},
       'password': {'name': 'CHANGE PWD', 'href': '#'}
@@ -15,6 +16,7 @@ var SIDEBAR_BUTTON = {
   'group': {
     'icon': 'group',
     'name': 'GROUP',
+    'href': '',
     'sub':  {
       'info': {'name': 'INFORMATION', 'href': '#'}
     }
@@ -22,6 +24,7 @@ var SIDEBAR_BUTTON = {
   'subject': {
     'icon': 'subject',
     'name': 'SUBJECT',
+    'href': '',
     'sub':  {
       'project': {'name': 'PROJECT', 'href': '#'},
       'requirement': {'name': 'REQUIREMENT', 'href': '#'},
@@ -31,16 +34,19 @@ var SIDEBAR_BUTTON = {
   'share': {
     'icon': 'share',
     'name': 'SHARE',
+    'href': '',
     'sub': {}
   },
   'setting': {
     'icon': 'settings',
     'name': 'SETTING',
+    'href': '#setting',
     'sub': {}
   },
   'about': {
     'icon': 'help',
     'name': 'ABOUT',
+    'href': '',
     'sub': {}
   }
 }
@@ -87,7 +93,8 @@ function Sidebar (object) {
       buttons.push({
         'sidebar-button-id': button,
         'sidebar-button-icon': SIDEBAR_BUTTON[button]['icon'],
-        'sidebar-button-name': SIDEBAR_BUTTON[button]['name']
+        'sidebar-button-name': SIDEBAR_BUTTON[button]['name'],
+        'sidebar-button-href': SIDEBAR_BUTTON[button]['href']
       });
     }
     load({

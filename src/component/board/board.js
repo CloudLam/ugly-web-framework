@@ -23,11 +23,14 @@ function Board (object) {
       board.node = dom[0];
       board.tab.node = dom[0].children[0];
       board.tab.init();
+      board.card = dom[0].children[1];
       parent.appendChild(board.node);
       _listenerInit();
       board.tab.create({
         'tab-id': 'welcome', 
         'tab-title': 'WELCOME'
+      }, function () {
+        board.card.innerHTML = '';
       });
     });
   }

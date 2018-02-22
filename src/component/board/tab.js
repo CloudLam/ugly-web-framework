@@ -8,6 +8,7 @@ function Tab (object) {
   var tab = {
     node: null,
     tabs: [],
+    callbacks: [],
     init: _init,
     create: _create,
     open: _open,
@@ -39,6 +40,18 @@ function Tab (object) {
   }
 
   function _listenerInit () {
+    prev.onclick = function (event) {
+      var active = document.querySelector('.uwf-tab.active');
+      if (tab.tabs.indexOf(active) > 0) {
+        _active.call(tab.tabs, tab.tabs[tab.tabs.indexOf(active) - 1]);
+      }
+    }
+    next.onclick = function (event) {
+      var active = document.querySelector('.uwf-tab.active');
+      if (tab.tabs.indexOf(active) < tab.tabs.length - 1) {
+        _active.call(tab.tabs, tab.tabs[tab.tabs.indexOf(active) + 1]);
+      }
+    }
     list.onclick = function (event) {
       if (tab.tabs.length == 0) {
         return;
@@ -59,16 +72,24 @@ function Tab (object) {
     }, false);
   }
 
-  function _create (data) {
+  function _create (data, callback) {
     load({
       url: './component/board/tab.html',
       data: data
     }, function (xhr, dom) {
+      if (tab.tabs.indexOf(dom[0]) > -1) {
+        tab.open(dom[0].id);
+        return;
+      }
       var item = '<div for=' + dom[0].id + '><label>' + dom[0].children[0].innerHTML + '</label></div>';
       listItems.appendChild(parseDOM(item)[0]);
       tab.tabs.push(dom[0]);
+      tab.callbacks.push(callback);
       _active.call(tab.tabs, dom[0]);
       tab.node.insertBefore(dom[0], next);
+      if (callback) {
+        callback();
+      }
     });
   }
 
@@ -97,6 +118,7 @@ function Tab (object) {
         this.tabs[i].parentNode.removeChild(this.tabs[i]);
         listItems.removeChild(listItems.children[i+1]);
         this.tabs.splice(i, 1);
+        this.callbacks.splice(i, 1);
         return;
       }
     }
@@ -108,11 +130,17 @@ function Tab (object) {
         this[i].setAttribute('class', this[i].getAttribute('class') + ' active');
         listItems.children[i+1].setAttribute('class', 
           listItems.children[i+1].getAttribute('class') + ' active');
+        if (tab.callbacks[i]) {
+          tab.callbacks[i]()
+        };
       } else {
         this[i].setAttribute('class', this[i].getAttribute('class').replace(' active', ''));
         listItems.children[i+1].setAttribute('class', 
           listItems.children[i+1].getAttribute('class').replace(' active', ''));
       }
+    }
+    if (this.length > 1) {
+      var max = Math.floor(this[0].parentNode.offsetWidth / this[0].offsetWidth) - 1;
     }
   }
 

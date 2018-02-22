@@ -21,17 +21,33 @@
   background-color: #b22222;
 }
 
+.uwf-sidebar.green {
+  background-color: #228b22;
+}
+
+.uwf-sidebar.yellow {
+  background-color: #daa520;
+}
+
+.uwf-sidebar.gray {
+  background-color: #696969;
+}
+
 .uwf-sidebar .uwf-sidebar-logo {
   margin: 1rem auto;
 }
 
-.uwf-sidebar .uwf-sidebar-logo, .uwf-sidebar-button {
+.uwf-sidebar .uwf-sidebar-logo, .uwf-sidebar .uwf-sidebar-button {
   position: relative;
   width: 4rem;
   height: 4rem;
   line-height: 4rem;
   text-align: center;
   cursor: pointer;
+}
+
+.uwf-sidebar .uwf-sidebar-button {
+  opacity: 0.9;
 }
 
 .uwf-sidebar .uwf-sidebar-button .material-icons {
@@ -53,6 +69,10 @@
   display: inline-block;
   padding: 0 1rem 0 1rem;
   cursor: pointer;
+}
+
+.uwf-sidebar .uwf-sidebar-button a {
+  color: #fcfcfc;
 }
 
 .uwf-sidebar .uwf-sidebar-button:hover {
