@@ -48,31 +48,47 @@ function Application () {
 
     // Board
     this.board = new Board();
-    this.board.init();
+    this.board.init(function () {
+      location.hash = '';
+      location.hash = 'welcome';
+    });
 
     // Routes
     var _this = this;
+    this.router.route('welcome', function () {
+      _this.board.card.innerHTML = '';
+      _this.board.tab.create('welcome', {
+        'tab-id': 'welcome', 
+        'tab-title': 'WELCOME'
+      }, function () {});
+    });
     this.router.route('person/info', function () {
       console.log('person/info');
     });
     this.router.route('setting', function () {
       _this.board.card.innerHTML = '';
-      _this.board.tab.create({
+      _this.board.tab.create('setting', {
         'tab-id': 'setting', 
         'tab-title': 'SETTING'
       }, function () {
         load({
           node: _this.board.card,
           url: './component/page/setting.html'
-        }, function (xhr, dom) {});
+        }, function (xhr, dom) {
+          settingInit(app);
+        });
       });
     });
+
+    // Local Settings
+    app.type = parseInt(localStorage.getItem('uwfAppType')) || 0;
+    app.sidebar.color = localStorage.getItem('uwfAppColor') || 'blue';
   }
 
   function _setType() {
-    this.head.setType(this.type);
-    this.sidebar.setType(this.type);
-    this.board.setType(this.type);
+    this.head.type = this.type;
+    this.sidebar.type = this.type;
+    this.board.type = this.type;
   }
 
   return app;

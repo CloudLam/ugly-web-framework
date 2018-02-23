@@ -8,7 +8,7 @@ function Tab (object) {
   var tab = {
     node: null,
     tabs: [],
-    callbacks: [],
+    href: [],
     init: _init,
     create: _create,
     open: _open,
@@ -32,11 +32,14 @@ function Tab (object) {
   listItems.innerHTML = '<div class="triangle"><span></span></div>';
   list.appendChild(listItems);
 
-  function _init () {
+  function _init (callback) {
     tab.node.appendChild(prev);
     tab.node.appendChild(next);
     tab.node.appendChild(list);
     _listenerInit();
+    if (callback) {
+      callback();
+    }
   }
 
   function _listenerInit () {
@@ -72,21 +75,21 @@ function Tab (object) {
     }, false);
   }
 
-  function _create (data, callback) {
+  function _create (href, data, callback) {
     load({
       url: './component/board/tab.html',
       data: data
     }, function (xhr, dom) {
-      if (tab.tabs.indexOf(dom[0]) > -1) {
+      if (tab.href.indexOf(href) > -1) {
         tab.open(dom[0].id);
-        return;
+      } else {
+        var item = '<div for=' + dom[0].id + '><label>' + dom[0].children[0].innerHTML + '</label></div>';
+        listItems.appendChild(parseDOM(item)[0]);
+        tab.tabs.push(dom[0]);
+        tab.href.push(href);
+        _active.call(tab.tabs, dom[0]);
+        tab.node.insertBefore(dom[0], next);
       }
-      var item = '<div for=' + dom[0].id + '><label>' + dom[0].children[0].innerHTML + '</label></div>';
-      listItems.appendChild(parseDOM(item)[0]);
-      tab.tabs.push(dom[0]);
-      tab.callbacks.push(callback);
-      _active.call(tab.tabs, dom[0]);
-      tab.node.insertBefore(dom[0], next);
       if (callback) {
         callback();
       }
@@ -118,21 +121,25 @@ function Tab (object) {
         this.tabs[i].parentNode.removeChild(this.tabs[i]);
         listItems.removeChild(listItems.children[i+1]);
         this.tabs.splice(i, 1);
-        this.callbacks.splice(i, 1);
+        this.href.splice(i, 1);
         return;
       }
     }
   }
 
   function _active(element) {
+    if (!element) {
+      location.hash = '';
+      return;
+    }
     for (var i = 0; i < this.length; i++) {
       if (this[i] == element) {
         this[i].setAttribute('class', this[i].getAttribute('class') + ' active');
         listItems.children[i+1].setAttribute('class', 
           listItems.children[i+1].getAttribute('class') + ' active');
-        if (tab.callbacks[i]) {
-          tab.callbacks[i]()
-        };
+        if (tab.href[i]) {
+          location.hash = '#' + tab.href[i];
+        }
       } else {
         this[i].setAttribute('class', this[i].getAttribute('class').replace(' active', ''));
         listItems.children[i+1].setAttribute('class', 

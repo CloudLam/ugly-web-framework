@@ -8,30 +8,48 @@ function Board (object) {
   var parent = object.parent || document.getElementById('app');
 
   var board = {
-    node: null,
     tab: new Tab(),
     card: null,
     init: _init,
     setType: _setType
   }
 
-  function _init () {
+  var prop = {
+    node: null,
+    type: object.type || 0
+  }
+  Object.defineProperties(board, {
+    'node': {
+      get: function () {
+        return prop.node;
+      },
+      set: function (value) {
+        prop.node = value;
+        _setType.call(this);
+      }
+    },
+    'type': {
+      get: function () {
+        return prop.type;
+      },
+      set: function (value) {
+        prop.type = value;
+        _setType.call(this);
+      }
+    }
+  });
+
+  function _init (callback) {
     this.tab = new Tab();
     load({
       url: './component/board/board.html'
     }, function (xhr, dom) {
       board.node = dom[0];
       board.tab.node = dom[0].children[0];
-      board.tab.init();
+      board.tab.init(callback);
       board.card = dom[0].children[1];
       parent.appendChild(board.node);
       _listenerInit();
-      board.tab.create({
-        'tab-id': 'welcome', 
-        'tab-title': 'WELCOME'
-      }, function () {
-        board.card.innerHTML = '';
-      });
     });
   }
 
@@ -44,11 +62,13 @@ function Board (object) {
     });
   }
 
-  function _setType (type) {
-    if (type) {
-      this.node.setAttribute('class', this.node.getAttribute('class') + ' short');
-    } else {
-      this.node.setAttribute('class', this.node.getAttribute('class').replace(' short', ''));
+  function _setType () {
+    if (this.node) {
+      if (this.type) {
+        this.node.setAttribute('class', this.node.getAttribute('class') + ' short');
+      } else {
+        this.node.setAttribute('class', this.node.getAttribute('class').replace(' short', ''));
+      }
     }
   }
 

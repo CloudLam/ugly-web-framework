@@ -35,11 +35,11 @@
 
 .uwf-sidebar .uwf-sidebar-logo {
   margin: 1rem auto;
+  width: 4rem;
 }
 
 .uwf-sidebar .uwf-sidebar-logo, .uwf-sidebar .uwf-sidebar-button {
   position: relative;
-  width: 4rem;
   height: 4rem;
   line-height: 4rem;
   text-align: center;
@@ -51,6 +51,7 @@
 }
 
 .uwf-sidebar .uwf-sidebar-button .material-icons {
+  font-size: 24px;
   line-height: 4rem;
 }
 
@@ -59,9 +60,7 @@
 }
 
 .uwf-sidebar.long .uwf-sidebar-button {
-  width: 7.5rem;
   text-align: left;
-  padding: 0 1.25rem 0 1.25rem;
 }
 
 .uwf-sidebar.long .uwf-sidebar-button label {
@@ -69,10 +68,14 @@
   display: inline-block;
   padding: 0 1rem 0 1rem;
   cursor: pointer;
+  width: calc(100% - 24px - 3.25rem);
+  width: -moz-calc(100% - 24px - 3.25rem);
+  width: -webkit-calc(100% - 24px - 3.25rem);
 }
 
 .uwf-sidebar .uwf-sidebar-button a {
   color: #fcfcfc;
+  padding: 0 1.25rem 0 1.25rem;
 }
 
 .uwf-sidebar .uwf-sidebar-button:hover {
@@ -152,6 +155,10 @@
 .uwf-sidebar .uwf-sidebar-button .uwf-sidebar-submenu .uwf-sidebar-submenu-button:hover {
   background-color: #cfcfcf;
   opacity: 0.7;
+}
+
+.uwf-sidebar .uwf-sidebar-button .uwf-sidebar-submenu .uwf-sidebar-submenu-button a {
+  padding: 0;
 }
 
 .uwf-sidebar .uwf-sidebar-button .uwf-sidebar-submenu .uwf-sidebar-submenu-button label {

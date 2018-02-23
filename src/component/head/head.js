@@ -8,16 +8,25 @@ function Head (object) {
   var parent = object.parent || document.getElementById('app');
 
   var head = {
-    node: null,
-    init: _init,
-    setType: _setType
+    init: _init
   }
 
   var prop = {
+    node: null,
     title: object.title || '',
-    subtitle: object.subtitle || ''
+    subtitle: object.subtitle || '',
+    type: object.type || 0
   }
   Object.defineProperties(head, {
+    'node': {
+      get: function () {
+        return prop.node;
+      },
+      set: function (value) {
+        prop.node = value;
+        _setType.call(this);
+      }
+    },
     'title': {
       get: function () {
         return prop.title;
@@ -34,6 +43,15 @@ function Head (object) {
       set: function (value) {
         prop.subtitle = value;
         _setTitle.call(this);
+      }
+    },
+    'type': {
+      get: function () {
+        return prop.type;
+      },
+      set: function (value) {
+        prop.type = value;
+        _setType.call(this);
       }
     }
   });
@@ -54,11 +72,13 @@ function Head (object) {
     this.node.children[1].innerHTML = this.subtitle;
   }
 
-  function _setType (type) {
-    if (type) {
-      this.node.setAttribute('class', this.node.getAttribute('class') + ' short');
-    } else {
-      this.node.setAttribute('class', this.node.getAttribute('class').replace(' short', ''));
+  function _setType () {
+    if (this.node) {
+      if (this.type) {
+        this.node.setAttribute('class', this.node.getAttribute('class') + ' short');
+      } else {
+        this.node.setAttribute('class', this.node.getAttribute('class').replace(' short', ''));
+      }
     }
   }
 

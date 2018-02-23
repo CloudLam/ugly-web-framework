@@ -57,13 +57,13 @@ function Sidebar (object) {
   var parent = object.parent || document.getElementById('app');
 
   var sidebar = {
-    init: _init,
-    setType: _setType
+    init: _init
   };
 
   var prop = {
     node: null,
-    color: object.color || 'blue'
+    color: object.color || 'blue',
+    type: object.type || 0
   }
   Object.defineProperties(sidebar, {
     'node': {
@@ -73,6 +73,7 @@ function Sidebar (object) {
       set: function (value) {
         prop.node = value;
         _setColor.call(this);
+        _setType.call(this, app.type);
       }
     },
     'color': {
@@ -82,6 +83,15 @@ function Sidebar (object) {
       set: function (value) {
         prop.color = value;
         _setColor.call(this);
+      }
+    },
+    'type': {
+      get: function () {
+        return prop.type;
+      },
+      set: function (value) {
+        prop.type = value;
+        _setType.call(this);
       }
     }
   });
@@ -146,13 +156,15 @@ function Sidebar (object) {
     }
   }
 
-  function _setType (type) {
-    if (type) {
-      this.node.setAttribute('class', this.node.getAttribute('class') + ' long');
-      this.node.lastChild.firstChild.innerHTML = 'keyboard_arrow_left';
-    } else {
-      this.node.setAttribute('class', this.node.getAttribute('class').replace(' long', ''));
-      this.node.lastChild.firstChild.innerHTML = 'keyboard_arrow_right';
+  function _setType () {
+    if (this.node) {
+      if (this.type) {
+        this.node.setAttribute('class', this.node.getAttribute('class') + ' long');
+        this.node.lastChild.firstChild.innerHTML = 'keyboard_arrow_left';
+      } else {
+        this.node.setAttribute('class', this.node.getAttribute('class').replace(' long', ''));
+        this.node.lastChild.firstChild.innerHTML = 'keyboard_arrow_right';
+      }
     }
   }
 

@@ -13,7 +13,9 @@ function Router() {
 
   this.refresh = function() {
     this.cur_url = location.hash.slice(1) || '/';
-    this.routes[this.cur_url]();
+    if (this.routes[this.cur_url]) {
+      this.routes[this.cur_url]();
+    }
   };
 
   this.init = function() {
