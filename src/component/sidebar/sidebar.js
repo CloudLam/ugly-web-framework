@@ -152,7 +152,11 @@ function Sidebar (object) {
 
   function _setColor () {
     if (this.node) {
-      this.node.setAttribute('class', 'uwf-sidebar ' + this.color);
+      if (this.type) {
+        this.node.setAttribute('class', 'uwf-sidebar long ' + this.color);
+      } else {
+        this.node.setAttribute('class', 'uwf-sidebar ' + this.color);
+      }
     }
   }
 
