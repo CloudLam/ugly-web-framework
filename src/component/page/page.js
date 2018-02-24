@@ -4,8 +4,12 @@
 
 function settingInit(app) {
   // Current sidebar type
-  if (parseInt(localStorage.getItem('uwfAppType'))) {
-    document.getElementById('uwf-setting-sidebartype-d').setAttribute('checked', '');
+  if (localStorage.getItem('uwfAppType')) {
+    if (parseInt(localStorage.getItem('uwfAppType'))) {
+      document.getElementById('uwf-setting-sidebartype-d').setAttribute('checked', '');
+    } else {
+      document.getElementById('uwf-setting-sidebartype-s').setAttribute('checked', '');
+    }
   } else if (app.type) {
     document.getElementById('uwf-setting-sidebartype-d').setAttribute('checked', '');
   } else {

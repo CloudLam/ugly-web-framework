@@ -65,6 +65,9 @@ function Board (object) {
   function _setType () {
     if (this.node) {
       if (this.type) {
+        if (this.node.getAttribute('class').indexOf('short') > -1) {
+          return;
+        }
         this.node.setAttribute('class', this.node.getAttribute('class') + ' short');
       } else {
         this.node.setAttribute('class', this.node.getAttribute('class').replace(' short', ''));

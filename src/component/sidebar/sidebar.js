@@ -163,6 +163,9 @@ function Sidebar (object) {
   function _setType () {
     if (this.node) {
       if (this.type) {
+        if (this.node.getAttribute('class').indexOf('long') > -1) {
+          return;
+        }
         this.node.setAttribute('class', this.node.getAttribute('class') + ' long');
         this.node.lastChild.firstChild.innerHTML = 'keyboard_arrow_left';
       } else {
