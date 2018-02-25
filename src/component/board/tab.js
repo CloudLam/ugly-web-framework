@@ -129,7 +129,7 @@ function Tab (object) {
 
   function _active(element) {
     if (!element) {
-      location.hash = '';
+      location.hash = 'index';
       return;
     }
     for (var i = 0; i < this.length; i++) {

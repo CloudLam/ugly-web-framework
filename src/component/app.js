@@ -55,12 +55,24 @@ function Application () {
 
     // Routes
     var _this = this;
+    this.router.route('index', function () {
+      _this.board.card.innerHTML = '';
+      app.head.title = 'TITLE';
+      app.head.subtitle = 'SUBTITLE';
+    });
     this.router.route('welcome', function () {
       _this.board.card.innerHTML = '';
       _this.board.tab.create('welcome', {
         'tab-id': 'welcome', 
         'tab-title': 'WELCOME'
-      }, function () {});
+      }, function () {
+        app.head.title = 'TITLE';
+        app.head.subtitle = 'SUBTITLE';
+        load({
+          node: _this.board.card,
+          url: './component/page/welcome.html'
+        }, function (xhr, dom) {});
+      });
     });
     this.router.route('person/info', function () {
       console.log('person/info');
@@ -71,6 +83,8 @@ function Application () {
         'tab-id': 'setting', 
         'tab-title': 'SETTING'
       }, function () {
+        app.head.title = 'SETTING';
+        app.head.subtitle = '';
         load({
           node: _this.board.card,
           url: './component/page/setting.html'
