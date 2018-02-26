@@ -5,6 +5,6 @@ body {
   padding: 0;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   line-height: 1.0rem;
-  font: 1.0rem "Microsoft YaHei", tahoma, arial, sans-serif;
+  font: 1.0rem Helvetica, "Microsoft YaHei", tahoma, arial, sans-serif;
   background: #fcfcfc;
 }
