@@ -132,8 +132,10 @@ function Tab (object) {
       location.hash = 'index';
       return;
     }
+    var active = 0;
     for (var i = 0; i < this.length; i++) {
       if (this[i] == element) {
+        active = i;
         this[i].setAttribute('class', this[i].getAttribute('class') + ' active');
         listItems.children[i+1].setAttribute('class', 
           listItems.children[i+1].getAttribute('class') + ' active');
@@ -146,8 +148,13 @@ function Tab (object) {
           listItems.children[i+1].getAttribute('class').replace(' active', ''));
       }
     }
-    if (this.length > 1) {
-      var max = Math.floor(this[0].parentNode.offsetWidth / this[0].offsetWidth) - 1;
+    if (active > 0) {
+      var max = Math.floor(this[active-1].parentNode.offsetWidth / this[active-1].offsetWidth) - 1;
+      if (this.length > max) {
+        if (active == this.length - 1) {
+          this[active-max].setAttribute('class', this[active-max].getAttribute('class') + ' hide');
+        }
+      }
     }
   }
 

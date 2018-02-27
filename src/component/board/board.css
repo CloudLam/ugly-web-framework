@@ -180,6 +180,14 @@
   border-radius: 2px 2px 0 0;
 }
 
+.uwf-tab.show {
+  display: block;
+}
+
+.uwf-tab.hide {
+  display: none;
+}
+
 .uwf-tab:hover {
   background-color: #cfcfcf;
 }
