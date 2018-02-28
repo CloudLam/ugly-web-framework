@@ -132,10 +132,13 @@ function Tab (object) {
       location.hash = 'index';
       return;
     }
-    var active = 0;
+    var active = { old: 0, new: 0 };
     for (var i = 0; i < this.length; i++) {
+      if (this[i].getAttribute('class').indexOf('active') > -1) {
+        active.old = i;
+      }
       if (this[i] == element) {
-        active = i;
+        active.new = i;
         this[i].setAttribute('class', this[i].getAttribute('class') + ' active');
         listItems.children[i+1].setAttribute('class', 
           listItems.children[i+1].getAttribute('class') + ' active');
@@ -148,15 +151,41 @@ function Tab (object) {
           listItems.children[i+1].getAttribute('class').replace(' active', ''));
       }
     }
-    if (active > 0) {
-      var max = Math.floor(this[active-1].parentNode.offsetWidth / this[active-1].offsetWidth) - 1;
+    if (this.length > 1) {
+      var max = Math.floor(tab.node.offsetWidth / this[active.old].offsetWidth) - 1;
       if (this.length > max) {
-        if (active == this.length - 1) {
-          this[active-max].setAttribute('class', this[active-max].getAttribute('class') + ' hide');
+        if (active.new == this.length - 1) {
+          this[active.new-max].setAttribute('class', this[active.new-max].getAttribute('class') + ' hide');
+        }
+        if (this[active.new].getAttribute('class').indexOf('hide') > -1) {
+          for (var j = 0; j < this.length; j++) {
+            if (active.new < active.old && 
+              j >= active.new && 
+              j < active.new + max) {
+              this[j].setAttribute('class', this[j].getAttribute('class').replace(' hide', ''));
+            }
+            if (active.new < active.old && 
+              j >= active.new + max && 
+              this[j].getAttribute('class').indexOf('hide') <= -1) {
+              this[j].setAttribute('class', this[j].getAttribute('class') + ' hide');
+            }
+            if (active.new > active.old && 
+              j <= active.new && 
+              j > active.new - max) {
+              this[j].setAttribute('class', this[j].getAttribute('class').replace(' hide', ''));
+            }
+            if (active.new > active.old && 
+              j <= active.new - max && 
+              this[j].getAttribute('class').indexOf('hide') <= -1) {
+              this[j].setAttribute('class', this[j].getAttribute('class') + ' hide');
+            }
+          }
         }
       }
     }
   }
+
+  function _show(from, to) {}
 
   return tab;
 }
