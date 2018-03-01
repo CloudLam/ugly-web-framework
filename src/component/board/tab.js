@@ -122,7 +122,18 @@ function Tab (object) {
         listItems.removeChild(listItems.children[i+1]);
         this.tabs.splice(i, 1);
         this.href.splice(i, 1);
-        return;
+        break;
+      }
+    }
+    for (var i = 0; i < this.tabs.length; i++) {
+      if (this.tabs[i].getAttribute('class').indexOf('hide') <= -1) {
+        var max = Math.floor(this.node.offsetWidth / this.tabs[i].offsetWidth) - 1;
+        if (this.tabs[i+max]) {
+          this.tabs[i+max-1].setAttribute('class', tab.tabs[i+max-1].getAttribute('class').replace(' hide', ''));
+        } if (this.tabs[i-1]) {
+          this.tabs[i-1].setAttribute('class', tab.tabs[i-1].getAttribute('class').replace(' hide', ''));
+        }
+        break;
       }
     }
   }
@@ -158,34 +169,27 @@ function Tab (object) {
           this[active.new-max].setAttribute('class', this[active.new-max].getAttribute('class') + ' hide');
         }
         if (this[active.new].getAttribute('class').indexOf('hide') > -1) {
-          for (var j = 0; j < this.length; j++) {
-            if (active.new < active.old && 
-              j >= active.new && 
-              j < active.new + max) {
-              this[j].setAttribute('class', this[j].getAttribute('class').replace(' hide', ''));
-            }
-            if (active.new < active.old && 
-              j >= active.new + max && 
-              this[j].getAttribute('class').indexOf('hide') <= -1) {
-              this[j].setAttribute('class', this[j].getAttribute('class') + ' hide');
-            }
-            if (active.new > active.old && 
-              j <= active.new && 
-              j > active.new - max) {
-              this[j].setAttribute('class', this[j].getAttribute('class').replace(' hide', ''));
-            }
-            if (active.new > active.old && 
-              j <= active.new - max && 
-              this[j].getAttribute('class').indexOf('hide') <= -1) {
-              this[j].setAttribute('class', this[j].getAttribute('class') + ' hide');
-            }
+          if (active.new < active.old) {
+            _show(active.new, active.new + max - 1);
+          } else {
+            _show(active.new - max + 1, active.new);
           }
         }
       }
     }
   }
 
-  function _show(from, to) {}
+  function _show(from, to) {
+    for (var i = 0; i < tab.tabs.length; i++) {
+      if (i < from || i > to) {
+        if (tab.tabs[i].getAttribute('class').indexOf('hide') <= -1) {
+          tab.tabs[i].setAttribute('class', tab.tabs[i].getAttribute('class') + ' hide');
+        }
+      } else {
+        tab.tabs[i].setAttribute('class', tab.tabs[i].getAttribute('class').replace(' hide', ''));
+      }
+    }
+  }
 
   return tab;
 }
