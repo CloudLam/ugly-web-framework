@@ -7,30 +7,71 @@ fi
 
 TIMESTAMP=`date '+%Y%m%d%H%M%S'`
 INDEX=../src/index.html
+COMPONENT=../src/component
+STATIC=../src/static
 DIST=../dist
-CSS=./static/style/style$TIMESTAMP.css
-JS=./static/js/app$TIMESTAMP.js
+CSS=static/style/style$TIMESTAMP.min.css
+JS=static/js/app$TIMESTAMP.min.js
+CSS_CMD='uglifycss'
+JS_CMD='uglifyjs'
 
 if [ -d $DIST ]; then
     rm -rf $DIST/*
 fi
 
-mkdir -p $DIST/component
-mkdir -p $DIST/static/image
 mkdir -p $DIST/static/js
 mkdir -p $DIST/static/style
 
+function read_comp() {
+    for file in `ls $1`; do
+        if [[ -d $1'/'$file ]]; then
+            mkdir -p $DIST/component/$file
+            read_comp $1'/'$file
+        else
+            if [[ $file == *'.css' ]]; then
+                CSS_CMD=$CSS_CMD' '$1'/'$file
+            elif [[ $file == *'.js' ]]; then
+                JS_CMD=$JS_CMD' '$1'/'$file
+            else
+                source=$1'/'$file
+                cp -rf $source ${source/$COMPONENT/$DIST'/component'}
+            fi
+        fi
+    done
+}
+
+function read_static() {
+    for file in `ls $1`; do
+        if [[ -d $1'/'$file ]]; then
+            mkdir -p $DIST/static/$file
+            read_static $1'/'$file
+        else
+            source=$1'/'$file
+            cp -rf $source ${source/$STATIC/$DIST'/static'}
+        fi
+    done
+}
+
+read_comp $COMPONENT
+read_static $STATIC
+
+CSS_CMD=$CSS_CMD' --output '$DIST/$CSS
+JS_CMD=$JS_CMD' -c -m -o '$DIST/$JS
+
+`$JS_CMD`
+`$CSS_CMD`
+
 while read line; do
     if [[ $line == '<link'* || $line == '<script'* ]]; then
-        if [[ $line == *'./static/'* ]]; then
+        if [[ $line == *'./static/'* || $line == *'http'*'://'* ]]; then
             echo $line >> $DIST/index.html
         fi
     else
-        if [[ $line == '</head>' ]]; then
-            echo '<link rel="stylesheet" type="text/css" href="'$CSS'">' >> $DIST/index.html
-            echo '<script type="text/javascript" src="'$JS'"></script>' >> $DIST/index.html
+        if [[ $line == '</head>'* ]]; then
+            echo '<link rel="stylesheet" type="text/css" href="./'$CSS'">' >> $DIST/index.html
+            echo '<script type="text/javascript" src="./'$JS'"></script>' >> $DIST/index.html
         fi
-        if [[ ${#line} -gt 1 ]]; then
+        if [[ ${#line} -gt 1 && $line != '<!--'*'-->'* ]]; then
             echo $line >> $DIST/index.html
         fi
     fi
