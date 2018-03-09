@@ -10,8 +10,8 @@ INDEX=../src/index.html
 COMPONENT=../src/component
 STATIC=../src/static
 DIST=../dist
-CSS=static/style/style$TIMESTAMP.min.css
-JS=static/js/app$TIMESTAMP.min.js
+CSS=static/style/style.$TIMESTAMP.min.css
+JS=static/js/app.$TIMESTAMP.min.js
 CSS_CMD='uglifycss'
 JS_CMD='uglifyjs'
 
@@ -63,7 +63,7 @@ JS_CMD=$JS_CMD' -c -m -o '$DIST/$JS
 
 while read line; do
     if [[ $line == '<link'* || $line == '<script'* ]]; then
-        if [[ $line == *'./static/'* || $line == *'http'*'://'* ]]; then
+        if [[ $line == *'./static/'* || $line == *'http'*'://'*  || $line == *'image/x-icon'* ]]; then
             echo $line >> $DIST/index.html
         fi
     else

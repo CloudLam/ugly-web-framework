@@ -11,8 +11,8 @@ set INDEX=..\src\index.html
 set COMPONENT=..\src\component
 set STATIC=..\src\static
 set DIST=..\dist
-set CSS=static/style/style%TIMESTAMP: =0%.min.css
-set JS=static/js/app%TIMESTAMP: =0%.min.js
+set CSS=static/style/style.%TIMESTAMP: =0%.min.css
+set JS=static/js/app.%TIMESTAMP: =0%.min.js
 set CSS_CMD=uglifycss
 set JS_CMD=uglifyjs
 
@@ -75,6 +75,11 @@ for /f "tokens=*" %%l in (%INDEX%) do (
                     echo > nul
                 )
                 echo "!line!" | findstr "./static" > nul && (
+                    echo %%l>>%DIST%\index.html
+                ) || (
+                    echo > nul
+                )
+                echo "!line!" | findstr "image/x-icon" > nul && (
                     echo %%l>>%DIST%\index.html
                 ) || (
                     echo > nul
