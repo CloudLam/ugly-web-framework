@@ -77,6 +77,20 @@ function Application () {
     this.router.route('person/info', function () {
       console.log('person/info');
     });
+    this.router.route('table', function () {
+      _this.board.card.innerHTML = '';
+      _this.board.tab.create('table', {
+        'tab-id': 'table', 
+        'tab-title': 'TABLE'
+      }, function () {
+        app.head.title = 'TABLE';
+        app.head.subtitle = '';
+        load({
+          node: _this.board.card,
+          url: './component/page/table.html'
+        }, function (xhr, dom) {});
+      });
+    });
     this.router.route('setting', function () {
       _this.board.card.innerHTML = '';
       _this.board.tab.create('setting', {

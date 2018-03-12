@@ -26,7 +26,7 @@ var SIDEBAR_BUTTON = {
       'name': 'SUBJECT',
       'href': '',
       'sub':  {
-        'project': {'name': 'PROJECT', 'href': '#'},
+        'project': {'name': 'PROJECT', 'href': '#table'},
         'requirement': {'name': 'REQUIREMENT', 'href': '#'},
         'task': {'name': 'TASK', 'href': '#'}
       }
