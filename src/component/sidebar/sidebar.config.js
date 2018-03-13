@@ -4,38 +4,29 @@
 
 // Sidebar Buttons Config
 var SIDEBAR_BUTTON = {
-    'person': {
-      'icon': 'person',
-      'name': 'PERSON',
+    'input': {
+      'icon': 'input',
+      'name': 'INPUT',
+      'href': '',
+      'sub':  {
+        'form': {'name': 'FORM', 'href': '#form'},
+        'selects': {'name': 'SELECTS', 'href': '#selects'}
+      }
+    },
+    'table': {
+      'icon': 'reorder',
+      'name': 'TABLE',
+      'href': '#table',
+      'sub': {}
+    },
+    'picker': {
+      'icon': 'timer',
+      'name': 'PICKER',
       'href': '',
       'sub': {
-        'info': {'name': 'INFORMATION', 'href': '#person/info'},
-        'password': {'name': 'CHANGE PWD', 'href': '#'}
+        'datepicker': {'name': 'DATE PICKER', 'href': '#datepicker'},
+        'timepicker': {'name': 'TIME PICKER', 'href': '#timepicker'}
       }
-    },
-    'group': {
-      'icon': 'group',
-      'name': 'GROUP',
-      'href': '',
-      'sub':  {
-        'info': {'name': 'INFORMATION', 'href': '#'}
-      }
-    },
-    'subject': {
-      'icon': 'subject',
-      'name': 'SUBJECT',
-      'href': '',
-      'sub':  {
-        'project': {'name': 'PROJECT', 'href': '#table'},
-        'requirement': {'name': 'REQUIREMENT', 'href': '#'},
-        'task': {'name': 'TASK', 'href': '#'}
-      }
-    },
-    'share': {
-      'icon': 'share',
-      'name': 'SHARE',
-      'href': '',
-      'sub': {}
     },
     'setting': {
       'icon': 'settings',

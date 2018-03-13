@@ -74,9 +74,6 @@ function Application () {
         }, function (xhr, dom) {});
       });
     });
-    this.router.route('person/info', function () {
-      console.log('person/info');
-    });
     this.router.route('table', function () {
       _this.board.card.innerHTML = '';
       _this.board.tab.create('table', {
