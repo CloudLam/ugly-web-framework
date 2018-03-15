@@ -5,8 +5,9 @@
 function Table(object) {
   var table = {
     node: object.node || null,
-    col: 0,
-    row: 0
+    col: [],
+    row: 0,
+    current: 1
   };
 
   return table;
