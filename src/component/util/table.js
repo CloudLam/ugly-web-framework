@@ -7,8 +7,11 @@ function Table(object) {
     node: object.node || null,
     col: [],
     row: 0,
-    current: 1
+    current: 1,
+    init: _init
   };
+
+  function _init () {}
 
   return table;
 }
