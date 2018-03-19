@@ -7,10 +7,10 @@ function Table(object) {
     node: object.node || null,
     col: [],
     row: 0,
+    count: 0,
     attributes: {},
     order: [],
     max: object.max || 10,
-    current: 1,
     multiSelect: object.multiSelect ? true : false,
     init: _init,
     sort: _sort,
@@ -22,21 +22,50 @@ function Table(object) {
     search: _search
   };
 
+  var prop = {
+    current: 1
+  }
+  Object.defineProperties(sidebar, {
+    'current': {
+      get: function () {
+        return prop.current;
+      },
+      set: function (value) {
+        prop.current = value;
+        _setPage(value);
+      }
+    }
+  });
+
   function _init () {}
 
   function _sort () {}
 
-  function _first () {}
+  function _first () {
+    this.current = 1;
+  }
 
-  function _prev () {}
+  function _prev () {
+    if (this.current > 1) {
+      this.current = this.current - 1;
+    }
+  }
 
-  function _next () {}
+  function _next () {
+    if (this.current < this.count / this.max + 1) {
+      this.current = this.current + 1;
+    }
+  }
 
-  function _last () {}
+  function _last () {
+    this.current = this.count / this.max + 1;
+  }
 
-  function _jump () {}
+  function _jump (page) {
+    this.current = page;
+  }
 
-  function _search () {}
+  function _search (value) {}
 
   function _draw () {}
 
