@@ -4,7 +4,7 @@
 
 function Table(object) {
   var table = {
-    node: object.node || null,
+    parent: object.parent || null,
     col: [],
     row: 0,
     count: 0,

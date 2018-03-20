@@ -87,7 +87,7 @@ function Application () {
           url: './component/page/table.html'
         }, function (xhr, dom) {
           var table = new Table({
-            node: dom[0].children[0]
+            parent: dom[0]
           });
         });
       });
