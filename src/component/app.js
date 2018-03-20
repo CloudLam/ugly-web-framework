@@ -85,7 +85,11 @@ function Application () {
         load({
           node: _this.board.card,
           url: './component/page/table.html'
-        }, function (xhr, dom) {});
+        }, function (xhr, dom) {
+          var table = new Table({
+            node: dom[0].children[0]
+          });
+        });
       });
     });
     this.router.route('setting', function () {

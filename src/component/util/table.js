@@ -25,7 +25,7 @@ function Table(object) {
   var prop = {
     current: 1
   }
-  Object.defineProperties(sidebar, {
+  Object.defineProperties(table, {
     'current': {
       get: function () {
         return prop.current;
