@@ -5,7 +5,7 @@
 function Table(object) {
   var table = {
     parent: object.parent || null,
-    col: [],
+    col: object.col || [],
     row: 0,
     count: 0,
     attributes: {},
@@ -37,7 +37,16 @@ function Table(object) {
     }
   });
 
-  function _init () {}
+  function _init () {
+    var html = '<table><thead>';
+    for (var i = 0; i < this.col.length; i++) {
+      html += '<th>' + this.col[i] + '</th>';
+    }
+    html += '</thead>';
+    html += '</table>';
+
+    this.parent.innerHTML = html;
+  }
 
   function _sort () {}
 
@@ -70,6 +79,8 @@ function Table(object) {
   function _draw () {}
 
   function _clear () {}
+
+  function _setPage (page) {}
 
   return table;
 }

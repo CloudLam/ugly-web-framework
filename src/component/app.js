@@ -87,8 +87,10 @@ function Application () {
           url: './component/page/table.html'
         }, function (xhr, dom) {
           var table = new Table({
-            parent: dom[0]
+            parent: dom[0],
+            col: ['NO.', 'NAME', 'GENDER', 'AGE', 'JOB']
           });
+          table.init();
         });
       });
     });
