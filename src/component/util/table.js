@@ -8,6 +8,7 @@ function Table(object) {
     col: object.col || [],
     row: 0,
     count: 0,
+    source: object.source || null,
     attributes: {},
     order: [],
     max: object.max || 10,
@@ -32,20 +33,27 @@ function Table(object) {
       },
       set: function (value) {
         prop.current = value;
-        _setPage(value);
+        _draw.call(table, value);
       }
     }
   });
 
   function _init () {
-    var html = '<table><thead>';
-    for (var i = 0; i < this.col.length; i++) {
-      html += '<th>' + this.col[i] + '</th>';
+    if (!object.parent) {
+        throw new Error('Parent node not found');
+        return;
     }
-    html += '</thead>';
-    html += '</table>';
 
-    this.parent.innerHTML = html;
+    if (this.source instanceof Array) {
+      for (this.row = 0; this.row < this.source.length; this.row++) {
+        for (var index in this.source[this.row]) {
+          this.attributes[this.col[index]] = this.attributes[this.col[index]] || [];
+          this.attributes[this.col[index]].push(this.source[this.row][index] || '');
+        }
+      }
+    }
+
+    this.current = 1;
   }
 
   function _sort () {}
@@ -76,11 +84,31 @@ function Table(object) {
 
   function _search (value) {}
 
-  function _draw () {}
+  function _draw (page) {
+    if (page - 1 < 0) {
+      return;
+    }
 
-  function _clear () {}
+    this.parent.innerHTML = '';
 
-  function _setPage (page) {}
+    var html = '<table><thead><tr>';
+
+    for (var i = 0; i < this.col.length; i++) {
+      html += '<th>' + this.col[i] + '</th>';
+    }
+    html += '</tr></thead><tbody>';
+
+    for (var j = (page - 1) * this.max; j < page * this.max && j < this.row; j++) {
+      html += '<tr>';
+      for (var key in this.col) {
+        html += '<td>' + this.attributes[this.col[key]][j] + '</td>';
+      }
+      html += '</tr>';
+    }
+    html += '</tbody></table>';
+
+    this.parent.innerHTML = html;
+  }
 
   return table;
 }
