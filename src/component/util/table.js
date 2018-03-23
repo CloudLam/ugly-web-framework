@@ -91,8 +91,9 @@ function Table(object) {
 
     this.parent.innerHTML = '';
 
-    var html = '<table><thead><tr>';
+    var html = '<div><input type="text"></div>'
 
+    html += '<table><thead><tr>';
     for (var i = 0; i < this.col.length; i++) {
       html += '<th>' + this.col[i] + '</th>';
     }
@@ -106,6 +107,12 @@ function Table(object) {
       html += '</tr>';
     }
     html += '</tbody></table>';
+
+    html += '<div><button>first</button><button>prev</button>';
+    for (var k = 1; k <= this.row / this.max + 1; k++) {
+      html += '<button>' + k + '</button>';
+    }
+    html += '<button>next</button><button>last</button></div>';
 
     this.parent.innerHTML = html;
   }
