@@ -5,6 +5,7 @@
 function Table(object) {
   var table = {
     parent: object.parent || null,
+    node: null,
     col: object.col || [],
     row: 0,
     count: 0,
@@ -12,6 +13,18 @@ function Table(object) {
     attributes: {},
     order: [],
     max: object.max || 10,
+    render: object.render || {
+      search: {
+        id: 'table-id',
+        title: 'Search'
+      },
+      page: {
+        first: 'First',
+        prev: 'Prev',
+        next: 'Next',
+        last: 'Last'
+      }
+    },
     multiSelect: object.multiSelect ? true : false,
     init: _init,
     sort: _sort,
@@ -53,6 +66,26 @@ function Table(object) {
       }
     }
 
+    var searchNode = '<div><label for="' + this.render.search.id + 
+      '">' + this.render.search.title + 
+      '</label><input id="' + this.render.search.id + 
+      '" type="text"></div>';
+
+    var pageNode = '<div><button>' + this.render.page.first + 
+      '</button><button>' + this.render.page.prev + 
+      '</button>';
+    for (var num = 1; num <= this.row / this.max + 1; num++) {
+      pageNode += '<button>' + num + '</button>';
+    }
+    pageNode += '<button>' + this.render.page.next + 
+      '</button><button>' + this.render.page.last + 
+      '</button></div>';
+
+    this.parent.innerHTML = searchNode + pageNode;
+
+    this.node = document.createElement('table');
+    this.parent.insertBefore(this.node, this.parent.lastElementChild || this.parent.lastChild);
+
     this.current = 1;
   }
 
@@ -89,11 +122,9 @@ function Table(object) {
       return;
     }
 
-    this.parent.innerHTML = '';
+    this.node.innerHTML = '';
 
-    var html = '<div><input type="text"></div>'
-
-    html += '<table><thead><tr>';
+    var html = '<thead><tr>';
     for (var i = 0; i < this.col.length; i++) {
       html += '<th>' + this.col[i] + '</th>';
     }
@@ -106,15 +137,9 @@ function Table(object) {
       }
       html += '</tr>';
     }
-    html += '</tbody></table>';
+    html += '</tbody>';
 
-    html += '<div><button>first</button><button>prev</button>';
-    for (var k = 1; k <= this.row / this.max + 1; k++) {
-      html += '<button>' + k + '</button>';
-    }
-    html += '<button>next</button><button>last</button></div>';
-
-    this.parent.innerHTML = html;
+    this.node.innerHTML = html;
   }
 
   return table;

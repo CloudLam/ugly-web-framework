@@ -89,7 +89,19 @@ function Application () {
           var table = new Table({
             parent: dom[0],
             col: ['NO.', 'NAME', 'GENDER', 'AGE', 'JOB'],
-            source: [['1', 'Apple', 'Female', '18', 'Student'], ['2', 'Banana', 'Female', '30', 'Teacher']]
+            source: [['1', 'Apple', 'Female', '18', 'Student'], ['2', 'Banana', 'Female', '30', 'Teacher']],
+            render: {
+              search: {
+                id: 'uwf-table',
+                title: '<i class="material-icons">search</i>'
+              },
+              page: {
+                first: '<i class="material-icons">first_page</i>',
+                prev: '<i class="material-icons">chevron_left</i>',
+                next: '<i class="material-icons">chevron_right</i>',
+                last: '<i class="material-icons">last_page</i>'
+              }
+            }
           });
           table.init();
         });
