@@ -16,9 +16,11 @@ function Table(object) {
     render: object.render || {
       search: {
         id: 'table-id',
+        class: '',
         title: 'Search'
       },
       page: {
+        class: '',
         first: 'First',
         prev: 'Prev',
         next: 'Next',
@@ -66,12 +68,14 @@ function Table(object) {
       }
     }
 
-    var searchNode = '<div><label for="' + this.render.search.id + 
+    var searchNode = '<div class="' + this.render.search.class +
+      '"><label for="' + this.render.search.id + 
       '">' + this.render.search.title + 
       '</label><input id="' + this.render.search.id + 
       '" type="text"></div>';
 
-    var pageNode = '<div><button>' + this.render.page.first + 
+    var pageNode = '<div class="' + this.render.page.class +
+      '"><button>' + this.render.page.first + 
       '</button><button>' + this.render.page.prev + 
       '</button>';
     for (var num = 1; num <= this.row / this.max + 1; num++) {

@@ -93,9 +93,11 @@ function Application () {
             render: {
               search: {
                 id: 'uwf-table',
+                class: 'uwf-table-search',
                 title: '<i class="material-icons">search</i>'
               },
               page: {
+                class: 'uwf-table-page',
                 first: '<i class="material-icons">first_page</i>',
                 prev: '<i class="material-icons">chevron_left</i>',
                 next: '<i class="material-icons">chevron_right</i>',
