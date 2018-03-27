@@ -8,11 +8,10 @@ function Table(object) {
     node: null,
     col: object.col || [],
     row: 0,
-    count: 0,
     source: object.source || null,
     attributes: {},
     order: [],
-    max: object.max || 10,
+    max: object.max || 1,
     render: object.render || {
       search: {
         id: 'table-id',
@@ -24,7 +23,8 @@ function Table(object) {
         first: 'First',
         prev: 'Prev',
         next: 'Next',
-        last: 'Last'
+        last: 'Last',
+        more: '...'
       }
     },
     multiSelect: object.multiSelect ? true : false,
@@ -47,6 +47,9 @@ function Table(object) {
         return prop.current;
       },
       set: function (value) {
+        if (isNaN(value)) {
+          return;
+        }
         prop.current = value;
         _draw.call(table, value);
       }
@@ -59,6 +62,29 @@ function Table(object) {
         return;
     }
 
+    var searchNode = '<div class="' + this.render.search.class +
+      '"><label for="' + this.render.search.id + 
+      '">' + this.render.search.title + 
+      '</label><input id="' + this.render.search.id + 
+      '" type="text"></div>';
+
+    var pageNode = '<div class="' + this.render.page.class + '"></div>';
+
+    this.parent.innerHTML = searchNode + pageNode;
+
+    var tableNode = '<thead><tr>';
+    for (var i = 0; i < this.col.length; i++) {
+      tableNode += '<th>' + this.col[i] + '</th>';
+    }
+    tableNode += '</tr></thead><tbody></tbody>';
+
+    this.node = document.createElement('table');
+    this.node.innerHTML = tableNode;
+
+    this.parent.insertBefore(this.node, this.parent.lastElementChild || this.parent.lastChild);
+
+    _listener.call(this);
+
     if (this.source instanceof Array) {
       for (this.row = 0; this.row < this.source.length; this.row++) {
         for (var index in this.source[this.row]) {
@@ -66,33 +92,17 @@ function Table(object) {
           this.attributes[this.col[index]].push(this.source[this.row][index] || '');
         }
       }
+      this.current = 1;
+    } else {
+      ajax({
+        method: 'post',
+        url: this.source,
+        success: function(result) {
+          console.log(result);
+          this.current = 1;
+        }
+      });
     }
-
-    var searchNode = '<div class="' + this.render.search.class +
-      '"><label for="' + this.render.search.id + 
-      '">' + this.render.search.title + 
-      '</label><input id="' + this.render.search.id + 
-      '" type="text"></div>';
-
-    var pageNode = '<div class="' + this.render.page.class +
-      '"><button first>' + this.render.page.first + 
-      '</button><button prev>' + this.render.page.prev + 
-      '</button>';
-    for (var num = 1; num <= this.row / this.max + 1; num++) {
-      pageNode += '<button>' + num + '</button>';
-    }
-    pageNode += '<button next>' + this.render.page.next + 
-      '</button><button last>' + this.render.page.last + 
-      '</button></div>';
-
-    this.parent.innerHTML = searchNode + pageNode;
-
-    this.node = document.createElement('table');
-    this.parent.insertBefore(this.node, this.parent.lastElementChild || this.parent.lastChild);
-
-    _listenerInit.call(this);
-
-    this.current = 1;
   }
 
   function _sort () {}
@@ -108,13 +118,13 @@ function Table(object) {
   }
 
   function _next () {
-    if (this.current < this.count / this.max + 1) {
+    if (this.current < Math.ceil(this.row / this.max)) {
       this.current = this.current + 1;
     }
   }
 
   function _last () {
-    this.current = this.count / this.max + 1;
+    this.current = Math.ceil(this.row / this.max);
   }
 
   function _jump (page) {
@@ -128,14 +138,9 @@ function Table(object) {
       return;
     }
 
-    this.node.innerHTML = '';
+    this.node.children[1].innerHTML = '';
 
-    var html = '<thead><tr>';
-    for (var i = 0; i < this.col.length; i++) {
-      html += '<th>' + this.col[i] + '</th>';
-    }
-    html += '</tr></thead><tbody>';
-
+    var html = '';
     for (var j = (page - 1) * this.max; j < page * this.max && j < this.row; j++) {
       html += '<tr>';
       for (var key in this.col) {
@@ -143,12 +148,44 @@ function Table(object) {
       }
       html += '</tr>';
     }
-    html += '</tbody>';
 
-    this.node.innerHTML = html;
+    this.node.children[1].innerHTML = html;
+
+    _pageButton.call(this);
   }
 
-  function _listenerInit() {
+  function _pageButton () {
+    var pageNode = this.node.nextElementSibling || this.node.nextSibling;
+
+    var html = '<button first>' + this.render.page.first + 
+      '</button><button prev>' + this.render.page.prev + 
+      '</button>';
+
+    if (this.current / 10.5 > 1) {
+      html += '<button prev-pages>' + this.render.page.more + '</button>';
+    }
+
+    var page = Math.floor(this.current / 10.5) * 10;
+    for (var i = 1; i < 11; i++) {
+      page += 1;
+      if (page > Math.ceil(this.row / this.max)) {
+        break;
+      }
+      html += '<button>' + page + '</button>';
+    }
+
+    if (page + 1 < Math.ceil(this.row / this.max)) {
+      html += '<button next-pages>' + this.render.page.more + '</button>';
+    }
+
+    html += '<button next>' + this.render.page.next + 
+      '</button><button last>' + this.render.page.last + 
+      '</button>';
+
+    pageNode.innerHTML = html;
+  }
+
+  function _listener() {
     var searchNode = this.node.previousElementSibling || this.node.previousSibling;
     var pageNode = this.node.nextElementSibling || this.node.nextSibling;
 
@@ -158,15 +195,19 @@ function Table(object) {
         target = event.target.parentNode;
       }
       if (target.hasAttribute('first')) {
-        console.log('first');
+        table.first();
       } else if (target.hasAttribute('prev')) {
-        console.log('prev');
+        table.prev();
       } else if (target.hasAttribute('next')) {
-        console.log('next');
+        table.next();
       } else if (target.hasAttribute('last')) {
-        console.log('last');
+        table.last();
+      } else if (target.hasAttribute('prev-pages')) {
+        table.jump(Math.floor(table.current / 10) * 10);
+      } else if (target.hasAttribute('next-pages')) {
+        table.jump(Math.ceil(table.current / 10) * 10 + 1);
       } else {
-        console.log(target.innerHTML);
+        table.jump(parseInt(target.innerHTML));
       }
     }, false);
   }

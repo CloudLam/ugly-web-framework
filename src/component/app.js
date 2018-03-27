@@ -101,7 +101,8 @@ function Application () {
                 first: '<i class="material-icons">first_page</i>',
                 prev: '<i class="material-icons">chevron_left</i>',
                 next: '<i class="material-icons">chevron_right</i>',
-                last: '<i class="material-icons">last_page</i>'
+                last: '<i class="material-icons">last_page</i>',
+                more: '<i class="material-icons">more_horiz</i>',
               }
             }
           });
