@@ -27,10 +27,6 @@
   border-bottom: 0;
 }
 
-.uwf-table table tbody tr:hover {
-  background-color: #d7dff8;
-}
-
 .uwf-table .uwf-table-search, .uwf-table .uwf-table-page {
   position: relative;
   text-align: right;
@@ -74,6 +70,9 @@
   border-radius: 0 0.2rem 0.2rem 0;
 }
 
+.uwf-table table tbody tr:hover, 
+.uwf-table .uwf-table-page button:disabled, 
 .uwf-table .uwf-table-page button:hover {
-  background-color: #d7dff8;
+  background-color: #1e90ff;
+  color: #ffffff;
 }

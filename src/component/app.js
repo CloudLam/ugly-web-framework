@@ -88,8 +88,8 @@ function Application () {
         }, function (xhr, dom) {
           var table = new Table({
             parent: dom[0],
-            col: ['NO.', 'NAME', 'GENDER', 'AGE', 'JOB'],
-            source: [['1', 'Apple', 'Female', '18', 'Student'], ['2', 'Banana', 'Female', '30', 'Teacher']],
+            col: ['NO.', 'LETTER', 'NAME', 'FRUIT', 'ANIMAL'],
+            source: './mock/table.json',
             render: {
               search: {
                 id: 'uwf-table',

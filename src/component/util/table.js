@@ -11,7 +11,7 @@ function Table(object) {
     source: object.source || null,
     attributes: {},
     order: [],
-    max: object.max || 1,
+    max: object.max || 5,
     render: object.render || {
       search: {
         id: 'table-id',
@@ -86,20 +86,15 @@ function Table(object) {
     _listener.call(this);
 
     if (this.source instanceof Array) {
-      for (this.row = 0; this.row < this.source.length; this.row++) {
-        for (var index in this.source[this.row]) {
-          this.attributes[this.col[index]] = this.attributes[this.col[index]] || [];
-          this.attributes[this.col[index]].push(this.source[this.row][index] || '');
-        }
-      }
+      _set.call(table, this.source);
       this.current = 1;
     } else {
       ajax({
-        method: 'post',
+        method: 'get',
         url: this.source,
         success: function(result) {
-          console.log(result);
-          this.current = 1;
+          _set.call(table, JSON.parse(result).data);
+          table.current = 1;
         }
       });
     }
@@ -132,6 +127,15 @@ function Table(object) {
   }
 
   function _search (value) {}
+
+  function _set (data) {
+    for (this.row = 0; this.row < data.length; this.row++) {
+      for (var index in data[this.row]) {
+        this.attributes[this.col[index]] = this.attributes[this.col[index]] || [];
+        this.attributes[this.col[index]].push(data[this.row][index] || '');
+      }
+    }
+  }
 
   function _draw (page) {
     if (page - 1 < 0) {
@@ -171,7 +175,11 @@ function Table(object) {
       if (page > Math.ceil(this.row / this.max)) {
         break;
       }
-      html += '<button>' + page + '</button>';
+      if (page == this.current) {
+        html += '<button disabled>' + page + '</button>';
+      } else {
+        html += '<button>' + page + '</button>';
+      }
     }
 
     if (page + 1 < Math.ceil(this.row / this.max)) {
