@@ -75,20 +75,22 @@ function Table(object) {
       '" type="text"></div>';
 
     var pageNode = '<div class="' + this.render.page.class +
-      '"><button>' + this.render.page.first + 
-      '</button><button>' + this.render.page.prev + 
+      '"><button first>' + this.render.page.first + 
+      '</button><button prev>' + this.render.page.prev + 
       '</button>';
     for (var num = 1; num <= this.row / this.max + 1; num++) {
       pageNode += '<button>' + num + '</button>';
     }
-    pageNode += '<button>' + this.render.page.next + 
-      '</button><button>' + this.render.page.last + 
+    pageNode += '<button next>' + this.render.page.next + 
+      '</button><button last>' + this.render.page.last + 
       '</button></div>';
 
     this.parent.innerHTML = searchNode + pageNode;
 
     this.node = document.createElement('table');
     this.parent.insertBefore(this.node, this.parent.lastElementChild || this.parent.lastChild);
+
+    _listenerInit.call(this);
 
     this.current = 1;
   }
@@ -144,6 +146,29 @@ function Table(object) {
     html += '</tbody>';
 
     this.node.innerHTML = html;
+  }
+
+  function _listenerInit() {
+    var searchNode = this.node.previousElementSibling || this.node.previousSibling;
+    var pageNode = this.node.nextElementSibling || this.node.nextSibling;
+
+    pageNode.addEventListener('click', function (event) {
+      var target = event.target;
+      if (target.tagName.toUpperCase() != 'BUTTON') {
+        target = event.target.parentNode;
+      }
+      if (target.hasAttribute('first')) {
+        console.log('first');
+      } else if (target.hasAttribute('prev')) {
+        console.log('prev');
+      } else if (target.hasAttribute('next')) {
+        console.log('next');
+      } else if (target.hasAttribute('last')) {
+        console.log('last');
+      } else {
+        console.log(target.innerHTML);
+      }
+    }, false);
   }
 
   return table;
