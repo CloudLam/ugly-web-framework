@@ -13,7 +13,7 @@ function Sidebar (object) {
 
   var prop = {
     node: null,
-    color: object.color || 'blue',
+    color: object.color || 'black',
     type: object.type || 0
   }
   Object.defineProperties(sidebar, {

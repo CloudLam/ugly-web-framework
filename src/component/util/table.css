@@ -71,8 +71,12 @@
 }
 
 .uwf-table table tbody tr:hover, 
-.uwf-table .uwf-table-page button:disabled, 
 .uwf-table .uwf-table-page button:hover {
-  background-color: #1e90ff;
+  background-color: #eaecef;
+}
+
+.uwf-table table tbody tr[checked], 
+.uwf-table .uwf-table-page button:disabled {
+  background-color: #0366d6;
   color: #ffffff;
 }

@@ -13,6 +13,7 @@ function Table(object) {
     order: [],
     max: object.max || 5,
     render: object.render || {
+      column: [],
       search: {
         id: 'table-id',
         class: '',
@@ -74,7 +75,11 @@ function Table(object) {
 
     var tableNode = '<thead><tr>';
     for (var i = 0; i < this.col.length; i++) {
-      tableNode += '<th>' + this.col[i] + '</th>';
+      if (this.render.column && this.render.column.length > i) {
+        tableNode += '<th width="' + this.render.column[i].width + '">' + this.col[i] + '</th>';
+      } else {
+        tableNode += '<th>' + this.col[i] + '</th>';
+      }
     }
     tableNode += '</tr></thead><tbody></tbody>';
 
@@ -100,7 +105,19 @@ function Table(object) {
     }
   }
 
-  function _sort () {}
+  function _sort (column, flag) {
+    if (flag) {
+      if (flag == 1) {
+        _quickSort(this.order, this.attributes[column], 0, this.row - 1);
+      }
+      if (flag == 2) {
+        this.order.reverse();
+      }
+    } else {
+      _reset.call(this);
+    }
+    this.current = 1;
+  }
 
   function _first () {
     this.current = 1;
@@ -130,10 +147,18 @@ function Table(object) {
 
   function _set (data) {
     for (this.row = 0; this.row < data.length; this.row++) {
+      this.order.push(this.row);
       for (var index in data[this.row]) {
         this.attributes[this.col[index]] = this.attributes[this.col[index]] || [];
         this.attributes[this.col[index]].push(data[this.row][index] || '');
       }
+    }
+  }
+
+  function _reset () {
+    this.order = [];
+    for (var i = 0; i < this.row; i++) {
+      this.order.push(i);
     }
   }
 
@@ -148,7 +173,7 @@ function Table(object) {
     for (var j = (page - 1) * this.max; j < page * this.max && j < this.row; j++) {
       html += '<tr>';
       for (var key in this.col) {
-        html += '<td>' + this.attributes[this.col[key]][j] + '</td>';
+        html += '<td>' + this.attributes[this.col[key]][this.order[j]] + '</td>';
       }
       html += '</tr>';
     }
@@ -172,7 +197,7 @@ function Table(object) {
     var page = Math.floor(this.current / 10.5) * 10;
     for (var i = 1; i < 11; i++) {
       page += 1;
-      if (page > Math.ceil(this.row / this.max)) {
+      if (page > Math.ceil(this.order.length / this.max)) {
         break;
       }
       if (page == this.current) {
@@ -182,7 +207,7 @@ function Table(object) {
       }
     }
 
-    if (page + 1 < Math.ceil(this.row / this.max)) {
+    if (page + 1 < Math.ceil(this.order.length / this.max)) {
       html += '<button next-pages>' + this.render.page.more + '</button>';
     }
 
@@ -193,9 +218,67 @@ function Table(object) {
     pageNode.innerHTML = html;
   }
 
+  function _quickSort (array, data, left, right) {
+    if (left < right) {
+      var pivot = array[left];
+      var low = left;
+      var high = right;
+      while (low < high) {
+        while (low < high && data[array[high]] >= data[pivot]) {
+          high--;
+        }
+        array[low] = array[high];
+        while (low < high && data[array[low]] <= data[pivot]) {
+          low++;
+        }
+        array[high] = array[low];
+      }
+      array[low] = pivot;
+      _quickSort(array, data, left, low - 1);
+      _quickSort(array, data, low + 1, right);
+    }
+    return array;
+  }
+
+  function _checkClear () {
+    for (var i = 0; i < this.children[1].children.length; i++) {
+      this.children[1].children[i].removeAttribute('checked');
+    }
+  }
+
   function _listener() {
     var searchNode = this.node.previousElementSibling || this.node.previousSibling;
     var pageNode = this.node.nextElementSibling || this.node.nextSibling;
+
+    this.node.addEventListener('click', function (event) {
+      var target = event.target;
+      if (target.tagName.toUpperCase() == 'TH') {
+        if (target.hasAttribute('sort')) {
+          target.removeAttribute('sort');
+          target.setAttribute('sort-desc', '');
+          table.sort(target.innerHTML.split(' ')[0], 2);
+          target.innerHTML = target.innerHTML.split(' ')[0] + ' &#9652;';
+        } else if (target.hasAttribute('sort-desc')) {
+          target.removeAttribute('sort-desc');
+          table.sort(target.innerHTML.split(' ')[0]);
+          target.innerHTML = target.innerHTML.split(' ')[0];
+        } else {
+          target.setAttribute('sort', '');
+          table.sort(target.innerHTML, 1);
+          target.innerHTML = target.innerHTML + ' &#9662;';
+        }
+      }
+      if (target.tagName.toUpperCase() == 'TD') {
+        if (target.parentNode.hasAttribute('checked')) {
+          target.parentNode.removeAttribute('checked');
+        } else {
+          if (!table.multiSelect) {
+            _checkClear.call(table.node);
+          }
+          target.parentNode.setAttribute('checked', '');
+        }
+      }
+    }, false);
 
     pageNode.addEventListener('click', function (event) {
       var target = event.target;

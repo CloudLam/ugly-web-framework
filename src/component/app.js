@@ -91,6 +91,13 @@ function Application () {
             col: ['NO.', 'LETTER', 'NAME', 'FRUIT', 'ANIMAL'],
             source: './mock/table.json',
             render: {
+              column: [
+                {width: '10%'},
+                {width: '15%'},
+                {width: '25%'},
+                {width: '25%'},
+                {width: '25%'}
+              ],
               search: {
                 id: 'uwf-table',
                 class: 'uwf-table-search',
@@ -129,7 +136,7 @@ function Application () {
 
     // Local Settings
     app.type = parseInt(localStorage.getItem('uwfAppType')) || 0;
-    app.sidebar.color = localStorage.getItem('uwfAppColor') || 'blue';
+    app.sidebar.color = localStorage.getItem('uwfAppColor') || 'black';
   }
 
   function _setType() {

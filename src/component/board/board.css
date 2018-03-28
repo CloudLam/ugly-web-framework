@@ -154,8 +154,8 @@
 }
 
 .uwf-board #uwf-tabs .uwf-tab-list .uwf-tab-list-items div:hover {
-  background-color: #cfcfcf;
-  opacity: 0.7;
+  background-color: #0366d6;
+  color: #ffffff;
 }
 
 .uwf-board #uwf-tabs .uwf-tab-list .uwf-tab-list-items div:first-child:hover {
@@ -191,11 +191,13 @@
 }
 
 .uwf-tab:hover {
-  background-color: #cfcfcf;
+  background-color: #0366d6;
+  color: #ffffff;
 }
 
 .uwf-tab.active:hover {
   background-color: #fcfcfc;
+  color: #000000;
 }
 
 .uwf-tab label {

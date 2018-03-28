@@ -48,4 +48,8 @@ function settingInit(app) {
     app.sidebar.color = 'gray';
     localStorage.setItem('uwfAppColor', app.sidebar.color);
   }
+  document.getElementById('uwf-setting-sidebarcolor-black').onclick = function (event) {
+    app.sidebar.color = 'black';
+    localStorage.setItem('uwfAppColor', app.sidebar.color);
+  }
 }
