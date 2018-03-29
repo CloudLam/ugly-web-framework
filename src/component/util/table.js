@@ -108,13 +108,13 @@ function Table(object) {
   function _sort (column, flag) {
     if (flag) {
       if (flag == 1) {
-        _quickSort(this.order, this.attributes[column], 0, this.row - 1);
+        _quickSort(this.order, this.attributes[column], 0, this.order.length - 1);
       }
       if (flag == 2) {
         this.order.reverse();
       }
     } else {
-      _reset.call(this);
+      this.order.sort(function(a, b) {return a - b;});
     }
     this.current = 1;
   }
@@ -143,7 +143,26 @@ function Table(object) {
     this.current = page;
   }
 
-  function _search (value) {}
+  function _search (value) {
+    if (value) {
+      this.order = [];
+      for (var key in this.attributes) {
+        for (var i = 0; i < this.attributes[key].length; i++) {
+          if (this.attributes[key][i].toUpperCase().indexOf(value.toUpperCase()) > -1 && 
+            this.order.indexOf(i) == -1) {
+            this.order.push(i);
+          }
+        }
+      }
+      this.order.sort(function(a, b) {return a - b;});
+    } else {
+      this.order = [];
+      for (var i = 0; i < this.row; i++) {
+        this.order.push(i);
+      }
+    }
+    this.current = 1;
+  }
 
   function _set (data) {
     for (this.row = 0; this.row < data.length; this.row++) {
@@ -155,13 +174,6 @@ function Table(object) {
     }
   }
 
-  function _reset () {
-    this.order = [];
-    for (var i = 0; i < this.row; i++) {
-      this.order.push(i);
-    }
-  }
-
   function _draw (page) {
     if (page - 1 < 0) {
       return;
@@ -170,7 +182,7 @@ function Table(object) {
     this.node.children[1].innerHTML = '';
 
     var html = '';
-    for (var j = (page - 1) * this.max; j < page * this.max && j < this.row; j++) {
+    for (var j = (page - 1) * this.max; j < page * this.max && j < this.order.length; j++) {
       html += '<tr>';
       for (var key in this.col) {
         html += '<td>' + this.attributes[this.col[key]][this.order[j]] + '</td>';
@@ -249,6 +261,16 @@ function Table(object) {
   function _listener() {
     var searchNode = this.node.previousElementSibling || this.node.previousSibling;
     var pageNode = this.node.nextElementSibling || this.node.nextSibling;
+
+    if (isIE(9)) {
+      searchNode.children[1].addEventListener('change', function (event) {
+        table.search(this.value);
+      }, false);
+    }
+
+    searchNode.children[1].addEventListener('input', function (event) {
+      table.search(this.value);
+    }, false);
 
     this.node.addEventListener('click', function (event) {
       var target = event.target;
