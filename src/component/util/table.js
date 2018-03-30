@@ -36,7 +36,8 @@ function Table(object) {
     next: _next,
     last: _last,
     jump: _jump,
-    search: _search
+    search: _search,
+    filter: _filter
   };
 
   var prop = {
@@ -76,7 +77,8 @@ function Table(object) {
     var tableNode = '<thead><tr>';
     for (var i = 0; i < this.col.length; i++) {
       if (this.render.column && this.render.column.length > i) {
-        tableNode += '<th width="' + this.render.column[i].width + '">' + this.col[i] + '</th>';
+        tableNode += '<th width="' + this.render.column[i].width + '"><label>' + this.col[i] + 
+          '</label><select><option></option><select></th>';
       } else {
         tableNode += '<th>' + this.col[i] + '</th>';
       }
@@ -160,6 +162,27 @@ function Table(object) {
       for (var i = 0; i < this.row; i++) {
         this.order.push(i);
       }
+    }
+    this.current = 1;
+  }
+
+  function _filter (key, value) {
+    if (value == 'all') {
+      this.order = [];
+      for (var i = 0; i < this.row; i++) {
+        this.order.push(i);
+      }
+    } else if (value) {
+      this.order = [];
+      for (var i = 0; i < this.attributes[key].length; i++) {
+        if (this.attributes[key][i].toUpperCase().indexOf(value.toUpperCase()) > -1 && 
+          this.order.indexOf(i) == -1) {
+          this.order.push(i);
+        }
+      }
+      this.order.sort(function(a, b) {return a - b;});
+    } else {
+      return;
     }
     this.current = 1;
   }
@@ -274,20 +297,23 @@ function Table(object) {
 
     this.node.addEventListener('click', function (event) {
       var target = event.target;
+      if (target.tagName.toUpperCase() == 'LABEL' && target.parentNode.tagName.toUpperCase() == 'TH') {
+        target = target.parentNode;
+      }
       if (target.tagName.toUpperCase() == 'TH') {
         if (target.hasAttribute('sort')) {
           target.removeAttribute('sort');
           target.setAttribute('sort-desc', '');
-          table.sort(target.innerHTML.split(' ')[0], 2);
-          target.innerHTML = target.innerHTML.split(' ')[0] + ' &#9652;';
+          table.sort(target.children[0].innerHTML.split(' ')[0], 2);
+          target.children[0].innerHTML = target.children[0].innerHTML.split(' ')[0] + ' &#9652;';
         } else if (target.hasAttribute('sort-desc')) {
           target.removeAttribute('sort-desc');
-          table.sort(target.innerHTML.split(' ')[0]);
-          target.innerHTML = target.innerHTML.split(' ')[0];
+          table.sort(target.children[0].innerHTML.split(' ')[0]);
+          target.children[0].innerHTML = target.children[0].innerHTML.split(' ')[0];
         } else {
           target.setAttribute('sort', '');
-          table.sort(target.innerHTML, 1);
-          target.innerHTML = target.innerHTML + ' &#9662;';
+          table.sort(target.children[0].innerHTML, 1);
+          target.children[0].innerHTML = target.children[0].innerHTML + ' &#9662;';
         }
       }
       if (target.tagName.toUpperCase() == 'TD') {

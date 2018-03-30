@@ -11,12 +11,38 @@
   word-break: break-all;
 }
 
-.uwf-table table tr th, .uwf-table table tr td {
+.uwf-table table tr th, 
+.uwf-table table tr td {
+  position: relative;
   padding: 0.8rem 1.2rem 0.8rem 1.2rem;
   cursor: pointer;
   border: 0.1rem solid #dfdfdf;
   border-top: 0;
   border-left: 0;
+}
+
+.uwf-table table tr th label, 
+.uwf-table table tr td label {
+  cursor: pointer;
+}
+
+.uwf-table table tr th select {
+  position: absolute;
+  right: 0.8rem;
+  border: 0;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 1.0rem;
+  height: 1.0rem;
+  cursor: pointer;
+}
+
+.uwf-table table tr th select::-ms-expand {
+  display: none;
+}
+
+.uwf-table table tr th select:after {
+  content: "↗";
 }
 
 .uwf-table table tr th:last-child, .uwf-table table tr td:last-child {
