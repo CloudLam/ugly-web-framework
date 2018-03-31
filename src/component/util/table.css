@@ -26,23 +26,28 @@
   cursor: pointer;
 }
 
-.uwf-table table tr th select {
+.uwf-table table tr th div, 
+.uwf-table table tr th div select  {
   position: absolute;
-  right: 0.8rem;
-  border: 0;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  bottom: 0;
+  right: 0;
   width: 1.0rem;
   height: 1.0rem;
+}
+
+.uwf-table table tr th div::before {
+  content: "\25E2";
+}
+
+.uwf-table table tr th div select {
+  opacity: 0;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
 }
 
-.uwf-table table tr th select::-ms-expand {
+.uwf-table table tr th div select::-ms-expand {
   display: none;
-}
-
-.uwf-table table tr th select:after {
-  content: "↗";
 }
 
 .uwf-table table tr th:last-child, .uwf-table table tr td:last-child {

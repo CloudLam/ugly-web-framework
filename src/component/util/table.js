@@ -78,7 +78,7 @@ function Table(object) {
     for (var i = 0; i < this.col.length; i++) {
       if (this.render.column && this.render.column.length > i) {
         tableNode += '<th width="' + this.render.column[i].width + '"><label>' + this.col[i] + 
-          '</label><select><option></option><select></th>';
+          '</label><div><select><option></option><select></div></th>';
       } else {
         tableNode += '<th>' + this.col[i] + '</th>';
       }
