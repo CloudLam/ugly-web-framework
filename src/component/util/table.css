@@ -4,8 +4,8 @@
   width: 100%;
   margin: 1.0rem 0 1.0rem 0;
   background-color: #ffffff;
-  border: 0.1rem solid #dfdfdf;
-  border-radius: 0.2rem;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
   border-spacing: 0;
   table-layout: fixed;
   word-break: break-all;
@@ -16,7 +16,7 @@
   position: relative;
   padding: 0.8rem 1.2rem 0.8rem 1.2rem;
   cursor: pointer;
-  border: 0.1rem solid #dfdfdf;
+  border: 1px solid #dfdfdf;
   border-top: 0;
   border-left: 0;
 }
@@ -33,6 +33,7 @@
   right: 0;
   width: 1.0rem;
   height: 1.0rem;
+  padding-left: 0.1rem;
 }
 
 .uwf-table table tr th div::before {
@@ -44,6 +45,10 @@
   -moz-appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
+}
+
+.uwf-table table tr th div select option span {
+  padding: 0.2rem;
 }
 
 .uwf-table table tr th div select::-ms-expand {
@@ -75,14 +80,14 @@
   width: 12.0rem;
   height: 1.6rem;
   padding: 0 0.25rem 0 0.25rem;
-  border: 0.1rem solid #dfdfdf;
+  border: 1px solid #dfdfdf;
   border-radius: 0.2rem;
 }
 
 .uwf-table .uwf-table-page button {
   width: 2.5rem;
   height: 2.0rem;
-  border: 0.1rem solid #dfdfdf;
+  border: 1px solid #dfdfdf;
   background-color: #ffffff;
   vertical-align: middle;
   font-size: 0.8rem;

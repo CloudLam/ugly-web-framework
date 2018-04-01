@@ -77,8 +77,11 @@ function Table(object) {
     var tableNode = '<thead><tr>';
     for (var i = 0; i < this.col.length; i++) {
       if (this.render.column && this.render.column.length > i) {
-        tableNode += '<th width="' + this.render.column[i].width + '"><label>' + this.col[i] + 
-          '</label><div><select><option></option><select></div></th>';
+        tableNode += '<th width="' + this.render.column[i].width + '"><label>' + this.col[i] + '</label>';
+        if (this.render.column[i].filter) {
+          tableNode += '<div><select><option>All</option></select></div>';
+        }
+        tableNode += '</th>';
       } else {
         tableNode += '<th>' + this.col[i] + '</th>';
       }
@@ -149,6 +152,9 @@ function Table(object) {
     if (value) {
       this.order = [];
       for (var key in this.attributes) {
+        if (key == 'rowid') {
+          continue;
+        }
         for (var i = 0; i < this.attributes[key].length; i++) {
           if (this.attributes[key][i].toUpperCase().indexOf(value.toUpperCase()) > -1 && 
             this.order.indexOf(i) == -1) {
@@ -172,17 +178,15 @@ function Table(object) {
       for (var i = 0; i < this.row; i++) {
         this.order.push(i);
       }
-    } else if (value) {
+    } else {
       this.order = [];
       for (var i = 0; i < this.attributes[key].length; i++) {
-        if (this.attributes[key][i].toUpperCase().indexOf(value.toUpperCase()) > -1 && 
+        if (this.attributes[key][i].toUpperCase() == value.toUpperCase() && 
           this.order.indexOf(i) == -1) {
           this.order.push(i);
         }
       }
       this.order.sort(function(a, b) {return a - b;});
-    } else {
-      return;
     }
     this.current = 1;
   }
@@ -190,9 +194,24 @@ function Table(object) {
   function _set (data) {
     for (this.row = 0; this.row < data.length; this.row++) {
       this.order.push(this.row);
-      for (var index in data[this.row]) {
+      for (var index in data[this.row]['result']) {
         this.attributes[this.col[index]] = this.attributes[this.col[index]] || [];
-        this.attributes[this.col[index]].push(data[this.row][index] || '');
+        this.attributes[this.col[index]].push(data[this.row]['result'][index] || '');
+      }
+      this.attributes['rowid'] = this.attributes['rowid'] || [];
+      this.attributes['rowid'].push(data[this.row]['rowid'] || '');
+    }
+    var selects = this.node.querySelectorAll('table thead tr th select');
+    for (var i = 0; i < selects.length; i++) {
+      var head = selects[i].parentNode.previousSibling || selects[i].parentNode.previousElementSibling;
+      var temp = [];
+      for (var j = 0; j < this.attributes[head.innerText].length; j++) {
+        if (temp.indexOf(this.attributes[head.innerText][j]) > -1) {
+          continue;
+        } else {
+          temp.push(this.attributes[head.innerText][j]);
+          selects[i].innerHTML += '<option>' + this.attributes[head.innerText][j] + '</option>';
+        }
       }
     }
   }
@@ -206,7 +225,7 @@ function Table(object) {
 
     var html = '';
     for (var j = (page - 1) * this.max; j < page * this.max && j < this.order.length; j++) {
-      html += '<tr>';
+      html += '<tr rowid="' + this.attributes['rowid'][this.order[j]] + '">';
       for (var key in this.col) {
         html += '<td>' + this.attributes[this.col[key]][this.order[j]] + '</td>';
       }
@@ -327,6 +346,14 @@ function Table(object) {
         }
       }
     }, false);
+
+    this.node.addEventListener('change', function (event) {
+      if (event.target.tagName.toUpperCase() == 'SELECT') {
+        var head = event.target.parentNode.previousSibling || event.target.parentNode.previousElementSibling;
+        var index = event.target.selectedIndex;
+        table.filter(head.innerText, event.target.options[index].innerText.toLowerCase());
+      }
+    });
 
     pageNode.addEventListener('click', function (event) {
       var target = event.target;

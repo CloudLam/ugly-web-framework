@@ -93,8 +93,8 @@ function Application () {
             render: {
               column: [
                 {width: '10%'},
-                {width: '15%'},
-                {width: '25%'},
+                {width: '15%', filter: true},
+                {width: '25%', filter: true},
                 {width: '25%'},
                 {width: '25%'}
               ],
