@@ -74,6 +74,34 @@ function Application () {
         }, function (xhr, dom) {});
       });
     });
+    this.router.route('form', function () {
+      _this.board.card.innerHTML = '';
+      _this.board.tab.create('form', {
+        'tab-id': 'form', 
+        'tab-title': 'FORM'
+      }, function () {
+        app.head.title = 'FORM';
+        app.head.subtitle = '';
+        load({
+          node: _this.board.card,
+          url: './component/page/form.html'
+        }, function (xhr, dom) {});
+      });
+    });
+    this.router.route('profile', function () {
+      _this.board.card.innerHTML = '';
+      _this.board.tab.create('profile', {
+        'tab-id': 'profile', 
+        'tab-title': 'PROFILE'
+      }, function () {
+        app.head.title = 'PROFILE';
+        app.head.subtitle = '';
+        load({
+          node: _this.board.card,
+          url: './component/page/profile.html'
+        }, function (xhr, dom) {});
+      });
+    });
     this.router.route('table', function () {
       _this.board.card.innerHTML = '';
       _this.board.tab.create('table', {
@@ -131,6 +159,20 @@ function Application () {
         }, function (xhr, dom) {
           settingInit(app);
         });
+      });
+    });
+    this.router.route('help', function () {
+      _this.board.card.innerHTML = '';
+      _this.board.tab.create('help', {
+        'tab-id': 'help', 
+        'tab-title': 'HELP'
+      }, function () {
+        app.head.title = 'HELP';
+        app.head.subtitle = '';
+        load({
+          node: _this.board.card,
+          url: './component/page/help.html'
+        }, function (xhr, dom) {});
       });
     });
 

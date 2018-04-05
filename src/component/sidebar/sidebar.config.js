@@ -34,10 +34,10 @@ var SIDEBAR_BUTTON = {
       'href': '#setting',
       'sub': {}
     },
-    'about': {
+    'help': {
       'icon': 'help',
-      'name': 'ABOUT',
-      'href': '',
+      'name': 'HELP',
+      'href': '#help',
       'sub': {}
     }
   }
