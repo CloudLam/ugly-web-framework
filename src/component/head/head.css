@@ -125,6 +125,7 @@
 .uwf-head .uwf-head-user .uwf-head-user-submenu .uwf-head-user-submenu-button label {
   position: relative;
   cursor: pointer;
+  display: block;
 }
 
 .uwf-head .uwf-head-user .uwf-head-user-submenu .uwf-head-user-submenu-button:hover, 

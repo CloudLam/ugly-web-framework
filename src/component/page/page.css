@@ -7,6 +7,40 @@
   padding: 2rem;
 }
 
+.uwf-form .uwf-input {
+  width: 25.0rem;
+  padding: 1.0rem;
+  font-size: 1.0rem;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.uwf-form .uwf-input label {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 0.5rem 0 0.5rem;
+  cursor: pointer;
+}
+
+.uwf-form .uwf-input input[type="text"], 
+.uwf-form .uwf-input input[type="password"] {
+  width: 15.0rem;
+  height: 1.6rem;
+  padding: 0 0.25rem 0 0.25rem;
+  border: 1px solid #dfdfdf;
+  border-radius: 0.2rem;
+}
+
+.uwf-form .uwf-input textarea {
+  width: 15.0rem;
+  height: 5.0rem;
+  resize: none;
+  padding: 0.25rem;
+  border: 1px solid #dfdfdf;
+  border-radius: 0.2rem;
+  vertical-align: middle;
+}
+
 .uwf-setting table {
   width: 100%;
   border-collapse: collapse;

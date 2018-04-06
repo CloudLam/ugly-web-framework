@@ -168,6 +168,9 @@
 
 .uwf-sidebar .uwf-sidebar-button .uwf-sidebar-submenu .uwf-sidebar-submenu-button label {
   cursor: pointer;
+}
+
+.uwf-sidebar.long .uwf-sidebar-button .uwf-sidebar-submenu .uwf-sidebar-submenu-button label {
   width: calc(100% - 2rem);
   width: -moz-calc(100% - 2rem);
   width: -webkit-calc(100% - 2rem);
