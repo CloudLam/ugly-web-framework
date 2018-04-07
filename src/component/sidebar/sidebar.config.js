@@ -24,8 +24,7 @@ var SIDEBAR_BUTTON = {
       'name': 'PICKER',
       'href': '',
       'sub': {
-        'datepicker': {'name': 'DATE PICKER', 'href': '#datepicker'},
-        'timepicker': {'name': 'TIME PICKER', 'href': '#timepicker'}
+        'datepicker': {'name': 'DATE PICKER', 'href': '#datepicker'}
       }
     },
     'setting': {
