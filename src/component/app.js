@@ -145,6 +145,20 @@ function Application () {
         });
       });
     });
+    this.router.route('datepicker', function () {
+      _this.board.card.innerHTML = '';
+      _this.board.tab.create('datepicker', {
+        'tab-id': 'datepicker', 
+        'tab-title': 'DATE PICKER'
+      }, function () {
+        app.head.title = 'DATE PICKER';
+        app.head.subtitle = '';
+        load({
+          node: _this.board.card,
+          url: './component/page/datepicker.html'
+        }, function (xhr, dom) {});
+      });
+    });
     this.router.route('setting', function () {
       _this.board.card.innerHTML = '';
       _this.board.tab.create('setting', {
