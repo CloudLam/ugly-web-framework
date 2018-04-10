@@ -190,6 +190,8 @@ function Application () {
       });
     });
 
+    var datepicker = new DatePicker();
+
     // Local Settings
     app.type = parseInt(localStorage.getItem('uwfAppType')) || 0;
     app.sidebar.color = localStorage.getItem('uwfAppColor') || 'black';
