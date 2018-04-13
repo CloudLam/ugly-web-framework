@@ -17,12 +17,12 @@
 
 .uwf-form .uwf-input input,
 .uwf-form .uwf-input textarea,
-.uwf-form .uwf-input select {
+.uwf-form .uwf-input select,
+.uwf-form .uwf-input .uwf-radio,
+.uwf-form .uwf-input .uwf-checkbox {
   width: 16.0rem;
   height: 1.8rem;
   padding: 0 0.25rem 0 0.25rem;
-  border: 1px solid #dfdfdf;
-  border-radius: 0.2rem;
   vertical-align: middle;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -31,17 +31,38 @@
   box-sizing: border-box;
 }
 
+.uwf-form .uwf-input input,
+.uwf-form .uwf-input textarea,
+.uwf-form .uwf-input select {
+  border: 1px solid #dfdfdf;
+  border-radius: 0.2rem;
+}
+
 .uwf-form .uwf-input label {
   display: inline-block;
   vertical-align: middle;
   padding: 0 0.5rem 0 0.5rem;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 .uwf-form .uwf-input textarea {
   height: 5.0rem;
   padding: 0.25rem;
   resize: none;
+}
+
+.uwf-form .uwf-input .uwf-radio,
+.uwf-form .uwf-input .uwf-checkbox {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.uwf-form .uwf-input .uwf-radio input[type="radio"],
+.uwf-form .uwf-input .uwf-checkbox input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .uwf-setting table {
