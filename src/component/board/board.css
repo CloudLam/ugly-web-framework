@@ -2,9 +2,9 @@
 
 .uwf-board {
   position: fixed;
-  top: calc(6rem + 1px);
-  top: -moz-calc(6rem + 1px);
-  top: -webkit-calc(6rem + 1px);
+  top: calc(6rem);
+  top: -moz-calc(6rem);
+  top: -webkit-calc(6rem);
   left: 4rem;
   width: calc(100% - 4rem);
   width: -moz-calc(100% - 4rem);
@@ -180,6 +180,7 @@
   border-right: 1px solid rgba(150, 150, 150, 0.7);
   border-bottom: 1px solid #fcfcfc;
   border-radius: 2px 2px 0 0;
+  background-color: #fcfcfc;
 }
 
 .uwf-tab.show {

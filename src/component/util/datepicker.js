@@ -9,7 +9,8 @@ function DatePicker(object) {
     node: null,
     class: object.class || 'uwf-datepicker',
     date: object.date ? true : false,
-    time: object.time ? true : false
+    time: object.time ? true : false,
+    now: null
   };
 
   var date = '<div class="' + picker.class + '"></div>';
