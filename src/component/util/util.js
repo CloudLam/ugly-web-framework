@@ -292,3 +292,13 @@ function isIE (version) {
     return ('ActiveXObject' in window);
   }
 }
+
+/**
+ * getStyle
+ * @param {dom} element
+ * @param {dom} target
+ * @return {string}
+ */
+function getStyle(element, prop) {
+  return window.getComputedStyle(element, null).getPropertyValue(prop);
+}
