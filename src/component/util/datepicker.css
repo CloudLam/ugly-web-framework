@@ -1,1 +1,143 @@
 /* datepicker.css | @cloudlam */
+
+.uwf-datepicker {
+  width: 12.8rem;
+  padding: 0.8rem;
+  font-family: Helvetica, "Microsoft YaHei", tahoma, arial, sans-serif;;
+  font-size: 0.8rem;
+  border: 1px solid #c7c7c7;
+  border-radius: 3px;
+}
+
+.uwf-datepicker div div + div {
+  margin-top: 0.5rem;
+}
+
+.uwf-datepicker div:first-child div {
+  height: 1.0rem;
+  line-height: 1.0rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.uwf-datepicker div:first-child div:nth-child(2) {
+  height: 11.2rem;
+}
+
+.uwf-datepicker div:first-child div span, 
+.uwf-datepicker div:last-child div:last-child span {
+  font-size: 0.8rem;
+  padding: 0 0.3rem;
+  cursor: pointer;
+}
+
+.uwf-datepicker div:first-child div span:hover, 
+.uwf-datepicker div:last-child div:last-child span:hover {
+  color: #1094f3;
+}
+
+.uwf-datepicker div:first-child div span:first-child, 
+.uwf-datepicker div:last-child div:last-child span:first-child {
+  float: left;
+}
+
+.uwf-datepicker div:first-child div:first-child span:last-child {
+  float: right;
+}
+
+.uwf-datepicker div:first-child div table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.uwf-datepicker div div table tr th, 
+.uwf-datepicker div div table tr td {
+  width: 1.6rem;
+  height: 1.35rem;
+}
+
+.uwf-datepicker div div table tr td {
+  cursor: pointer;
+}
+
+.uwf-datepicker div div table tr td:hover {
+  color: #1094f3;
+  background-color: #d6e9fd;
+}
+
+.uwf-datepicker div:first-child div:last-child, 
+.uwf-datepicker div:last-child div:last-child {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  text-align: right;
+  font-size: 0;
+}
+
+.uwf-datepicker div:first-child div:last-child button, 
+.uwf-datepicker div:last-child div:last-child button {
+  height: 1.2rem;
+  width: 3.0rem;
+  background-color: #1094f3;
+  border: 1px solid #c7c7c7;
+  border-radius: 3px 0 0 3px;
+  margin: 0;
+  display: inline-block;
+  color: #f7f7f7;
+  cursor: pointer;
+}
+
+.uwf-datepicker div:first-child div:last-child button:hover, 
+.uwf-datepicker div:last-child div:last-child button:hover {
+  opacity: 0.8;
+}
+
+.uwf-datepicker div:first-child div:last-child button + button, 
+.uwf-datepicker div:last-child div:last-child button + button {
+  border-left: 0;
+  border-radius: 0;
+}
+
+.uwf-datepicker div:first-child div:last-child button:last-child, 
+.uwf-datepicker div:last-child div:last-child button:last-child {
+  border-radius: 0 3px 3px 0;
+}
+
+.uwf-datepicker div div label {
+  display: inline-block;
+  width: 1.35rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.0rem;
+  text-align: center;
+  color: #f7f7f7;
+  background: #c7c7c7;
+}
+
+.uwf-datepicker div div label:first-child {
+  border-radius: 3px 0 0 3px;
+}
+
+.uwf-datepicker div div select {
+  width: 2.25rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.0rem;
+  padding: 0 0.5rem;
+  border: 1px solid #c7c7c7;
+  text-align: center;
+  -ms-progress-appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.uwf-datepicker div div select:last-child {
+  border-radius: 0 3px 3px 0;
+}
+
+.uwf-datepicker div div select + select {
+  border-left: 0;
+}
+
+.uwf-datepicker div div select::-ms-expand {
+  display: none;
+}
