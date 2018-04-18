@@ -65,11 +65,11 @@ function Tab (object) {
         listItems.setAttribute('class', listItems.getAttribute('class') + ' show');
       }
     }
-    document.onclick = function (event) {
+    document.addEventListener('click', function (event) {
       if (event.target != list && event.target.parentNode != list) {
         listItems.setAttribute('class', listItems.getAttribute('class').replace(' show', ''));
       }
-    }
+    }, false);
     listItems.addEventListener('click', function (event) {
       tab.open(event.target.getAttribute('for') || event.target.parentNode.getAttribute('for'));
     }, false);

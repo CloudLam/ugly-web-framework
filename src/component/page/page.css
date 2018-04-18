@@ -11,7 +11,7 @@
   text-align: center;
 }
 
-.uwf-form .uwf-input {
+.uwf-input {
   width: 25.0rem;
   padding: 1.0rem;
   font-size: 1.0rem;
@@ -20,11 +20,11 @@
   margin: 0 auto;
 }
 
-.uwf-form .uwf-input input,
-.uwf-form .uwf-input textarea,
-.uwf-form .uwf-input select,
-.uwf-form .uwf-input .uwf-radio,
-.uwf-form .uwf-input .uwf-checkbox {
+.uwf-input input,
+.uwf-input textarea,
+.uwf-input select,
+.uwf-radio,
+.uwf-checkbox {
   width: 16.0rem;
   height: 1.8rem;
   line-height: 1.8rem;
@@ -37,14 +37,14 @@
   box-sizing: border-box;
 }
 
-.uwf-form .uwf-input input,
-.uwf-form .uwf-input textarea,
-.uwf-form .uwf-input select {
+.uwf-input input,
+.uwf-input textarea,
+.uwf-input select {
   border: 1px solid #dfdfdf;
   border-radius: 0.2rem;
 }
 
-.uwf-form .uwf-input label {
+.uwf-input label {
   display: inline-block;
   vertical-align: middle;
   padding: 0 0.8rem 0 0.8rem;
@@ -53,27 +53,27 @@
   vertical-align: middle;
 }
 
-.uwf-form .uwf-input textarea {
+.uwf-input textarea {
   height: 5.0rem;
   resize: none;
 }
 
-.uwf-form .uwf-input .uwf-radio,
-.uwf-form .uwf-input .uwf-checkbox {
+.uwf-radio,
+.uwf-checkbox {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
 }
 
-.uwf-form .uwf-input .uwf-radio input[type="radio"],
-.uwf-form .uwf-input .uwf-checkbox input[type="checkbox"] {
+.uwf-radio input[type="radio"],
+.uwf-checkbox input[type="checkbox"] {
   width: 1.0rem;
   height: 1.0rem;
   margin: 0;
 }
 
-.uwf-form .uwf-input .uwf-radio input[type="radio"] + label,
-.uwf-form .uwf-input .uwf-checkbox input[type="checkbox"] + label {
+.uwf-radio input[type="radio"] + label,
+.uwf-checkbox input[type="checkbox"] + label {
   padding: 0 0.8rem 0 0.4rem;
 }
 
