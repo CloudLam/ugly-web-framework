@@ -11,7 +11,7 @@
 }
 
 .uwf-datepicker div div + div {
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
 }
 
 .uwf-datepicker div:first-child div {
@@ -68,15 +68,15 @@
 
 .uwf-datepicker div:first-child div:last-child, 
 .uwf-datepicker div:last-child div:last-child {
-  height: 1.2rem;
-  line-height: 1.2rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
   text-align: right;
   font-size: 0;
 }
 
 .uwf-datepicker div:first-child div:last-child button, 
 .uwf-datepicker div:last-child div:last-child button {
-  height: 1.2rem;
+  height: 1.5rem;
   width: 3.0rem;
   background-color: #1094f3;
   border: 1px solid #c7c7c7;

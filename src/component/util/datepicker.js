@@ -332,7 +332,6 @@ function DatePicker(object) {
           }
         }
         picker.value = new Date(tmp_year, tmp_month, target.innerHTML).format(picker.format);
-        console.log(_getValue.call(picker, 'year'));
       }
     }
   };
@@ -392,7 +391,9 @@ function DatePicker(object) {
     // Reset
     if ((target.tagName.toLowerCase() === 'button' && target == picker.node.children[1].children[1].children[2]) || 
       (target.tagName.toLowerCase() === 'button' && target == picker.node.children[0].children[2].children[2])) {
-      console.log('reset');
+        var input = picker.node.previousElementSibling || picker.node.previousSibling;
+        input.value = '';
+        input.focus();
     }
   };
 
