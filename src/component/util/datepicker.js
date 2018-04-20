@@ -34,6 +34,7 @@ function DatePicker(object) {
     time: object.time == false ? false : true,
     now: null,
     format: object.format || 'yyyy-MM-dd hh:mm:ss',
+    input: null,
     show: false
   };
 
@@ -134,9 +135,8 @@ function DatePicker(object) {
   }
 
   function _setValue() {
-    var input = this.node.previousElementSibling || this.node.previousSibling;
-    input.value = this.value;
-    input.focus();
+    this.input.value = this.value;
+    this.input.focus();
     if (this.date) {
       this.node.children[0].children[1].innerHTML = 
         _calendar(_getValue.call(this, 'year'), parseInt(_getValue.call(this, 'month')) - 1);
@@ -257,11 +257,12 @@ function DatePicker(object) {
   var datePickerHandler = function (event) {
     var target = event.target;
     if (target.tagName.toLowerCase() === 'input' && target.hasAttribute('date-picker')) {
+      picker.show = true;
       picker.now = new Date();
       _setPosition.call(picker, target);
       insertAfter(picker.node, target);
+      picker.input = picker.node.previousElementSibling || picker.node.previousSibling;
       _dateRegExp.call(picker);
-      picker.show = true;
       if (target.value) {
         picker.value = target.value;
       }
@@ -270,7 +271,9 @@ function DatePicker(object) {
   var closePickerHandler = function (event) {
     var target = event.target;
     if (event.type == 'mousedown' && !picker.node.contains(target)) {
+      picker.input ? picker.input.focus() : null;
       picker.show = false;
+      picker.input ? picker.input.blur() : null;
     }
     if (event.type == 'blur' && 
       target.tagName.toLowerCase() === 'input' && 
@@ -391,9 +394,8 @@ function DatePicker(object) {
     // Reset
     if ((target.tagName.toLowerCase() === 'button' && target == picker.node.children[1].children[1].children[2]) || 
       (target.tagName.toLowerCase() === 'button' && target == picker.node.children[0].children[2].children[2])) {
-        var input = picker.node.previousElementSibling || picker.node.previousSibling;
-        input.value = '';
-        input.focus();
+        picker.input.value = '';
+        picker.input.focus();
     }
   };
 
