@@ -8,6 +8,7 @@
   border: 1px solid #c7c7c7;
   border-radius: 3px;
   text-align: center;
+  background-color: #f7f7f7;
 }
 
 .uwf-datepicker div div + div {
@@ -64,6 +65,15 @@
 .uwf-datepicker div div table tr td:hover {
   color: #1094f3;
   background-color: #d6e9fd;
+}
+
+.uwf-datepicker div div table tr td[today] {
+  border: 1px solid #b22222;
+}
+
+.uwf-datepicker div div table tr td[checked] {
+  color: #ffffff;
+  background-color: #0366d6;
 }
 
 .uwf-datepicker div:first-child div:last-child, 

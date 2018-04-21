@@ -46,6 +46,8 @@ function DatePicker(object) {
       set: function (value) {
         if (new RegExp(_dateRegExp.call(this)).test(value)) {
           prop.value = value;
+        } else if (value == null) {
+          prop.value = value;
         } else {
           prop.value = this.now.format(this.format);
         }
@@ -129,19 +131,20 @@ function DatePicker(object) {
       'quater': 'q+',
       'millisecond': 'S+',
     };
-    if (new RegExp('(' + keys[prop] + ')').test(this.format)) {
+    if (new RegExp('(' + keys[prop] + ')').test(this.format) && this.value) {
       return this.value.substr(this.format.indexOf(RegExp.$1), RegExp.$1.length);
     }
+    return null;
   }
 
   function _setValue() {
     this.input.value = this.value;
     this.input.focus();
-    if (this.date) {
+    if (this.date && this.value) {
       this.node.children[0].children[1].innerHTML = 
         _calendar(_getValue.call(this, 'year'), parseInt(_getValue.call(this, 'month')) - 1);
     }
-    if (this.time) {
+    if (this.time && this.value) {
       this.node.children[1].children[0].children[1].value = parseInt(_getValue.call(this, 'hour'));
       this.node.children[1].children[0].children[3].value = parseInt(_getValue.call(this, 'minute'));
       this.node.children[1].children[0].children[5].value = parseInt(_getValue.call(this, 'second'));
@@ -203,12 +206,14 @@ function DatePicker(object) {
     }
     for (var j = 1; j <= days[month]; j++) {
       if (year == today[0] && month == today[1] && j == today[2]) {
-        if (j == picker.value) {
+        if (j == parseInt(_getValue.call(picker, 'date'))) {
           calendar += '<td today checked>' + j + '</td>';
         } else {
           calendar += '<td today>' + j + '</td>';
         }
-      } else if (year == today[0] && month == today[1] && j == picker.value) {
+      } else if (year == parseInt(_getValue.call(picker, 'year')) && 
+        month == parseInt(_getValue.call(picker, 'month')) - 1 && 
+        j == parseInt(_getValue.call(picker, 'date'))) {
         calendar += '<td checked>' + j + '</td>';
       } else  {
         calendar += '<td>' + j + '</td>';
@@ -265,6 +270,9 @@ function DatePicker(object) {
       _dateRegExp.call(picker);
       if (target.value) {
         picker.value = target.value;
+      } else {
+        picker.value = null;
+        picker.node.children[0].children[1].innerHTML = _calendar(picker.now.getFullYear(), picker.now.getMonth());
       }
     }
   };
@@ -388,14 +396,14 @@ function DatePicker(object) {
       (target.tagName.toLowerCase() === 'button' && target == picker.node.children[1].children[1].children[1])) {
       picker.now = new Date();
       picker.value = picker.now.format(picker.format);
-      picker.node.children[0].children[1].innerHTML = 
-        _calendar(picker.now.getFullYear(), picker.now.getMonth());
+      picker.node.children[0].children[1].innerHTML = _calendar(picker.now.getFullYear(), picker.now.getMonth());
     }
     // Reset
     if ((target.tagName.toLowerCase() === 'button' && target == picker.node.children[1].children[1].children[2]) || 
       (target.tagName.toLowerCase() === 'button' && target == picker.node.children[0].children[2].children[2])) {
-        picker.input.value = '';
-        picker.input.focus();
+      picker.value = null;
+      picker.input.value = '';
+      picker.node.children[0].children[1].innerHTML = _calendar(picker.now.getFullYear(), picker.now.getMonth());
     }
   };
 
