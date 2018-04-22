@@ -258,6 +258,29 @@ function DatePicker(object) {
     return hSelection + mSelection + sSelection;
   }
 
+  function _months () {
+    var months = '<table><thbody><tr>' + 
+      '<td>' + 'Jan' + '</td>' +
+      '<td>' + 'Feb' + '</td>' +
+      '<td>' + 'Mar' + '</td>' +
+      '<td>' + 'Apr' + '</td></tr>' +
+      '<td>' + 'May' + '</td>' +
+      '<td>' + 'Jun' + '</td>' +
+      '<td>' + 'Jul' + '</td>' +
+      '<td>' + 'Agu' + '</td></tr>' +
+      '<td>' + 'Sep' + '</td>' +
+      '<td>' + 'Oct' + '</td>' +
+      '<td>' + 'Nov' + '</td>' +
+      '<td>' + 'Dec' + '</td>' +
+      '</tr></tbody></table>';
+    return months;
+  }
+
+  function _years () {
+    var years = '';
+    return years;
+  }
+
   // Handlers
   var datePickerHandler = function (event) {
     var target = event.target;
@@ -310,7 +333,7 @@ function DatePicker(object) {
       // Switch month / year
       if (target.tagName.toLowerCase() === 'span' && 
         target == picker.node.children[0].children[0].children[1]) {
-        console.log(target);
+        picker.node.children[0].children[1].innerHTML = _months()
       }
       // Next month
       if (target.tagName.toLowerCase() === 'span' && target == picker.node.children[0].children[0].children[2]) {
