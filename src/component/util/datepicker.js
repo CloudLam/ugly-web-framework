@@ -59,6 +59,9 @@ function DatePicker(object) {
     }
   });
 
+  var day_names = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  var month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
   var _date = '<div>' +
     // Head
     '<div><span>&#9664;</span><span></span><span>&#9654;</span></div>' + 
@@ -188,7 +191,7 @@ function DatePicker(object) {
 
     var today = [picker.now.getFullYear(), picker.now.getMonth(), picker.now.getDate()];
     var firstday = new Date(year, month, 1);
-    var days = new Array(31, 28 + _isLeapYear(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    var mdays = new Array(31, 28 + _isLeapYear(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
     var mlast = month ? month - 1 : 11;
 
     var calendar = '<table><thead><tr>' + 
@@ -202,9 +205,9 @@ function DatePicker(object) {
       '</tr><tbody><tr>';
 
     for (var i = firstday.getDay(); i > 0; i--) {
-      calendar += '<td style="opacity:0.3" last>' + (days[mlast] - i + 1) + '</td>';
+      calendar += '<td style="opacity:0.3" last>' + (mdays[mlast] - i + 1) + '</td>';
     }
-    for (var j = 1; j <= days[month]; j++) {
+    for (var j = 1; j <= mdays[month]; j++) {
       if (year == today[0] && month == today[1] && j == today[2]) {
         if (j == parseInt(_getValue.call(picker, 'date'))) {
           calendar += '<td today checked>' + j + '</td>';
@@ -219,15 +222,15 @@ function DatePicker(object) {
         calendar += '<td>' + j + '</td>';
       }
       if ((j + firstday.getDay()) % 7 == 0) {
-        if (j == days[month]) {
+        if (j == mdays[month]) {
           calendar += '</tr>';
         } else {
           calendar += '</tr><tr>';
         }
       }
     }
-    if ((days[month] + firstday.getDay()) % 7 != 0) {
-      for (var k = 1; k <= 7 - (days[month] + firstday.getDay()) % 7; k++) {
+    if ((mdays[month] + firstday.getDay()) % 7 != 0) {
+      for (var k = 1; k <= 7 - (mdays[month] + firstday.getDay()) % 7; k++) {
         calendar += '<td style="opacity:0.3" next>' + k + '</td>';
       }
       calendar += '</tr>';
@@ -267,7 +270,7 @@ function DatePicker(object) {
       '<td>' + 'May' + '</td>' +
       '<td>' + 'Jun' + '</td>' +
       '<td>' + 'Jul' + '</td>' +
-      '<td>' + 'Agu' + '</td></tr>' +
+      '<td>' + 'Aug' + '</td></tr>' +
       '<td>' + 'Sep' + '</td>' +
       '<td>' + 'Oct' + '</td>' +
       '<td>' + 'Nov' + '</td>' +
@@ -349,23 +352,29 @@ function DatePicker(object) {
       }
       // Pick date
       if (target.tagName.toLowerCase() === 'td') {
-        var tmp_year = parseInt(year);
-        var tmp_month = parseInt(month);
-        if (target.hasAttribute('last')) {
-          tmp_month = tmp_month - 1;
-          if (tmp_month - 1 < 0) {
-            tmp_month = 11;
-            tmp_year -= 1;
+        if (!isNaN(target.innerHTML) && target.innerHTML.length < 3) {
+          var tmp_year = parseInt(year);
+          var tmp_month = parseInt(month);
+          if (target.hasAttribute('last')) {
+            tmp_month = tmp_month - 1;
+            if (tmp_month - 1 < 0) {
+              tmp_month = 11;
+              tmp_year -= 1;
+            }
           }
-        }
-        if (target.hasAttribute('next')) {
-          tmp_month = tmp_month + 1;
-          if (tmp_month > 11) {
-            tmp_month = 0;
-            tmp_year += 1;
+          if (target.hasAttribute('next')) {
+            tmp_month = tmp_month + 1;
+            if (tmp_month > 11) {
+              tmp_month = 0;
+              tmp_year += 1;
+            }
           }
+          picker.value = new Date(tmp_year, tmp_month, target.innerHTML).format(picker.format);
         }
-        picker.value = new Date(tmp_year, tmp_month, target.innerHTML).format(picker.format);
+        if (month_names.indexOf(target.innerHTML) > -1) {
+          picker.node.children[0].children[1].innerHTML = 
+            _calendar(parseInt(year), month_names.indexOf(target.innerHTML));
+        }
       }
     }
   };
