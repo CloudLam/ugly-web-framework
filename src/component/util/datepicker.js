@@ -279,8 +279,18 @@ function DatePicker(object) {
     return months;
   }
 
-  function _years () {
-    var years = '';
+  function _years (from) {
+    var years = '<table><thbody><tr>';
+    for (var i = 0; i < 20; i++) {
+      if ((i + 1) % 4 == 1) {
+        years += '<tr>';
+      }
+      years += '<td>' + (from + i) + '</td>';
+      if ((i + 1) % 4 == 0) {
+        years += '</tr>';
+      }
+    }
+    years += '</thbody></table>';
     return years;
   }
 
@@ -336,7 +346,18 @@ function DatePicker(object) {
       // Switch month / year
       if (target.tagName.toLowerCase() === 'span' && 
         target == picker.node.children[0].children[0].children[1]) {
-        picker.node.children[0].children[1].innerHTML = _months()
+        var flag = picker.node.children[0].children[0].children[1].getAttribute('for');
+        if (flag.length == 6) {
+          picker.node.children[0].children[0].children[1].setAttribute('for', '' + year);
+          picker.node.children[0].children[0].children[1].innerHTML = year;
+          picker.node.children[0].children[1].innerHTML = _months();
+        }
+        if (flag.length == 4) {
+          var from = Math.floor(parseInt(flag) / 10) * 10 + 1;
+          picker.node.children[0].children[0].children[1].setAttribute('for', '' + from + (from + 19));
+          picker.node.children[0].children[0].children[1].innerHTML = from + '-' + (from + 19);
+          picker.node.children[0].children[1].innerHTML = _years(from);
+        }
       }
       // Next month
       if (target.tagName.toLowerCase() === 'span' && target == picker.node.children[0].children[0].children[2]) {
