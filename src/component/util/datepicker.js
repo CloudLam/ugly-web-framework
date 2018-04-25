@@ -333,15 +333,23 @@ function DatePicker(object) {
       var month = picker.node.children[0].children[0].children[1].getAttribute('for').substr(4, 2);
       // Prev month
       if (target.tagName.toLowerCase() === 'span' && target == picker.node.children[0].children[0].children[0]) {
-        if (parseInt(month) - 1 < 0) {
-          year = '' + (parseInt(year) - 1);
-          month = '11';
-          picker.node.children[0].children[0].children[1].setAttribute('for', '' + year + month);
-        } else {
-          month = ('0' + (parseInt(month) - 1)).substr(-2);
-          picker.node.children[0].children[0].children[1].setAttribute('for', '' + year + month);
+        var flag = picker.node.children[0].children[0].children[1].getAttribute('for');
+        if (flag.length == 8) {}
+        if (flag.length == 6) {
+          if (parseInt(month) - 1 < 0) {
+            year = '' + (parseInt(year) - 1);
+            month = '11';
+            picker.node.children[0].children[0].children[1].setAttribute('for', '' + year + month);
+          } else {
+            month = ('0' + (parseInt(month) - 1)).substr(-2);
+            picker.node.children[0].children[0].children[1].setAttribute('for', '' + year + month);
+          }
+          picker.node.children[0].children[1].innerHTML = _calendar(parseInt(year), parseInt(month));
         }
-        picker.node.children[0].children[1].innerHTML = _calendar(parseInt(year), parseInt(month));
+        if (flag.length == 4) {
+          picker.node.children[0].children[0].children[1].innerHTML = parseInt(year) - 1;
+          picker.node.children[0].children[0].children[1].setAttribute('for', '' + (parseInt(year) - 1));
+        }
       }
       // Switch month / year
       if (target.tagName.toLowerCase() === 'span' && 
@@ -355,21 +363,29 @@ function DatePicker(object) {
         if (flag.length == 4) {
           var from = Math.floor(parseInt(flag) / 10) * 10 + 1;
           picker.node.children[0].children[0].children[1].setAttribute('for', '' + from + (from + 19));
-          picker.node.children[0].children[0].children[1].innerHTML = from + '-' + (from + 19);
+          picker.node.children[0].children[0].children[1].innerHTML = from + ' - ' + (from + 19);
           picker.node.children[0].children[1].innerHTML = _years(from);
         }
       }
       // Next month
       if (target.tagName.toLowerCase() === 'span' && target == picker.node.children[0].children[0].children[2]) {
-        if (parseInt(month) + 1 > 11) {
-          year = '' + (parseInt(year) + 1);
-          month = '00';
-          picker.node.children[0].children[0].children[1].setAttribute('for', '' + year + month);
-        } else {
-          month = ('0' + (parseInt(month) + 1)).substr(-2);
-          picker.node.children[0].children[0].children[1].setAttribute('for', '' + year + month);
+        var flag = picker.node.children[0].children[0].children[1].getAttribute('for');
+        if (flag.length == 8) {}
+        if (flag.length == 6) {
+          if (parseInt(month) + 1 > 11) {
+            year = '' + (parseInt(year) + 1);
+            month = '00';
+            picker.node.children[0].children[0].children[1].setAttribute('for', '' + year + month);
+          } else {
+            month = ('0' + (parseInt(month) + 1)).substr(-2);
+            picker.node.children[0].children[0].children[1].setAttribute('for', '' + year + month);
+          }
+          picker.node.children[0].children[1].innerHTML = _calendar(parseInt(year), parseInt(month));
         }
-        picker.node.children[0].children[1].innerHTML = _calendar(parseInt(year), parseInt(month));
+        if (flag.length == 4) {
+          picker.node.children[0].children[0].children[1].innerHTML = parseInt(year) + 1;
+          picker.node.children[0].children[0].children[1].setAttribute('for', '' + (parseInt(year) + 1));
+        }
       }
       // Pick date
       if (target.tagName.toLowerCase() === 'td') {
