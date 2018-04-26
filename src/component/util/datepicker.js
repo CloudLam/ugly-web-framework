@@ -329,12 +329,18 @@ function DatePicker(object) {
   var dateHandler = function (event) {
     if (picker.date) {
       var target = event.target;
-      var year = picker.node.children[0].children[0].children[1].getAttribute('for').substr(0, 4);
-      var month = picker.node.children[0].children[0].children[1].getAttribute('for').substr(4, 2);
-      // Prev month
+      var flag = picker.node.children[0].children[0].children[1].getAttribute('for');
+      var year = flag.substr(0, 4);
+      var month = flag.substr(4, 2);
+      // Prev
       if (target.tagName.toLowerCase() === 'span' && target == picker.node.children[0].children[0].children[0]) {
-        var flag = picker.node.children[0].children[0].children[1].getAttribute('for');
-        if (flag.length == 8) {}
+        if (flag.length == 8 && year > 1000) {
+          var from = Math.floor(parseInt(year) / 10) * 10 - 19;
+          from = from < 1001 ? 1001 : from;
+          picker.node.children[0].children[0].children[1].setAttribute('for', '' + from + (from + 19));
+          picker.node.children[0].children[0].children[1].innerHTML = from + ' - ' + (from + 19);
+          picker.node.children[0].children[1].innerHTML = _years(from);
+        }
         if (flag.length == 6) {
           if (parseInt(month) - 1 < 0) {
             year = '' + (parseInt(year) - 1);
@@ -354,23 +360,27 @@ function DatePicker(object) {
       // Switch month / year
       if (target.tagName.toLowerCase() === 'span' && 
         target == picker.node.children[0].children[0].children[1]) {
-        var flag = picker.node.children[0].children[0].children[1].getAttribute('for');
         if (flag.length == 6) {
           picker.node.children[0].children[0].children[1].setAttribute('for', '' + year);
           picker.node.children[0].children[0].children[1].innerHTML = year;
           picker.node.children[0].children[1].innerHTML = _months();
         }
         if (flag.length == 4) {
-          var from = Math.floor(parseInt(flag) / 10) * 10 + 1;
+          var from = Math.floor(parseInt(year) / 10) * 10 + 1;
           picker.node.children[0].children[0].children[1].setAttribute('for', '' + from + (from + 19));
           picker.node.children[0].children[0].children[1].innerHTML = from + ' - ' + (from + 19);
           picker.node.children[0].children[1].innerHTML = _years(from);
         }
       }
-      // Next month
+      // Next
       if (target.tagName.toLowerCase() === 'span' && target == picker.node.children[0].children[0].children[2]) {
-        var flag = picker.node.children[0].children[0].children[1].getAttribute('for');
-        if (flag.length == 8) {}
+        if (flag.length == 8 && year < 9999) {
+          var from = Math.floor(parseInt(year) / 10) * 10 + 21;
+          from = from > 9981 ? 9981 : from;
+          picker.node.children[0].children[0].children[1].setAttribute('for', '' + from + (from + 19));
+          picker.node.children[0].children[0].children[1].innerHTML = from + ' - ' + (from + 19);
+          picker.node.children[0].children[1].innerHTML = _years(from);
+        }
         if (flag.length == 6) {
           if (parseInt(month) + 1 > 11) {
             year = '' + (parseInt(year) + 1);
@@ -387,7 +397,7 @@ function DatePicker(object) {
           picker.node.children[0].children[0].children[1].setAttribute('for', '' + (parseInt(year) + 1));
         }
       }
-      // Pick date
+      // Pick
       if (target.tagName.toLowerCase() === 'td') {
         if (!isNaN(target.innerHTML) && target.innerHTML.length < 3) {
           var tmp_year = parseInt(year);
@@ -411,6 +421,11 @@ function DatePicker(object) {
         if (month_names.indexOf(target.innerHTML) > -1) {
           picker.node.children[0].children[1].innerHTML = 
             _calendar(parseInt(year), month_names.indexOf(target.innerHTML));
+        }
+        if (!isNaN(target.innerHTML) && target.innerHTML.length == 4) {
+          picker.node.children[0].children[0].children[1].innerHTML = target.innerHTML;
+          picker.node.children[0].children[0].children[1].setAttribute('for', '' + target.innerHTML);
+          picker.node.children[0].children[1].innerHTML = _months();
         }
       }
     }
