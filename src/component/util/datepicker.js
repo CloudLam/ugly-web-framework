@@ -488,6 +488,7 @@ function DatePicker(object) {
       picker.value = null;
       picker.input.value = '';
       picker.node.children[0].children[1].innerHTML = _calendar(picker.now.getFullYear(), picker.now.getMonth());
+      picker.node.children[1].children[0].innerHTML = _timer();
     }
   };
 
