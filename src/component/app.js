@@ -88,6 +88,20 @@ function Application () {
         }, function (xhr, dom) {});
       });
     });
+    this.router.route('selects', function () {
+      _this.board.card.innerHTML = '';
+      _this.board.tab.create('selects', {
+        'tab-id': 'selects', 
+        'tab-title': 'SELECTS'
+      }, function () {
+        app.head.title = 'SELECTS';
+        app.head.subtitle = '';
+        load({
+          node: _this.board.card,
+          url: './component/page/selects.html'
+        }, function (xhr, dom) {});
+      });
+    });
     this.router.route('profile', function () {
       _this.board.card.innerHTML = '';
       _this.board.tab.create('profile', {
