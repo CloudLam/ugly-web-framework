@@ -3,7 +3,9 @@
 'use strict';
 
 function Selects(object) {
-  var selects = {};
+  var selects = {
+    init: _init
+  };
 
   return selects;
 }
