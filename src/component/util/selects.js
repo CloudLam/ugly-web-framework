@@ -7,6 +7,8 @@ function Selects(object) {
     init: _init
   };
 
+  function _init() {}
+
   return selects;
 }
   
