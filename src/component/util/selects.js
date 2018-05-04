@@ -5,6 +5,7 @@
 function Selects(object) {
   var selects = {
     node: null,
+    name: '',
     selected: [],
     options: {},
     init: _init
@@ -14,4 +15,3 @@ function Selects(object) {
 
   return selects;
 }
-  
