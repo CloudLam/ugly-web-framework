@@ -99,7 +99,14 @@ function Application () {
         load({
           node: _this.board.card,
           url: './component/page/selects.html'
-        }, function (xhr, dom) {});
+        }, function (xhr, dom) {
+          var node = document.getElementById('multiple');
+          var selects = new Selects({
+            node: node,
+            name: node.getAttribute('name')
+          });
+          selects.init();
+        });
       });
     });
     this.router.route('profile', function () {
