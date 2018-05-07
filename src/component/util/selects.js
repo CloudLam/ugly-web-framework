@@ -16,10 +16,19 @@ function Selects(object) {
   };
 
   function _init () {
-    this.node.style.height = '0';
-    this.node.style.border = '0';
-    this.node.style.opacity = '0';
-    this.node.setAttribute('disabled', '');
+    var container = document.createElement('div');
+
+    container.style.position = 'relative';
+    container.style.width = getStyle(this.node, 'width');
+    container.style.height = getStyle(this.node, 'height');
+    container.style.verticalAlign = getStyle(this.node, 'vertical-align');
+    container.style.display = 'inline-block';
+
+    this.node.parentNode.insertBefore(container, this.node);
+
+    this.node.height = '0';
+    this.node.border = '0';
+    this.node.style.display = 'none';
   }
 
   return selects;
