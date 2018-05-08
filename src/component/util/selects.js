@@ -16,15 +16,25 @@ function Selects(object) {
   };
 
   function _init () {
-    var container = document.createElement('div');
+    var div = document.createElement('div');
+    var span = document.createElement('span');
 
-    container.style.position = 'relative';
-    container.style.width = getStyle(this.node, 'width');
-    container.style.height = getStyle(this.node, 'height');
-    container.style.verticalAlign = getStyle(this.node, 'vertical-align');
-    container.style.display = 'inline-block';
+    div.style.position = 'relative';
+    div.style.width = getStyle(this.node, 'width');
+    div.style.height = getStyle(this.node, 'height');
+    div.style.lineHeight = getStyle(this.node, 'height');
+    div.style.textAlign = 'left';
+    div.style.verticalAlign = getStyle(this.node, 'vertical-align');
+    div.style.display = 'inline-block';
 
-    this.node.parentNode.insertBefore(container, this.node);
+    span.innerHTML = '&#10010;';
+    span.style.float = 'right';
+    span.style.cursor = 'pointer';
+    span.style.height = getStyle(this.node, 'height');
+
+    div.appendChild(span);
+
+    this.node.parentNode.insertBefore(div, this.node);
 
     this.node.height = '0';
     this.node.border = '0';
