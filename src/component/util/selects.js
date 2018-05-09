@@ -11,13 +11,14 @@ function Selects(object) {
     node: object.node || null,
     name: object.name || '',
     selected: [],
-    options: {},
+    options: [],
     init: _init
   };
 
-  function _init () {
+  function _init (request, callback) {
     var div = document.createElement('div');
     var span = document.createElement('span');
+    var list = document.createElement('li');
 
     div.style.position = 'relative';
     div.style.width = getStyle(this.node, 'width');
@@ -33,12 +34,35 @@ function Selects(object) {
     span.style.height = getStyle(this.node, 'height');
 
     div.appendChild(span);
+    div.appendChild(list);
 
     this.node.parentNode.insertBefore(div, this.node);
 
     this.node.height = '0';
     this.node.border = '0';
     this.node.style.display = 'none';
+
+    if (!request) {
+      var options = this.node.options;
+      for (var i = 0; i < options.length; i++) {
+        this.options.push([options[i].value, options[i].innerText]);
+      }
+      _listInit.call(this, list);
+      if (callback) {
+        callback();
+      }
+    } else {
+      ajax();
+    }
+  }
+
+  function _listInit(container) {
+    var list = '<ul>';
+    for (var i = 0; i < this.options.length; i++) {
+      list += '<li value="' + this.options[i][0] + '">' + this.options[i][1] + '</li>';
+    }
+    list += '</ul>';
+    container.innerHTML = list;
   }
 
   return selects;
