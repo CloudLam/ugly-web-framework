@@ -52,7 +52,20 @@ function Selects(object) {
         callback();
       }
     } else {
-      ajax();
+      ajax({
+        method: 'get',
+        url: request,
+        success: function(result) {
+          var options = JSON.parse(result).data;
+          for (var i = 0; i < options.length; i++) {
+            _this.options.push([options[i].value, options[i].innerText]);
+          }
+          _listInit.call(_this, list);
+          if (callback) {
+            callback();
+          }
+        }
+      });
     }
   }
 
