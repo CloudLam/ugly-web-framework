@@ -10,6 +10,7 @@ function Selects(object) {
   var selects = {
     node: object.node || null,
     name: object.name || '',
+    class: object.class || 'uwf-selects',
     selected: [],
     options: [],
     init: _init
@@ -27,6 +28,7 @@ function Selects(object) {
     div.style.textAlign = 'left';
     div.style.verticalAlign = getStyle(this.node, 'vertical-align');
     div.style.display = 'inline-block';
+    div.setAttribute('class', this.class);
 
     span.innerHTML = '&#10010;';
     span.style.float = 'right';

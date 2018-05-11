@@ -2,14 +2,19 @@
 
 'use strict';
 
-var app = new Application();
+var app = new Application({
+  name: 'Ugly Web Framework'
+});
 
 window.onload = function () {
   app.init();
 }
 
-function Application () {
+function Application (object) {
+  object = object || {};
+
   var app = {
+    name: object.name || '',
     router: null,
     head: null,
     sidebar: null,
@@ -34,6 +39,9 @@ function Application () {
   });
 
   function _init () {
+    // Title
+    document.title = this.name;
+
     // Router
     this.router = new Router();
     this.router.init();
