@@ -19,9 +19,8 @@ function Selects(object) {
   function _init (request, callback) {
     var div = document.createElement('div');
     var span = document.createElement('span');
-    var list = document.createElement('li');
+    var list = document.createElement('ul');
 
-    div.style.position = 'relative';
     div.style.width = getStyle(this.node, 'width');
     div.style.height = getStyle(this.node, 'height');
     div.style.lineHeight = getStyle(this.node, 'height');
@@ -72,11 +71,10 @@ function Selects(object) {
   }
 
   function _listInit(container) {
-    var list = '<ul>';
+    var list = '';
     for (var i = 0; i < this.options.length; i++) {
       list += '<li value="' + this.options[i][0] + '">' + this.options[i][1] + '</li>';
     }
-    list += '</ul>';
     container.innerHTML = list;
   }
 
