@@ -33,6 +33,11 @@ function Selects(object) {
     span.style.float = 'right';
     span.style.cursor = 'pointer';
     span.style.height = getStyle(this.node, 'height');
+    span.onclick = function (event) {
+      list.style.display = 'block';
+    };
+
+    list.style.display = 'none';
 
     div.appendChild(span);
     div.appendChild(list);
@@ -49,6 +54,7 @@ function Selects(object) {
         this.options.push([options[i].value, options[i].innerText]);
       }
       _listInit.call(this, list);
+      _listener.call(this);
       if (callback) {
         callback();
       }
@@ -62,6 +68,7 @@ function Selects(object) {
             _this.options.push([options[i].value, options[i].innerText]);
           }
           _listInit.call(_this, list);
+          _listener.call(_this);
           if (callback) {
             callback();
           }
@@ -77,6 +84,8 @@ function Selects(object) {
     }
     container.innerHTML = list;
   }
+
+  function _listener() {}
 
   return selects;
 }
