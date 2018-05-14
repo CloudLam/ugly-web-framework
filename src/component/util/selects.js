@@ -54,7 +54,7 @@ function Selects(object) {
         this.options.push([options[i].value, options[i].innerText]);
       }
       _listInit.call(this, list);
-      _listener.call(this);
+      _listener.call(this, span, list);
       if (callback) {
         callback();
       }
@@ -68,7 +68,7 @@ function Selects(object) {
             _this.options.push([options[i].value, options[i].innerText]);
           }
           _listInit.call(_this, list);
-          _listener.call(_this);
+          _listener.call(_this, span, list);
           if (callback) {
             callback();
           }
@@ -85,7 +85,15 @@ function Selects(object) {
     container.innerHTML = list;
   }
 
-  function _listener() {}
+  function _listener(span, list) {
+    document.addEventListener('click', function (event) {
+      if (event.target.parentNode == list) {
+        console.log(event.target);
+      } else if (event.target != list && event.target != span) {
+        list.style.display = 'none';
+      }
+    }, false);
+  }
 
   return selects;
 }
