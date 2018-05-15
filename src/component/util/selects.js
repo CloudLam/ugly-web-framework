@@ -85,10 +85,18 @@ function Selects(object) {
     container.innerHTML = list;
   }
 
+  function _selected (target) {
+    if (target.hasAttribute('checked')) {
+      target.removeAttribute('checked');
+    } else {
+      target.setAttribute('checked', '');
+    }
+  }
+
   function _listener(span, list) {
     document.addEventListener('click', function (event) {
       if (event.target.parentNode == list) {
-        console.log(event.target);
+        _selected(event.target);
       } else if (event.target != list && event.target != span) {
         list.style.display = 'none';
       }

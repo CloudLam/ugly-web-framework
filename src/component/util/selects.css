@@ -29,3 +29,7 @@
   background-color: #0366d6;
   color: #ffffff;
 }
+
+.uwf-selects ul li[checked] {
+  font-weight: bold;
+}
