@@ -85,11 +85,33 @@ function Selects(object) {
     container.innerHTML = list;
   }
 
+  function _add (value) {
+    if (!value) {
+      return;
+    }
+    if (this.selected.indexOf(value) > -1) {
+      return;
+    } else {
+      this.selected.push(value);
+    }
+  }
+
+  function _remove (value) {
+    if (!value) {
+      return;
+    }
+    if (this.selected.indexOf(value) > -1) {
+      this.selected.splice(this.selected.indexOf(value), 1);
+    }
+  }
+
   function _selected (target) {
     if (target.hasAttribute('checked')) {
       target.removeAttribute('checked');
+      _remove.call(selects, target.getAttribute('value'));
     } else {
       target.setAttribute('checked', '');
+      _add.call(selects, target.getAttribute('value'));
     }
   }
 
