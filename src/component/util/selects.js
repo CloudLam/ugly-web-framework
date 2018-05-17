@@ -105,6 +105,8 @@ function Selects(object) {
     }
   }
 
+  function _genLabel () {}
+
   function _selected (target) {
     if (target.hasAttribute('checked')) {
       target.removeAttribute('checked');
@@ -113,6 +115,7 @@ function Selects(object) {
       target.setAttribute('checked', '');
       _add.call(selects, target.getAttribute('value'));
     }
+    _genLabel.call(selects);
   }
 
   function _listener(span, list) {
