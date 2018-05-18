@@ -12,7 +12,7 @@ function Selects(object) {
     name: object.name || '',
     class: object.class || 'uwf-selects',
     selected: [],
-    options: [],
+    options: {},
     init: _init
   };
 
@@ -20,6 +20,7 @@ function Selects(object) {
     var div = document.createElement('div');
     var span = document.createElement('span');
     var list = document.createElement('ul');
+    var tags = document.createElement('div');
 
     div.style.width = getStyle(this.node, 'width');
     div.style.height = getStyle(this.node, 'height');
@@ -41,6 +42,7 @@ function Selects(object) {
 
     div.appendChild(span);
     div.appendChild(list);
+    div.appendChild(tags);
 
     this.node.parentNode.insertBefore(div, this.node);
 
@@ -51,7 +53,7 @@ function Selects(object) {
     if (!request) {
       var options = this.node.options;
       for (var i = 0; i < options.length; i++) {
-        this.options.push([options[i].value, options[i].innerText]);
+        this.options[options[i].value] = options[i].innerText;
       }
       _listInit.call(this, list);
       _listener.call(this, span, list);
@@ -65,7 +67,7 @@ function Selects(object) {
         success: function(result) {
           var options = JSON.parse(result).data;
           for (var i = 0; i < options.length; i++) {
-            _this.options.push([options[i].value, options[i].innerText]);
+            _this.options[options[i].value] = options[i].innerText;
           }
           _listInit.call(_this, list);
           _listener.call(_this, span, list);
@@ -79,8 +81,8 @@ function Selects(object) {
 
   function _listInit(container) {
     var list = '';
-    for (var i = 0; i < this.options.length; i++) {
-      list += '<li value="' + this.options[i][0] + '">' + this.options[i][1] + '</li>';
+    for (var key in this.options) {
+      list += '<li value="' + key + '">' + this.options[key] + '</li>';
     }
     container.innerHTML = list;
   }
@@ -105,7 +107,14 @@ function Selects(object) {
     }
   }
 
-  function _genLabel () {}
+  function _genLabel () {
+    var tags = this.node.previousSibling.children[2] || this.node.previousSiblingElement.children[2];
+    var labels = '';
+    for (var i = 0; i < this.selected.length; i++) {
+      labels += '<label>' + this.options[this.selected[i]] + '</label>';
+    }
+    tags.innerHTML = labels;
+  }
 
   function _selected (target) {
     if (target.hasAttribute('checked')) {
