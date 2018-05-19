@@ -19,6 +19,14 @@
   overflow-y: auto;
 }
 
+.uwf-selects ul input {
+  border: 0;
+  width: 100%;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  padding: 0 0.5rem;
+}
+
 .uwf-selects ul li {
   list-style: none;
   padding: 0 0.5rem;

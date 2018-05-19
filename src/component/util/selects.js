@@ -80,7 +80,7 @@ function Selects(object) {
   }
 
   function _listInit(container) {
-    var list = '';
+    var list = '<input placeholder="Search"></input>';
     for (var key in this.options) {
       list += '<li value="' + key + '">' + this.options[key] + '</li>';
     }
