@@ -56,7 +56,7 @@ function Selects(object) {
         this.options[options[i].value] = options[i].innerText;
       }
       _listInit.call(this, list);
-      _listener.call(this, span, list);
+      _listener.call(this, span, list, tags);
       if (callback) {
         callback();
       }
@@ -70,7 +70,7 @@ function Selects(object) {
             _this.options[options[i].value] = options[i].innerText;
           }
           _listInit.call(_this, list);
-          _listener.call(_this, span, list);
+          _listener.call(_this, span, list, tags);
           if (callback) {
             callback();
           }
@@ -111,7 +111,7 @@ function Selects(object) {
     var tags = this.node.previousSibling.children[2] || this.node.previousSiblingElement.children[2];
     var labels = '';
     for (var i = 0; i < this.selected.length; i++) {
-      labels += '<label>' + this.options[this.selected[i]] + '</label>';
+      labels += '<label>' + this.options[this.selected[i]] + '<span>&#215;</span></label>';
     }
     tags.innerHTML = labels;
   }
@@ -127,7 +127,21 @@ function Selects(object) {
     _genLabel.call(selects);
   }
 
-  function _listener(span, list) {
+  function _toggle (list, option) {
+    for (var i = 0; i < list.children.length; i++) {
+      if (list.children[i].innerText == option) {
+        list.children[i].click();
+      }
+    }
+  }
+
+  function _listener(span, list, tags) {
+    tags.addEventListener('click', function (event) {
+      if (event.target.tagName.toLowerCase() == 'span') {
+        var option = event.target.parentNode.innerText;
+        _toggle(list, option.substr(0, option.length - 1));
+      }
+    }, false);
     document.addEventListener('click', function (event) {
       if (event.target.parentNode == list) {
         _selected(event.target);

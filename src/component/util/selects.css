@@ -33,3 +33,37 @@
 .uwf-selects ul li[checked] {
   font-weight: bold;
 }
+
+.uwf-selects div label {
+  position: relative;
+  width: 2.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0.25rem;
+  background-color: #1e90ff;
+  color: #ffffff;
+  border-radius: 0.25rem;
+  cursor: default;
+}
+
+.uwf-selects div label span {
+  display: none;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  top: -8px;
+  right: -8px;
+  font-size: 20px;
+  background-color: #c7c7c7;
+  color: #373737;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.uwf-selects div label:hover span {
+  display: block;
+}
