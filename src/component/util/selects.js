@@ -23,7 +23,6 @@ function Selects(object) {
     var tags = document.createElement('div');
 
     div.style.width = getStyle(this.node, 'width');
-    div.style.height = getStyle(this.node, 'height');
     div.style.lineHeight = getStyle(this.node, 'height');
     div.style.textAlign = 'left';
     div.style.verticalAlign = getStyle(this.node, 'vertical-align');
@@ -127,6 +126,17 @@ function Selects(object) {
     _genLabel.call(selects);
   }
 
+  function _search (list, value) {
+    for (var i = 1; i < list.children.length; i++) {
+      if (list.children[i].innerText.indexOf(value) > -1 || 
+        list.children[i].getAttribute('value').indexOf(value) > -1) {
+        list.children[i].style.display = 'block';
+      } else {
+        list.children[i].style.display = 'none';
+      }
+    }
+  }
+
   function _toggle (list, option) {
     for (var i = 0; i < list.children.length; i++) {
       if (list.children[i].innerText == option) {
@@ -140,6 +150,11 @@ function Selects(object) {
       if (event.target.tagName.toLowerCase() == 'span') {
         var option = event.target.parentNode.innerText;
         _toggle(list, option.substr(0, option.length - 1));
+      }
+    }, false);
+    list.addEventListener('input', function (event) {
+      if (event.target.tagName.toLowerCase() == 'input') {
+        _search(list, event.target.value);
       }
     }, false);
     document.addEventListener('click', function (event) {
