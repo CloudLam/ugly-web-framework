@@ -149,3 +149,68 @@
   font-size: 1.0rem;
   vertical-align: middle;
 }
+
+.uwf-profile {
+  position: relative;
+}
+
+.uwf-profile div.uwf-profile-left, 
+.uwf-profile div.uwf-profile-right {
+  position: absolute;
+  display: inline-block;
+  width: calc(50% - 2rem);
+  width: -moz-calc(50% - 2rem);
+  width: -webkit-calc(50% - 2rem);
+  padding: 0 1.0rem;
+}
+
+.uwf-profile div.uwf-profile-left {
+  left: 0;
+  text-align: right;
+}
+
+.uwf-profile div.uwf-profile-right {
+  right: 0;
+  text-align: left;
+}
+
+.uwf-profile div.uwf-profile-left img {
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 0.5rem;
+}
+
+.uwf-profile-item {
+  margin-bottom: 1.0rem;
+}
+
+.uwf-profile-item.uwf-input {
+  width: 100%;
+  padding: 0;
+  text-align: left;
+}
+
+.uwf-profile-item.uwf-input input, 
+.uwf-profile-item.uwf-input textarea,
+.uwf-profile-item.uwf-input select {
+  width: 12.0rem;
+  display: none;
+}
+
+.uwf-profile-item.uwf-input label {
+  height: 1.8rem;
+  line-height: 1.8rem;
+  padding: 0 0.25rem 0 0.25rem;
+  vertical-align: middle;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+} 
+
+.uwf-profile-item.uwf-input label:first-child {
+  font-weight: bold;
+  width: 5.0rem;
+  text-align: right;
+}
