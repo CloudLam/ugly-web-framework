@@ -53,3 +53,40 @@ function settingInit(app) {
     localStorage.setItem('uwfAppColor', app.sidebar.color);
   }
 }
+
+function profileInit(element) {
+  var profile = document.getElementById('uwf-profile');
+  var edit = document.getElementById('uwf-profile-edit');
+  var done = document.getElementById('uwf-profile-done');
+  var cancel = document.getElementById('uwf-profile-cancel');
+  edit.onclick = function (event) {
+    edit.style.display = 'none';
+    done.style.display = 'inline-block';
+    cancel.style.display = 'inline-block';
+    profileControl(edit);
+  }
+  done.onclick = function (event) {
+    done.style.display = 'none';
+    cancel.style.display = 'none';
+    edit.style.display = 'inline-block';
+    profileControl(done);
+  }
+  cancel.onclick = function (event) {
+    done.style.display = 'none';
+    cancel.style.display = 'none';
+    edit.style.display = 'inline-block';
+    profileControl(cancel);
+  }
+  function profileControl (target) {
+    var items = element.querySelectorAll('.uwf-profile-item');
+    for (var i = 0; i < items.length; i++) {
+      if (target == edit) {
+        items[i].children[1].style.display = 'inline-block';
+        items[i].children[2].style.display = 'none';
+      } else {
+        items[i].children[1].style.display = 'none';
+        items[i].children[2].style.display = 'inline-block';
+      }
+    }
+  }
+}

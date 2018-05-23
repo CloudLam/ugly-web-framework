@@ -128,7 +128,9 @@ function Application (object) {
         load({
           node: _this.board.card,
           url: './component/page/profile.html'
-        }, function (xhr, dom) {});
+        }, function (xhr, dom) {
+          profileInit(dom[0]);
+        });
       });
     });
     this.router.route('table', function () {
