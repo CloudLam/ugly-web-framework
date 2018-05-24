@@ -55,7 +55,6 @@ function settingInit(app) {
 }
 
 function profileInit(element) {
-  var profile = document.getElementById('uwf-profile');
   var edit = document.getElementById('uwf-profile-edit');
   var done = document.getElementById('uwf-profile-done');
   var cancel = document.getElementById('uwf-profile-cancel');

@@ -130,6 +130,7 @@ function Application (object) {
           url: './component/page/profile.html'
         }, function (xhr, dom) {
           profileInit(dom[0]);
+          profile.set('name', 'User');
         });
       });
     });
