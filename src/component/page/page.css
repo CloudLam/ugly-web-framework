@@ -124,40 +124,81 @@
 }
 
 .uwf-setting table tbody tr td {
-  width: 70%;
+  width: 55%;
   height: 2rem;
   font-size: 1rem;
   padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
 .uwf-setting table tbody tr td.uwf-setting-title {
-  width: 30%;
-  height: 5rem;
-  font-size: 1.5rem;
+  width: 25%;
+  font-size: 1.25rem;
   font-weight: bold;
-  color: #a3a3a3;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-subtitle {
+  width: 20%;
   text-align: right;
-  vertical-align: top;
 }
 
-.uwf-setting table tbody tr + tr.uwf-setting-item {
-  border-top: 1px solid rgba(150, 150, 150, 0.3);
+.uwf-setting table tbody tr td.uwf-setting-select {
+  position: relative;
 }
 
-.uwf-setting table tbody tr + tr.uwf-setting-item td {
-  padding-top: 2rem;
-}
-
-.uwf-setting table tbody tr td.uwf-setting-item-last {
-  padding-bottom: 2rem;
-}
-
-.uwf-setting table tbody tr td span.uwf-setting-colorbox {
-  width: 2rem;
-  height: 1.5rem;
-  border: 1px solid rgba(150, 150, 150, 0.7);
+.uwf-setting table tbody tr td.uwf-setting-select div, 
+.uwf-setting table tbody tr td.uwf-setting-select ul {
   display: inline-block;
-  margin: 0 0.5rem 0 0.5rem;
+  border: 1px solid #dfdfdf;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-select div, 
+.uwf-setting table tbody tr td.uwf-setting-select ul li {
+  position: relative;
+  width: 12.0rem;
+  height: 1.0rem;
+  line-height: 1.0rem;
+  padding: 0.5rem;
+  font-size: 1.0rem;
+  vertical-align: middle;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-select div span {
+  position: absolute;
+  right: 0.2rem;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-select ul {
+  position: absolute;
+  left: 2rem;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  z-index: 99;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-select.show ul {
+  display: inline-block;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-select.hide ul {
+  display: none;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-select ul li:hover {
+  background-color: #0366d6;
+  color: #ffffff;
+}
+
+.uwf-setting table tbody tr td.uwf-setting-select div label span, 
+.uwf-setting table tbody tr td span.uwf-setting-colorbox {
+  position: relative;
+  float: left;
+  width: 1.25rem;
+  height: 0.8rem;
+  border: 1px solid rgba(150, 150, 150, 0.7);
+  margin: 0 0.25rem;
 }
 
 .uwf-setting table tbody tr td span.uwf-setting-colorbox.blue {
