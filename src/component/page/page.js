@@ -6,6 +6,20 @@ function settingInit(app) {
   var sidebarType = document.getElementById('uwf-setting-sidebartype');
   var sidebarColor = document.getElementById('uwf-setting-sidebarcolor');
 
+  // Set type
+  if (localStorage.getItem('uwfAppType')) {
+    setSelected(sidebarType, parseInt(localStorage.getItem('uwfAppType')));
+  } else {
+    setSelected(sidebarType, app.type);
+  }
+
+  // Set color
+  if (localStorage.getItem('uwfAppColor')) {
+    setSelected(sidebarColor, localStorage.getItem('uwfAppColor'));
+  } else {
+    setSelected(sidebarType, app.sidebar.color);
+  }
+
   var listHandler = function (event) {
     if (event.target == sidebarType || event.target.parentNode == sidebarType) {
       closeList([sidebarColor]);
@@ -40,18 +54,35 @@ function settingInit(app) {
     }
   }
 
-  function selectOption(select, option) {
+  function setSelected (select, selected) {
+    if (select == sidebarType) {
+      if (selected) {
+        sidebarType.children[0].innerHTML = 'Detail';
+      } else {
+        sidebarType.children[0].innerHTML = 'Simplified';
+      }
+    }
+    if (select == sidebarColor) {
+      var options = sidebarColor.nextSibling || sidebarColor.nextElementSibling;
+      for (var i = 0; i < options.children.length; i++) {
+        if (options.children[i].children[0].className.indexOf(selected) > -1) {
+          sidebarColor.children[0].innerHTML = options.children[i].innerHTML;
+          break;
+        }
+      }
+    }
+  }
+
+  function selectOption (select, option) {
     if (select == sidebarType) {
       sidebarType.children[0].innerHTML = option;
       app.type = option.toLowerCase() === 'detail' ? 1 : 0;
       localStorage.setItem('uwfAppType', app.type);
-      return;
     }
     if (select == sidebarColor) {
       sidebarColor.children[0].innerHTML = option;
       app.sidebar.color = parseDOM(option)[0].className.split(' ')[1];
       localStorage.setItem('uwfAppColor', app.sidebar.color);
-      return;
     }
   }
 }
