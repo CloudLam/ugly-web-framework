@@ -62,11 +62,16 @@
   margin: 0 auto;
 }
 
+.uwf-input div {
+  position: relative;
+}
+
 .uwf-input input,
 .uwf-input textarea,
 .uwf-input select,
 .uwf-radio,
-.uwf-checkbox {
+.uwf-checkbox,
+.uwf-file {
   width: 16.0rem;
   height: 1.8rem;
   line-height: 1.8rem;
@@ -100,7 +105,8 @@
 }
 
 .uwf-radio,
-.uwf-checkbox {
+.uwf-checkbox,
+.uwf-file {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
@@ -116,6 +122,27 @@
 .uwf-radio input[type="radio"] + label,
 .uwf-checkbox input[type="checkbox"] + label {
   padding: 0 0.8rem 0 0.4rem;
+}
+
+.uwf-file input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.8rem;
+  border: 0;
+  opacity: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.uwf-file input[type="file"] + button {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-left: -0.25rem;
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-radius: 0.2rem;
+  cursor: pointer;
 }
 
 .uwf-setting table {
