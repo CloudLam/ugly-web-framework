@@ -1,8 +1,8 @@
-/* tab.js | @cloudlam */
+/* page.js | @cloudlam */
 
 'use strict';
 
-function settingInit(app) {
+function settingInit (app) {
   var sidebarType = document.getElementById('uwf-setting-sidebartype');
   var sidebarColor = document.getElementById('uwf-setting-sidebarcolor');
 
@@ -87,7 +87,7 @@ function settingInit(app) {
   }
 }
 
-function profileInit(element) {
+function profileInit (element) {
   var edit = document.getElementById('uwf-profile-edit');
   var done = document.getElementById('uwf-profile-done');
   var cancel = document.getElementById('uwf-profile-cancel');
@@ -121,4 +121,8 @@ function profileInit(element) {
       }
     }
   }
+}
+
+function formInit() {
+  var fileHandler = function (event) {}
 }
