@@ -93,7 +93,9 @@ function Application (object) {
         load({
           node: _this.board.card,
           url: './component/page/form.html'
-        }, function (xhr, dom) {});
+        }, function (xhr, dom) {
+          formInit(app);
+        });
       });
     });
     this.router.route('selects', function () {

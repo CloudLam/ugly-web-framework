@@ -123,6 +123,16 @@ function profileInit (element) {
   }
 }
 
-function formInit() {
-  var fileHandler = function (event) {}
+function formInit (app) {
+  var file = document.getElementById('file');
+
+  var fileChangeHandler = function (event) {
+    var files = '';
+    for (var i = 0; i < event.target.files.length; i++) {
+      files += '<label>' + event.target.files[i].name + '</label>';
+    }
+    event.target.parentNode.children[2].innerHTML = files;
+  };
+
+  file.addEventListener('change', fileChangeHandler, false);
 }

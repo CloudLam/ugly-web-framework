@@ -127,6 +127,8 @@
 .uwf-file {
   border: 1px solid #dfdfdf;
   border-radius: 0.2rem;
+  min-height: 1.8rem;
+  height: auto;
 }
 
 .uwf-file input[type="file"] {
@@ -155,6 +157,18 @@
 
 .uwf-file input[type="file"]:hover + button {
   background-color: #eaecef;
+}
+
+.uwf-file label {
+  display: block;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  padding: 0 0.2rem;
+  cursor: default;
+}
+
+.uwf-file label:hover {
+  color: #a3a3a3;
 }
 
 .uwf-setting table {
