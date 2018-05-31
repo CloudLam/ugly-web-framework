@@ -124,9 +124,13 @@ function profileInit (element) {
 }
 
 function formInit (app) {
+  if (!window.File || !window.FileList || !window.FileReader) {
+	  return;
+  }
+
   var file = document.getElementById('file');
 
-  var fileChangeHandler = function (event) {
+  var fileSelectHandler = function (event) {
     var files = '';
     for (var i = 0; i < event.target.files.length; i++) {
       files += '<label>' + event.target.files[i].name + '</label>';
@@ -134,5 +138,13 @@ function formInit (app) {
     event.target.parentNode.children[2].innerHTML = files;
   };
 
-  file.addEventListener('change', fileChangeHandler, false);
+  var fileDragHover = function (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  file.addEventListener('change', fileSelectHandler, false);
+  file.addEventListener('dropover', fileDragHover, false);
+  file.addEventListener('dropleave', fileDragHover, false);
+  file.addEventListener('drop', fileSelectHandler, false);
 }

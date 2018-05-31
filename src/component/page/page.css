@@ -131,6 +131,15 @@
   height: auto;
 }
 
+.uwf-file:hover::after {
+  content: "Click or Drag";
+  position: absolute;
+  right: 0;
+  font-size: 0.8rem;
+  color: #696969;
+  font-style: italic;
+}
+
 .uwf-file input[type="file"] {
   position: absolute;
   z-index: 1;
@@ -145,9 +154,7 @@
 
 .uwf-file input[type="file"] + button {
   width: 1.8rem;
-  height: calc(1.8rem - 2px);
-  -moz-height: calc(1.8rem - 2px);
-  -webkit-height: calc(1.8rem - 2px);
+  height: 1.8rem;
   margin-left: -0.25rem;
   background-color: #ffffff;
   border: 0;
