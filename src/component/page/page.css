@@ -320,10 +320,34 @@
   text-align: left;
 }
 
-.uwf-profile div.uwf-profile-left img {
+.uwf-profile div.uwf-profile-left div {
+  position: relative;
+  float: right;
   width: 12.5rem;
   height: 12.5rem;
   border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.uwf-profile div.uwf-profile-left div img {
+  width: 100%;
+  height: 100%;
+}
+
+.uwf-profile div.uwf-profile-left div:hover::after {
+  content: "Change Photo";
+  position: absolute;
+  top: calc(50% - 1rem);
+  left: calc(50% - 4rem);
+  width: 8rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.0rem;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.3rem;
+  text-align: center;
 }
 
 .uwf-profile-item {
