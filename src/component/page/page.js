@@ -91,6 +91,9 @@ function profileInit (element) {
   var edit = document.getElementById('uwf-profile-edit');
   var done = document.getElementById('uwf-profile-done');
   var cancel = document.getElementById('uwf-profile-cancel');
+  var photo = document.getElementById('uwf-profile-photo');
+  var photoInput = document.getElementById('uwf-profile-photo-input');
+
   edit.onclick = function (event) {
     edit.style.display = 'none';
     done.style.display = 'inline-block';
@@ -109,6 +112,17 @@ function profileInit (element) {
     edit.style.display = 'inline-block';
     profileControl(cancel);
   }
+  photo.onclick = function (event) {
+    photoInput.click();
+  }
+  photoInput.onchange = function (event) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      photo.children[0].src = e.target.result;
+    }
+    reader.readAsDataURL(this.files[0]);
+  }
+
   function profileControl (target) {
     var items = element.querySelectorAll('.uwf-profile-item');
     for (var i = 0; i < items.length; i++) {
