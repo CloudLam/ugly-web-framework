@@ -22,13 +22,9 @@ function settingInit (app) {
 
   var listHandler = function (event) {
     if (event.target == sidebarType || event.target.parentNode == sidebarType) {
-      closeList([sidebarColor]);
-      openList(sidebarType);
       return;
     }
     if (event.target == sidebarColor || event.target.parentNode == sidebarColor) {
-      closeList([sidebarType]);
-      openList(sidebarColor);
       return;
     }
 
@@ -39,10 +35,21 @@ function settingInit (app) {
     }
 
     closeList([sidebarType, sidebarColor]);
+
+    document.removeEventListener('click', listHandler, false);
   };
 
-  document.removeEventListener('click', listHandler, false);
-  document.addEventListener('click', listHandler, false);
+  sidebarType.addEventListener('click', function (event) {
+    closeList([sidebarColor]);
+    openList(sidebarType);
+    document.addEventListener('click', listHandler, false);
+  }, false);
+
+  sidebarColor.addEventListener('click', function (event) {
+    closeList([sidebarType]);
+    openList(sidebarColor);
+    document.addEventListener('click', listHandler, false);
+  }, false);
 
   function openList (element) {
     element.parentNode.setAttribute('class', element.parentNode.getAttribute('class').replace('hide', 'show'));
