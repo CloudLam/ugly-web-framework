@@ -19,7 +19,6 @@ function Application (object) {
     head: null,
     sidebar: null,
     borad: null,
-    tab: null,
     init: _init
   };
 
