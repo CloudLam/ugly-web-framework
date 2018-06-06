@@ -32,7 +32,7 @@ function Routes (app) {
     app.board.tab.create('form', {
       'tab-id': 'form', 
       'tab-title': 'FORM'
-    }, function () {
+    }, function (cache) {
       app.head.title = 'FORM';
       app.head.subtitle = '';
       load({
@@ -40,6 +40,9 @@ function Routes (app) {
         url: './component/page/form.html'
       }, function (xhr, dom) {
         formInit(app);
+        if (cache) {
+          cache();
+        }
       });
     });
   });

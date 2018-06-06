@@ -9,6 +9,7 @@ function Tab (object) {
     node: null,
     tabs: [],
     href: [],
+    cache: [],
     init: _init,
     create: _create,
     open: _open,
@@ -76,24 +77,36 @@ function Tab (object) {
   }
 
   function _create (href, data, callback) {
-    load({
-      url: './component/board/tab.html',
-      data: data
-    }, function (xhr, dom) {
-      if (tab.href.indexOf(href) > -1) {
-        tab.open(dom[0].id);
-      } else {
+    if (tab.href.indexOf(href) > -1) {
+      var index = tab.href.indexOf(href);
+      tab.open(data['tab-id']);
+      if (callback) {
+        callback(function () {
+          for (var i = 0; i < tab.cache[index].length; i++) {
+            document.getElementById(tab.cache[index][i].id).value = tab.cache[index][i].value;
+          }
+        });
+      }
+    } else {
+      load({
+        url: './component/board/tab.html',
+        data: data
+      }, function (xhr, dom) {
+        if (tab.href.indexOf(href) > -1) {
+          return;
+        }
         var item = '<div for=' + dom[0].id + '><label>' + dom[0].children[0].innerHTML + '</label></div>';
         listItems.appendChild(parseDOM(item)[0]);
         tab.tabs.push(dom[0]);
         tab.href.push(href);
+        tab.cache.push([]);
         _active.call(tab.tabs, dom[0]);
         tab.node.insertBefore(dom[0], next);
-      }
-      if (callback) {
-        callback();
-      }
-    });
+        if (callback) {
+          callback();
+        }
+      });
+    }
   }
 
   function _open (id) {
@@ -122,6 +135,7 @@ function Tab (object) {
         listItems.removeChild(listItems.children[i+1]);
         this.tabs.splice(i, 1);
         this.href.splice(i, 1);
+        this.cache.splice(i, 1);
         break;
       }
     }
@@ -147,6 +161,7 @@ function Tab (object) {
     for (var i = 0; i < this.length; i++) {
       if (this[i].getAttribute('class').indexOf('active') > -1) {
         active.old = i;
+        _cache.call(tab, i, document.querySelectorAll('[cache]'));
       }
       if (this[i] == element) {
         active.new = i;
@@ -176,6 +191,13 @@ function Tab (object) {
           }
         }
       }
+    }
+  }
+
+  function _cache (index, elements) {
+    this.cache[index] = [];
+    for (var i = 0; i < elements.length; i++) {
+      this.cache[index].push({id: elements[i].id, value: elements[i].value});
     }
   }
 
