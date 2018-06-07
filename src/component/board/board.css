@@ -36,6 +36,45 @@
   background-color: #fcfcfc;
 }
 
+.uwf-board.blue #uwf-tabs, 
+.uwf-board.red #uwf-tabs, 
+.uwf-board.green #uwf-tabs, 
+.uwf-board.yellow #uwf-tabs, 
+.uwf-board.gray #uwf-tabs, 
+.uwf-board.black #uwf-tabs {
+  color: #fcfcfc;
+}
+
+.uwf-board.blue #uwf-tabs {
+  border-top: 1px solid #1e90ff;
+  background-color: #1e90ff;
+}
+
+.uwf-board.red #uwf-tabs {
+  border-top: 1px solid #b22222;
+  background-color: #b22222;
+}
+
+.uwf-board.green #uwf-tabs {
+  border-top: 1px solid #228b22;
+  background-color: #228b22;
+}
+
+.uwf-board.yellow #uwf-tabs {
+  border-top: 1px solid #daa520;
+  background-color: #daa520;
+}
+
+.uwf-board.gray #uwf-tabs {
+  border-top: 1px solid #696969;
+  background-color: #696969;
+}
+
+.uwf-board.black #uwf-tabs {
+  border-top: 1px solid #24292e;
+  background-color: #24292e;
+}
+
 .uwf-board #uwf-card {
   position: absolute;
   top: 2rem;
@@ -73,9 +112,27 @@
   border-color: transparent #000000 transparent transparent;
 }
 
+.uwf-board.blue #uwf-tabs .uwf-tab-prev span, 
+.uwf-board.red #uwf-tabs .uwf-tab-prev span, 
+.uwf-board.green #uwf-tabs .uwf-tab-prev span, 
+.uwf-board.yellow #uwf-tabs .uwf-tab-prev span, 
+.uwf-board.gray #uwf-tabs .uwf-tab-prev span, 
+.uwf-board.black #uwf-tabs .uwf-tab-prev span {
+  border-color: transparent #fcfcfc transparent transparent;
+}
+
 .uwf-board #uwf-tabs .uwf-tab-next span {
   border-width: 0.4rem 0 0.4rem 0.5rem;
   border-color: transparent transparent transparent #000000;
+}
+
+.uwf-board.blue #uwf-tabs .uwf-tab-next span, 
+.uwf-board.red #uwf-tabs .uwf-tab-next span, 
+.uwf-board.green #uwf-tabs .uwf-tab-next span, 
+.uwf-board.yellow #uwf-tabs .uwf-tab-next span, 
+.uwf-board.gray #uwf-tabs .uwf-tab-next span, 
+.uwf-board.black #uwf-tabs .uwf-tab-next span {
+  border-color: transparent transparent transparent #fcfcfc;
 }
 
 .uwf-board #uwf-tabs .uwf-tab-list span {
@@ -83,6 +140,15 @@
   left: 0.6rem;
   border-width:  0.5rem 0.4rem 0 0.4rem;
   border-color:  #000000 transparent transparent transparent;
+}
+
+.uwf-board.blue #uwf-tabs .uwf-tab-list span, 
+.uwf-board.red #uwf-tabs .uwf-tab-list span, 
+.uwf-board.green #uwf-tabs .uwf-tab-list span, 
+.uwf-board.yellow #uwf-tabs .uwf-tab-list span, 
+.uwf-board.gray #uwf-tabs .uwf-tab-list span, 
+.uwf-board.black #uwf-tabs .uwf-tab-list span {
+  border-color: #fcfcfc transparent transparent transparent;
 }
 
 .uwf-board #uwf-tabs .uwf-tab-prev,
@@ -106,6 +172,7 @@
   right: 0.25rem;
   width: 8rem;
   margin-top: -1px;
+  color: #000000;
   background-color: #fcfcfc;
   font-size: 0.8rem;
   text-align: left;
@@ -170,7 +237,6 @@
   line-height: 1.5rem;
   margin-top: -1px;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-  background-color: #fcfcfc;
   cursor: pointer;
 }
 
@@ -181,6 +247,7 @@
   border-bottom: 1px solid #fcfcfc;
   border-radius: 2px 2px 0 0;
   background-color: #fcfcfc;
+  color: #000000;
 }
 
 .uwf-tab.show {

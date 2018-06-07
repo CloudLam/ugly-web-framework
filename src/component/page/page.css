@@ -246,6 +246,10 @@
   display: none;
 }
 
+.uwf-setting table tbody tr td.uwf-setting-select ul li {
+  list-style: none;
+}
+
 .uwf-setting table tbody tr td.uwf-setting-select ul li:hover {
   background-color: #0366d6;
   color: #ffffff;
