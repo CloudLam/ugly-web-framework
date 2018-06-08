@@ -18,7 +18,7 @@ function Application (object) {
     router: null,
     head: null,
     sidebar: null,
-    borad: null,
+    board: null,
     init: _init
   };
 
@@ -69,6 +69,8 @@ function Application (object) {
     // Local Settings
     app.type = parseInt(localStorage.getItem('uwfAppType')) || 0;
     app.sidebar.color = localStorage.getItem('uwfAppColor') || 'black';
+    app.head.color = localStorage.getItem('uwfAppHeadColor') || '';
+    app.board.color = localStorage.getItem('uwfAppHeadColor') || '';
   }
 
   function _setType() {

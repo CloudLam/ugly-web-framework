@@ -5,19 +5,27 @@
 function settingInit (app) {
   var sidebarType = document.getElementById('uwf-setting-sidebartype');
   var sidebarColor = document.getElementById('uwf-setting-sidebarcolor');
+  var headColor = document.getElementById('uwf-setting-headcolor');
 
-  // Set type
+  // Set sidebar type
   if (localStorage.getItem('uwfAppType')) {
     setSelected(sidebarType, parseInt(localStorage.getItem('uwfAppType')));
   } else {
     setSelected(sidebarType, app.type);
   }
 
-  // Set color
+  // Set sidebar color
   if (localStorage.getItem('uwfAppColor')) {
     setSelected(sidebarColor, localStorage.getItem('uwfAppColor'));
   } else {
-    setSelected(sidebarType, app.sidebar.color);
+    setSelected(sidebarColor, app.sidebar.color);
+  }
+
+  // Set head color
+  if (localStorage.getItem('uwfAppHeadColor')) {
+    setSelected(headColor, localStorage.getItem('uwfAppHeadColor'));
+  } else {
+    setSelected(headColor, app.head.color);
   }
 
   var listHandler = function (event) {
@@ -27,6 +35,9 @@ function settingInit (app) {
     if (event.target == sidebarColor || event.target.parentNode == sidebarColor) {
       return;
     }
+    if (event.target == headColor || event.target.parentNode == headColor) {
+      return;
+    }
 
     var className = event.target.parentNode.getAttribute('class');
     if (className && className.indexOf('uwf-setting-option') > -1) {
@@ -34,20 +45,26 @@ function settingInit (app) {
       selectOption(select, event.target.innerHTML);
     }
 
-    closeList([sidebarType, sidebarColor]);
+    closeList([sidebarType, sidebarColor, headColor]);
 
     document.removeEventListener('click', listHandler, false);
   };
 
   sidebarType.addEventListener('click', function (event) {
-    closeList([sidebarColor]);
+    closeList([sidebarColor, headColor]);
     openList(sidebarType);
     document.addEventListener('click', listHandler, false);
   }, false);
 
   sidebarColor.addEventListener('click', function (event) {
-    closeList([sidebarType]);
+    closeList([sidebarType, headColor]);
     openList(sidebarColor);
+    document.addEventListener('click', listHandler, false);
+  }, false);
+
+  headColor.addEventListener('click', function (event) {
+    closeList([sidebarType, sidebarColor]);
+    openList(headColor);
     document.addEventListener('click', listHandler, false);
   }, false);
 
@@ -78,6 +95,15 @@ function settingInit (app) {
         }
       }
     }
+    if (select == headColor) {
+      var options = headColor.nextSibling || headColor.nextElementSibling;
+      for (var i = 0; i < options.children.length; i++) {
+        if (options.children[i].children[0].className.indexOf(selected) > -1) {
+          headColor.children[0].innerHTML = options.children[i].innerHTML;
+          break;
+        }
+      }
+    }
   }
 
   function selectOption (select, option) {
@@ -90,6 +116,18 @@ function settingInit (app) {
       sidebarColor.children[0].innerHTML = option;
       app.sidebar.color = parseDOM(option)[0].className.split(' ')[1];
       localStorage.setItem('uwfAppColor', app.sidebar.color);
+    }
+    if (select == headColor) {
+      headColor.children[0].innerHTML = option;
+      if (parseDOM(option)[0].className.split(' ')[1]) {
+        app.head.color = parseDOM(option)[0].className.split(' ')[1];
+        app.board.color = parseDOM(option)[0].className.split(' ')[1];
+        localStorage.setItem('uwfAppHeadColor', app.head.color);
+      } else {
+        app.head.color = '';
+        app.board.color = '';
+        localStorage.setItem('uwfAppHeadColor', '');
+      }
     }
   }
 }

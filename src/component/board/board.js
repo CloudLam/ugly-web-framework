@@ -26,6 +26,7 @@ function Board (object) {
       set: function (value) {
         prop.node = value;
         _setType.call(this);
+        _setColor.call(this);
       }
     },
     'type': {
@@ -35,6 +36,15 @@ function Board (object) {
       set: function (value) {
         prop.type = value;
         _setType.call(this);
+      }
+    },
+    'color': {
+      get: function () {
+        return prop.color;
+      },
+      set: function (value) {
+        prop.color = value;
+        _setColor.call(this);
       }
     }
   });
@@ -71,6 +81,16 @@ function Board (object) {
         this.node.setAttribute('class', this.node.getAttribute('class') + ' short');
       } else {
         this.node.setAttribute('class', this.node.getAttribute('class').replace(' short', ''));
+      }
+    }
+  }
+
+  function _setColor () {
+    if (this.node) {
+      if (this.type) {
+        this.node.setAttribute('class', ('uwf-board short ' + this.color).replace(/(^\s*)|(\s*$)/g, ""));
+      } else {
+        this.node.setAttribute('class', ('uwf-board ' + this.color).replace(/(^\s*)|(\s*$)/g, ""));
       }
     }
   }

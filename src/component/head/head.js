@@ -15,7 +15,8 @@ function Head (object) {
     node: null,
     title: object.title || '',
     subtitle: object.subtitle || '',
-    type: object.type || 0
+    type: object.type || 0,
+    color: object.color || ''
   }
   Object.defineProperties(head, {
     'node': {
@@ -25,6 +26,7 @@ function Head (object) {
       set: function (value) {
         prop.node = value;
         _setType.call(this);
+        _setColor.call(this);
       }
     },
     'title': {
@@ -52,6 +54,15 @@ function Head (object) {
       set: function (value) {
         prop.type = value;
         _setType.call(this);
+      }
+    },
+    'color': {
+      get: function () {
+        return prop.color;
+      },
+      set: function (value) {
+        prop.color = value;
+        _setColor.call(this);
       }
     }
   });
@@ -81,6 +92,16 @@ function Head (object) {
         this.node.setAttribute('class', this.node.getAttribute('class') + ' short');
       } else {
         this.node.setAttribute('class', this.node.getAttribute('class').replace(' short', ''));
+      }
+    }
+  }
+
+  function _setColor () {
+    if (this.node) {
+      if (this.type) {
+        this.node.setAttribute('class', ('uwf-head short ' + this.color).replace(/(^\s*)|(\s*$)/g, ""));
+      } else {
+        this.node.setAttribute('class', ('uwf-head ' + this.color).replace(/(^\s*)|(\s*$)/g, ""));
       }
     }
   }

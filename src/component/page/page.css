@@ -263,6 +263,7 @@
   height: 0.8rem;
   border: 1px solid rgba(150, 150, 150, 0.7);
   margin: 0 0.25rem;
+  background-color: #fcfcfc;
 }
 
 .uwf-setting table tbody tr td span.uwf-setting-colorbox.blue {
