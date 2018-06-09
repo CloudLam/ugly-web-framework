@@ -12,6 +12,8 @@ function Table(object) {
     attributes: {},
     order: [],
     max: object.max || 5,
+    section: 1,
+    total: 0,
     render: object.render || {
       column: [],
       search: {
