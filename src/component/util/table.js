@@ -194,14 +194,16 @@ function Table(object) {
   }
 
   function _set (data) {
-    for (this.row = 0; this.row < data.length; this.row++) {
+    this.section = data.section;
+    this.total = data.total;
+    for (this.row = 0; this.row < data.rows.length; this.row++) {
       this.order.push(this.row);
-      for (var index in data[this.row]['result']) {
+      for (var index in data.rows[this.row]['result']) {
         this.attributes[this.col[index]] = this.attributes[this.col[index]] || [];
-        this.attributes[this.col[index]].push(data[this.row]['result'][index] || '');
+        this.attributes[this.col[index]].push(data.rows[this.row]['result'][index] || '');
       }
       this.attributes['rowid'] = this.attributes['rowid'] || [];
-      this.attributes['rowid'].push(data[this.row]['rowid'] || '');
+      this.attributes['rowid'].push(data.rows[this.row]['rowid'] || '');
     }
     var selects = this.node.querySelectorAll('table thead tr th select');
     for (var i = 0; i < selects.length; i++) {
