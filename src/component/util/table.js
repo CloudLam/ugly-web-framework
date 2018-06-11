@@ -2,6 +2,18 @@
 
 'use strict';
 
+/**
+ * Table
+ * @param {dom} object.parent
+ * @param {array} object.col
+ * @param {string} object.source
+ * @param {integer} object.max
+ * @param {string} object.pagination 'locale' | 'remote'
+ * @param {object} object.render
+ * @param {boolean} object.multiSelect
+ * @returns {object}
+ * @throws {DOMNotFoundError}
+ */
 function Table(object) {
   var table = {
     parent: object.parent || null,
@@ -12,8 +24,7 @@ function Table(object) {
     attributes: {},
     order: [],
     max: object.max || 5,
-    section: 1,
-    total: 0,
+    pagination: object.pagination || 'locale',
     render: object.render || {
       column: [],
       search: {
@@ -62,8 +73,8 @@ function Table(object) {
 
   function _init () {
     if (!object.parent) {
-        throw new Error('Parent node not found');
-        return;
+      throw new Error('Parent node not found');
+      return;
     }
 
     var searchNode = '<div class="' + this.render.search.class +
@@ -194,16 +205,14 @@ function Table(object) {
   }
 
   function _set (data) {
-    this.section = data.section;
-    this.total = data.total;
-    for (this.row = 0; this.row < data.rows.length; this.row++) {
+    for (this.row = 0; this.row < data.length; this.row++) {
       this.order.push(this.row);
-      for (var index in data.rows[this.row]['result']) {
+      for (var index in data[this.row]['result']) {
         this.attributes[this.col[index]] = this.attributes[this.col[index]] || [];
-        this.attributes[this.col[index]].push(data.rows[this.row]['result'][index] || '');
+        this.attributes[this.col[index]].push(data[this.row]['result'][index] || '');
       }
       this.attributes['rowid'] = this.attributes['rowid'] || [];
-      this.attributes['rowid'].push(data.rows[this.row]['rowid'] || '');
+      this.attributes['rowid'].push(data[this.row]['rowid'] || '');
     }
     var selects = this.node.querySelectorAll('table thead tr th select');
     for (var i = 0; i < selects.length; i++) {
