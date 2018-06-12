@@ -8,7 +8,7 @@
  * @param {array} object.col
  * @param {string} object.source
  * @param {integer} object.max
- * @param {string} object.pagination 'locale' | 'remote'
+ * @param {string} object.pagination [ 'locale' | 'remote' ]
  * @param {object} object.render
  * @param {boolean} object.multiSelect
  * @returns {object}
