@@ -163,6 +163,10 @@ function Table(object) {
 
   function _search (value) {
     if (value) {
+      if (pagination == 'remote') {
+        _searchRemote.call(this, value);
+        return;
+      }
       this.order = [];
       for (var key in this.attributes) {
         if (key == 'rowid') {
@@ -184,6 +188,8 @@ function Table(object) {
     }
     this.current = 1;
   }
+
+  function _searchRemote (value) {}
 
   function _filter (key, value) {
     if (value == 'all') {
@@ -234,6 +240,11 @@ function Table(object) {
       return;
     }
 
+    if (pagination == 'remote') {
+      _drawRemote.call(this, page);
+      return;
+    }
+
     this.node.children[1].innerHTML = '';
 
     var html = '';
@@ -249,6 +260,8 @@ function Table(object) {
 
     _pageButton.call(this);
   }
+
+  function _drawRemote (page) {}
 
   function _pageButton () {
     var pageNode = this.node.nextElementSibling || this.node.nextSibling;
