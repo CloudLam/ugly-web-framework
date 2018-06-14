@@ -8,7 +8,7 @@
  * @param {array} object.col
  * @param {string} object.source
  * @param {integer} object.max
- * @param {string} object.pagination [ 'locale' | 'remote' ]
+ * @param {object} object.pagination type = ['locale'|'remote']
  * @param {object} object.render
  * @param {boolean} object.multiSelect
  * @returns {object}
@@ -24,7 +24,11 @@ function Table(object) {
     attributes: {},
     order: [],
     max: object.max || 5,
-    pagination: object.pagination || 'locale',
+    pagination: {
+      type: object.pagination ? object.pagination.type || 'locale' : 'locale',
+      pageParam: object.pagination ? object.pagination.pageParam || 'page' : 'page',
+      searchParam: object.pagination ? object.pagination.searchParam || 'search' : 'search'
+    },
     render: object.render || {
       column: [],
       search: {
@@ -163,7 +167,7 @@ function Table(object) {
 
   function _search (value) {
     if (value) {
-      if (pagination == 'remote') {
+      if (this.pagination.type == 'remote') {
         _searchRemote.call(this, value);
         return;
       }
@@ -240,7 +244,7 @@ function Table(object) {
       return;
     }
 
-    if (pagination == 'remote') {
+    if (this.pagination.type == 'remote') {
       _drawRemote.call(this, page);
       return;
     }
