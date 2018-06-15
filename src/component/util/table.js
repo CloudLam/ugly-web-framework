@@ -165,6 +165,18 @@ function Table(object) {
     this.current = page;
   }
 
+  function _remote (page, value) {
+    var data = {};
+    data[this.pagination.pageParam] = page || '';
+    data[this.pagination.searchParam] = value || '';
+    ajax({
+      method: 'get',
+      url: this.source,
+      data: data,
+      success: function(result) {}
+    });
+  }
+
   function _search (value) {
     if (value) {
       if (this.pagination.type == 'remote') {
@@ -194,11 +206,7 @@ function Table(object) {
   }
 
   function _searchRemote (value) {
-    ajax({
-      method: 'get',
-      url: this.source + '?' + this.pagination.searchParam + '=' + value,
-      success: function(result) {}
-    });
+    _remote.call(this, '', value);
   }
 
   function _filter (key, value) {
@@ -272,11 +280,7 @@ function Table(object) {
   }
 
   function _drawRemote (page) {
-    ajax({
-      method: 'get',
-      url: this.source + '?' + this.pagination.pageParam + '=' + page,
-      success: function(result) {}
-    });
+    _remote.call(this, page);
   }
 
   function _pageButton () {
