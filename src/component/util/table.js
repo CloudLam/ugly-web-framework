@@ -193,7 +193,13 @@ function Table(object) {
     this.current = 1;
   }
 
-  function _searchRemote (value) {}
+  function _searchRemote (value) {
+    ajax({
+      method: 'get',
+      url: this.source + '?' + this.pagination.searchParam + '=' + value,
+      success: function(result) {}
+    });
+  }
 
   function _filter (key, value) {
     if (value == 'all') {
@@ -265,7 +271,13 @@ function Table(object) {
     _pageButton.call(this);
   }
 
-  function _drawRemote (page) {}
+  function _drawRemote (page) {
+    ajax({
+      method: 'get',
+      url: this.source + '?' + this.pagination.pageParam + '=' + page,
+      success: function(result) {}
+    });
+  }
 
   function _pageButton () {
     var pageNode = this.node.nextElementSibling || this.node.nextSibling;
