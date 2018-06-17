@@ -280,7 +280,9 @@ function Table(object) {
   }
 
   function _drawRemote (page) {
-    _remote.call(this, page);
+    if (page - 1 < 0) {
+      return;
+    }
   }
 
   function _pageButton () {
