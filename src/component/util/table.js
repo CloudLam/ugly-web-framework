@@ -70,7 +70,14 @@ function Table(object) {
           return;
         }
         prop.current = value;
-        _draw.call(table, value);
+        if (this.pagination.type == 'locale') {
+          _draw.call(table, value);
+          return;
+        }
+        if (this.pagination.type == 'remote') {
+          _remote.call(table, value);
+          return;
+        }
       }
     }
   });
@@ -258,11 +265,6 @@ function Table(object) {
       return;
     }
 
-    if (this.pagination.type == 'remote') {
-      _drawRemote.call(this, page);
-      return;
-    }
-
     this.node.children[1].innerHTML = '';
 
     var html = '';
@@ -277,12 +279,6 @@ function Table(object) {
     this.node.children[1].innerHTML = html;
 
     _pageButton.call(this);
-  }
-
-  function _drawRemote (page) {
-    if (page - 1 < 0) {
-      return;
-    }
   }
 
   function _pageButton () {
