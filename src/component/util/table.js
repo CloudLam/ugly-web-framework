@@ -172,22 +172,10 @@ function Table(object) {
     this.current = page;
   }
 
-  function _remote (page, value) {
-    var data = {};
-    data[this.pagination.pageParam] = page || '';
-    data[this.pagination.searchParam] = value || '';
-    ajax({
-      method: 'get',
-      url: this.source,
-      data: data,
-      success: function(result) {}
-    });
-  }
-
   function _search (value) {
     if (value) {
       if (this.pagination.type == 'remote') {
-        _searchRemote.call(this, value);
+        _remote.call(this, '', value);
         return;
       }
       this.order = [];
@@ -210,10 +198,6 @@ function Table(object) {
       }
     }
     this.current = 1;
-  }
-
-  function _searchRemote (value) {
-    _remote.call(this, '', value);
   }
 
   function _filter (key, value) {
@@ -279,6 +263,18 @@ function Table(object) {
     this.node.children[1].innerHTML = html;
 
     _pageButton.call(this);
+  }
+
+  function _remote (page, value) {
+    var data = {};
+    data[this.pagination.pageParam] = page || '';
+    data[this.pagination.searchParam] = value || '';
+    ajax({
+      method: 'get',
+      url: this.source,
+      data: data,
+      success: function(result) {}
+    });
   }
 
   function _pageButton () {
