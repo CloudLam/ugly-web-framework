@@ -122,6 +122,8 @@ function Table(object) {
     if (this.source instanceof Array) {
       _set.call(table, this.source);
       this.current = 1;
+    } else if (this.pagination.type == 'remote') {
+      _remote.call(this, 1);
     } else {
       ajax({
         method: 'get',
