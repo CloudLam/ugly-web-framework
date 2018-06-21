@@ -123,7 +123,7 @@ function Table(object) {
       _set.call(table, this.source);
       this.current = 1;
     } else if (this.pagination.type == 'remote') {
-      _remote.call(this, 1);
+      _remote.call(table, 1);
     } else {
       ajax({
         method: 'get',
@@ -271,11 +271,17 @@ function Table(object) {
     var data = {};
     data[this.pagination.pageParam] = page || '';
     data[this.pagination.searchParam] = value || '';
+    var _this = this;
     ajax({
       method: 'get',
-      url: this.source,
+      url: _this.source,
       data: data,
-      success: function(result) {}
+      success: function(result) {
+        if (result.data.length == 0) {
+          return;
+        }
+        _pageButtonRemote.call(_this, result.total)
+      }
     });
   }
 
@@ -313,6 +319,8 @@ function Table(object) {
 
     pageNode.innerHTML = html;
   }
+
+  function _pageButtonRemote (total) {}
 
   function _quickSort (array, data, left, right) {
     if (left < right) {
