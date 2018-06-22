@@ -280,6 +280,16 @@ function Table(object) {
         if (result.data.length == 0) {
           return;
         }
+        this.node.children[1].innerHTML = '';
+        var html = '';
+        for (var i = 0; i < result.data.length; i++) {
+          html += '<tr rowid="' + result.data[i]['rowid'] + '">';
+          for (var key in this.col) {
+            html += '<td>' + result.data[i][key] + '</td>';
+          }
+          html += '</tr>';
+        }
+        this.node.children[1].innerHTML = html;
         _pageButtonRemote.call(_this, result.total)
       }
     });
