@@ -290,7 +290,7 @@ function Table(object) {
           html += '</tr>';
         }
         this.node.children[1].innerHTML = html;
-        _pageButtonRemote.call(_this, result.total)
+        _pageButtonRemote.call(_this, page, result.total)
       }
     });
   }
@@ -330,7 +330,7 @@ function Table(object) {
     pageNode.innerHTML = html;
   }
 
-  function _pageButtonRemote (total) {}
+  function _pageButtonRemote (page, total) {}
 
   function _quickSort (array, data, left, right) {
     if (left < right) {
