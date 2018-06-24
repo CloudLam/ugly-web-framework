@@ -330,7 +330,19 @@ function Table(object) {
     pageNode.innerHTML = html;
   }
 
-  function _pageButtonRemote (page, total) {}
+  function _pageButtonRemote (page, total) {
+    var pageNode = this.node.nextElementSibling || this.node.nextSibling;
+
+    var html = '<button first>' + this.render.page.first + 
+      '</button><button prev>' + this.render.page.prev + 
+      '</button>';
+
+    html += '<button next>' + this.render.page.next + 
+      '</button><button last>' + this.render.page.last + 
+      '</button>';
+
+    pageNode.innerHTML = html;
+  }
 
   function _quickSort (array, data, left, right) {
     if (left < right) {
