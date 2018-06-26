@@ -319,7 +319,7 @@ function Table(object) {
       }
     }
 
-    if (page + 1 < Math.ceil(this.order.length / this.max)) {
+    if (Math.ceil(page / 10) * 10 < Math.ceil(this.order.length / this.max)) {
       html += '<button next-pages>' + this.render.page.more + '</button>';
     }
 
