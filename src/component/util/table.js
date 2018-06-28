@@ -337,7 +337,9 @@ function Table(object) {
       '</button><button prev>' + this.render.page.prev + 
       '</button>';
 
-    if (Math.ceil(page / 10) * 10 < Math.ceil(total / this.max)) {
+    var index = Math.floor(page / 10.5) * 10;
+
+    if (index + 1 < Math.ceil(total / this.max)) {
       html += '<button next-pages>' + this.render.page.more + '</button>';
     }
 
