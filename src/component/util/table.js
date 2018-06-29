@@ -338,6 +338,7 @@ function Table(object) {
       '</button>';
 
     var index = Math.floor(page / 10.5) * 10;
+    for (var i = 1; i < 11; i++) {}
 
     if (index + 1 < Math.ceil(total / this.max)) {
       html += '<button next-pages>' + this.render.page.more + '</button>';
