@@ -340,6 +340,9 @@ function Table(object) {
     var index = Math.floor(page / 10.5) * 10;
     for (var i = 0; i < 10; i++) {
       index += 1;
+      if (index > Math.ceil(total / this.max)) {
+        break;
+      }
     }
 
     if (index + 1 < Math.ceil(total / this.max)) {
