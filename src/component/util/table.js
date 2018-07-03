@@ -343,6 +343,11 @@ function Table(object) {
       if (index > Math.ceil(total / this.max)) {
         break;
       }
+      if (index == page) {
+        html += '<button disabled>' + page + '</button>';
+      } else {
+        html += '<button>' + page + '</button>';
+      }
     }
 
     if (index + 1 < Math.ceil(total / this.max)) {
