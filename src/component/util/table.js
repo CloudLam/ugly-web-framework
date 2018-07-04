@@ -282,10 +282,10 @@ function Table(object) {
         }
         this.node.children[1].innerHTML = '';
         var html = '';
-        for (var i = 0; i < result.data.length; i++) {
-          html += '<tr rowid="' + result.data[i]['rowid'] + '">';
+        for (this.row = 0; this.row < result.data.length; this.row++) {
+          html += '<tr rowid="' + result.data[this.row]['rowid'] + '">';
           for (var key in this.col) {
-            html += '<td>' + result.data[i][key] + '</td>';
+            html += '<td>' + result.data[this.row][key] + '</td>';
           }
           html += '</tr>';
         }
