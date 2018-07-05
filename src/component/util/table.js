@@ -290,7 +290,7 @@ function Table(object) {
           html += '</tr>';
         }
         this.node.children[1].innerHTML = html;
-        _pageButtonRemote.call(_this, page, result.total)
+        _pageButtonRemote.call(_this, page, result.total);
       }
     });
   }
