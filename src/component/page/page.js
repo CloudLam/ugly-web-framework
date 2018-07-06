@@ -29,13 +29,18 @@ function settingInit (app) {
   }
 
   var listHandler = function (event) {
+    console.log(event.target);
     if (event.target == sidebarType || event.target.parentNode == sidebarType) {
       return;
     }
-    if (event.target == sidebarColor || event.target.parentNode == sidebarColor) {
+    if (event.target == sidebarColor || 
+      event.target.parentNode == sidebarColor || 
+      event.target.parentNode.parentNode == sidebarColor) {
       return;
     }
-    if (event.target == headColor || event.target.parentNode == headColor) {
+    if (event.target == headColor || 
+      event.target.parentNode == headColor || 
+      event.target.parentNode.parentNode == headColor) {
       return;
     }
 
