@@ -277,19 +277,20 @@ function Table(object) {
       url: _this.source,
       data: data,
       success: function(result) {
+        result = JSON.parse(result);
         if (result.data.length == 0) {
           return;
         }
-        this.node.children[1].innerHTML = '';
+        _this.node.children[1].innerHTML = '';
         var html = '';
-        for (this.row = 0; this.row < result.data.length; this.row++) {
-          html += '<tr rowid="' + result.data[this.row]['rowid'] + '">';
-          for (var key in this.col) {
-            html += '<td>' + result.data[this.row][key] + '</td>';
+        for (_this.row = 0; _this.row < result.data.length; _this.row++) {
+          html += '<tr rowid="' + result.data[_this.row]['rowid'] + '">';
+          for (var key in _this.col) {
+            html += '<td>' + result.data[_this.row][key] + '</td>';
           }
           html += '</tr>';
         }
-        this.node.children[1].innerHTML = html;
+        _this.node.children[1].innerHTML = html;
         _pageButtonRemote.call(_this, page, result.total);
       }
     });
