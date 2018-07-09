@@ -89,6 +89,15 @@ function Routes (app) {
     });
   });
 
+  // Change password
+  app.router.route('changepwd', function () {
+    app.board.card.innerHTML = '';
+    app.board.tab.create('changepwd', {
+      'tab-id': 'changepwd', 
+      'tab-title': 'Change Password'
+    }, function () {});
+  });
+
   // Table
   app.router.route('table', function () {
     app.board.card.innerHTML = '';
