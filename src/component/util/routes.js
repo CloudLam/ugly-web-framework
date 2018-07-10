@@ -95,7 +95,14 @@ function Routes (app) {
     app.board.tab.create('changepwd', {
       'tab-id': 'changepwd', 
       'tab-title': 'Change Password'
-    }, function () {});
+    }, function () {
+      app.head.title = 'Change Password';
+      app.head.subtitle = '';
+      load({
+        node: app.board.card,
+        url: './component/page/changepwd.html'
+      }, function (xhr, dom) {});
+    });
   });
 
   // Table
