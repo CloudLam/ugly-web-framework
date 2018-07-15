@@ -104,6 +104,19 @@
   resize: none;
 }
 
+.uwf-input button {
+  height: 2.0rem;
+  border: 1px solid #dfdfdf;
+  background-color: #ffffff;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+
+.uwf-input button + button {
+  margin-left: 0.5rem;
+}
+
 .uwf-radio,
 .uwf-checkbox,
 .uwf-file {
