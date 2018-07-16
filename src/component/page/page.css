@@ -117,6 +117,10 @@
   margin-left: 0.5rem;
 }
 
+.uwf-input button:hover {
+  background-color: #eaecef;
+}
+
 .uwf-radio,
 .uwf-checkbox,
 .uwf-file {
