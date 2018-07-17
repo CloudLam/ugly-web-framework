@@ -121,6 +121,33 @@
   background-color: #eaecef;
 }
 
+.uwf-input button.blue {
+  background-color: #1e90ff;
+  color: #ffffff;
+}
+
+.uwf-input button.red {
+  background-color: #b22222;
+  color: #ffffff;
+}
+
+.uwf-input button.green {
+  background-color: #228b22;
+  color: #ffffff;
+}
+
+.uwf-input button.yellow {
+  background-color: #daa520;
+  color: #ffffff;
+}
+
+.uwf-input button.blue:hover, 
+.uwf-input button.red:hover, 
+.uwf-input button.green:hover, 
+.uwf-input button.yellow:hover {
+  opacity: 0.8;
+}
+
 .uwf-radio,
 .uwf-checkbox,
 .uwf-file {
