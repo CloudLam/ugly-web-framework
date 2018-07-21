@@ -2,8 +2,4 @@
 
 'use strict';
 
-function Notice () {
-  var notice = {};
-
-  return notice;
-}
+function Notice () {}
