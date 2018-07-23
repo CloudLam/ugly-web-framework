@@ -3,7 +3,9 @@
 'use strict';
 
 function Notice () {
-  var notice = {};
+  var notice = {
+    msg: []
+  };
 
   return notice;
 }
