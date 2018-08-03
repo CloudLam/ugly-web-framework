@@ -60,6 +60,10 @@ function Application (object) {
       location.hash = 'welcome';
     });
 
+    // Notice
+    this.notice = new Notice();
+    this.notice.init();
+
     // Routes
     Routes(this);
 
