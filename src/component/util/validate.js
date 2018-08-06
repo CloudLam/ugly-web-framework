@@ -5,7 +5,15 @@
 function Validate () {
   var validate = {}
 
-  var validateHandler = function (event) {}
+  var validateHandler = function (event) {
+    var target = event.target;
+    if (target.tagName.toLowerCase() !== 'input' && 
+      target.tagName.toLowerCase() !== 'select' && 
+      target.tagName.toLowerCase() !== 'textarea') {
+      return;
+    }
+    if (target.hasAttribute('validate')) {}
+  }
 
   document.addEventListener('blur', validateHandler, true);
 
