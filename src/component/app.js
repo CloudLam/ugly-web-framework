@@ -70,6 +70,9 @@ function Application (object) {
     // Date Picker
     var datepicker = new DatePicker();
 
+    // Validate
+    var validate = new Validate();
+
     // Local Settings
     app.type = parseInt(localStorage.getItem('uwfAppType')) || 0;
     app.sidebar.color = localStorage.getItem('uwfAppColor') || 'black';
