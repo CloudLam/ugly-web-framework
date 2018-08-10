@@ -1,4 +1,4 @@
-/* notice.js | @cloudlam */
+/* validate.js | @cloudlam */
 
 'use strict';
 
