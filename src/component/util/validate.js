@@ -12,7 +12,9 @@ function Validate () {
       target.tagName.toLowerCase() !== 'textarea') {
       return;
     }
-    if (target.hasAttribute('validate')) {}
+    if (target.hasAttribute('validate')) {
+      var validate = target.getAttribute('validate');
+    }
   }
 
   document.addEventListener('blur', validateHandler, true);
