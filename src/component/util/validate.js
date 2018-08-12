@@ -13,7 +13,7 @@ function Validate () {
       return;
     }
     if (target.hasAttribute('validate')) {
-      var validate = target.getAttribute('validate');
+      var validate = JSON.parse(target.getAttribute('validate'));
     }
   }
 
