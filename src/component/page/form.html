@@ -1,7 +1,7 @@
 <div class="uwf-page uwf-form">
   <div class="uwf-input">
     <label for="text">Text</label>
-    <input type="text" name="text" id="text" cache validate="required">
+    <input type="text" name="text" id="text" cache>
   </div>
   <div class="uwf-input">
     <label for="password">Password</label>
@@ -48,5 +48,12 @@
       <button class="uwf-file-button">&#10010;</button>
       <div></div>
     </div>
+  </div>
+  <div class="uwf-input">
+    <label for="validate">Validate</label>
+    <input type="text" name="validate" id="validate" validate="{
+      'required': {'value': true, 'msg': 'Required'},
+      'regexp': {'value': '/[A-z]/g', 'msg': 'Format Error'}
+    }">
   </div>
 </div>
