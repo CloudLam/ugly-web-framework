@@ -2,8 +2,12 @@
 
 'use strict';
 
-function Validate () {
-  var validate = {}
+function Validate (object) {
+  object = object || {};
+
+  var validate = {
+    class: object.class || 'uwf-validate'
+  }
 
   var validateHandler = function (event) {
     var target = event.target;
@@ -14,8 +18,18 @@ function Validate () {
     }
     if (target.hasAttribute('validate')) {
       var validate = JSON.parse(target.getAttribute('validate').replace(/\'/g, '"'));
-      if (validate['required'] && validate['required'].value && target.value === '') {}
-      if (validate['regexp'] && !RegExpTest(validate['regexp'].value, target.value)) {}
+      if (validate['required'] && validate['required'].value && target.value === '') {
+        addMsg.call(target, validate['required'].msg);
+        return;
+      } else {
+        removeMsg.call(target);
+      }
+      if (validate['regexp'] && !RegExpTest(validate['regexp'].value, target.value)) {
+        addMsg.call(target, validate['regexp'].msg);
+        return;
+      } else {
+        removeMsg.call(target);
+      }
     }
   }
 
@@ -30,6 +44,23 @@ function Validate () {
       var regexp = new RegExp(pattern);
     }
     return regexp.test(text);
+  }
+
+  function addMsg (msg) {
+    var flag = this.parentNode.lastChild.getAttribute('class');
+    if (flag && flag.indexOf(validate.class) > -1) {
+      this.parentNode.lastChild.innerHTML = msg;
+      return;
+    }
+    var dom = parseDOM('<label class="' + validate.class + '">'  + msg + '</label>')[0]
+    this.parentNode.appendChild(dom);
+  }
+
+  function removeMsg () {
+    var flag = this.parentNode.lastChild.getAttribute('class');
+    if (flag && flag.indexOf(validate.class) > -1) {
+      this.parentNode.removeChild(this.parentNode.lastChild);
+    }
   }
 
   document.addEventListener('blur', validateHandler, true);
