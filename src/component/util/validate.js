@@ -24,6 +24,12 @@ function Validate (object) {
       } else {
         removeMsg.call(target);
       }
+      if (validate['maxlength'] && target.value.length > validate['maxlength'].value) {
+        addMsg.call(target, validate['maxlength'].msg);
+        return;
+      } else {
+        removeMsg.call(target);
+      }
       if (validate['regexp'] && !RegExpTest(validate['regexp'].value, target.value)) {
         addMsg.call(target, validate['regexp'].msg);
         return;
