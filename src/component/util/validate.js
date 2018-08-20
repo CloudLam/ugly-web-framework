@@ -30,6 +30,12 @@ function Validate (object) {
       } else {
         removeMsg.call(target);
       }
+      if (validate['minlength'] && target.value.length < validate['minlength'].value) {
+        addMsg.call(target, validate['minlength'].msg);
+        return;
+      } else {
+        removeMsg.call(target);
+      }
       if (validate['regexp'] && !RegExpTest(validate['regexp'].value, target.value)) {
         addMsg.call(target, validate['regexp'].msg);
         return;
