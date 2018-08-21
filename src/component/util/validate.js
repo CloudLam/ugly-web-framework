@@ -36,6 +36,14 @@ function Validate (object) {
       } else {
         removeMsg.call(target);
       }
+      if (validate['rangelength'] && 
+        (target.value.length < validate['rangelength'].value[0] || 
+        target.value.length > validate['rangelength'].value[1])) {
+        addMsg.call(target, validate['rangelength'].msg);
+        return;
+      } else {
+        removeMsg.call(target);
+      }
       if (validate['regexp'] && !RegExpTest(validate['regexp'].value, target.value)) {
         addMsg.call(target, validate['regexp'].msg);
         return;
