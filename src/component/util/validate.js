@@ -45,6 +45,12 @@ function Validate (object) {
       } else {
         removeMsg.call(target);
       }
+      if (validate['equalTo'] && !EqualTo(validate['equalTo'].value, target.value)) {
+        addMsg.call(target, validate['equalTo'].msg);
+        return;
+      } else {
+        removeMsg.call(target);
+      }
       if (validate['regexp'] && !RegExpTest(validate['regexp'].value, target.value)) {
         addMsg.call(target, validate['regexp'].msg);
         return;
@@ -52,6 +58,10 @@ function Validate (object) {
         removeMsg.call(target);
       }
     }
+  }
+
+  function EqualTo (id, value) {
+    return document.getElementById(id).value === value;
   }
 
   function RegExpTest (pattern, text) {
@@ -73,7 +83,7 @@ function Validate (object) {
       this.parentNode.lastChild.innerHTML = msg;
       return;
     }
-    var dom = parseDOM('<label class="' + validate.class + '">'  + msg + '</label>')[0]
+    var dom = parseDOM('<label class="' + validate.class + '" for="' + this.id + '">'  + msg + '</label>')[0]
     this.parentNode.appendChild(dom);
 
     var style = this.getAttribute('style') || '';
