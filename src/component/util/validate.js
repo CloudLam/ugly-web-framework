@@ -45,8 +45,14 @@ function Validate (object) {
       } else {
         removeMsg.call(target);
       }
-      if (validate['equalTo'] && !EqualTo(validate['equalTo'].value, target.value)) {
-        addMsg.call(target, validate['equalTo'].msg);
+      if (validate['equalto'] && !equalTo(validate['equalto'].value, target.value)) {
+        addMsg.call(target, validate['equalto'].msg);
+        return;
+      } else {
+        removeMsg.call(target);
+      }
+      if (validate['email'] && !isEmail(target.value)) {
+        addMsg.call(target, validate['email'].msg);
         return;
       } else {
         removeMsg.call(target);
@@ -60,8 +66,13 @@ function Validate (object) {
     }
   }
 
-  function EqualTo (id, value) {
+  function equalTo (id, value) {
     return document.getElementById(id).value === value;
+  }
+
+  function isEmail (value) {
+    var re = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+    return re.test(value);
   }
 
   function RegExpTest (pattern, text) {
