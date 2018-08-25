@@ -6,8 +6,7 @@ function Validate (object) {
   object = object || {};
 
   var validate = {
-    class: object.class || 'uwf-validate',
-    border: object.border || 'border:1px solid #ca202090;'
+    class: object.class || 'uwf-validate'
   }
 
   var validateHandler = function (event) {
@@ -96,9 +95,7 @@ function Validate (object) {
     }
     var dom = parseDOM('<label class="' + validate.class + '" for="' + this.id + '">'  + msg + '</label>')[0]
     this.parentNode.appendChild(dom);
-
-    var style = this.getAttribute('style') || '';
-    this.setAttribute('style', validate.border + style);
+    this.setAttribute('invalid', '');
   }
 
   function removeMsg () {
@@ -106,8 +103,7 @@ function Validate (object) {
     if (flag && flag.indexOf(validate.class) > -1) {
       this.parentNode.removeChild(this.parentNode.lastChild);
     }
-    var style = this.getAttribute('style') || '';
-    this.setAttribute('style', style.replace(validate.border, ''));
+    this.removeAttribute('invalid');
   }
 
   document.addEventListener('blur', validateHandler, true);
