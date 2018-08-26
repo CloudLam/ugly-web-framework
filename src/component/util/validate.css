@@ -7,3 +7,7 @@
   font-size: 0.8rem;
   color: #ca2020;
 }
+
+.uwf-input input[invalid] {
+  border: 1px solid #ca202090;
+}
