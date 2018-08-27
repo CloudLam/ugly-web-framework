@@ -5,7 +5,7 @@
 function Form (object) {
   var form = {
     node: object.node || null,
-    data: {},
+    data: null,
     method: object.method || 'get',
     action: object.action || '',
     enctype: object.enctype || 'multipart/form-data',
@@ -43,7 +43,7 @@ function Form (object) {
       ajax({
         method: this.method,
         url: this.action,
-        data: this.data,
+        data: new FormData(this.node[0]),
         type: this.enctype,
         processData: false,
         success: function(result) {
