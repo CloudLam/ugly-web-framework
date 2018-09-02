@@ -6,8 +6,11 @@ function Validate (object) {
   object = object || {};
 
   var validate = {
-    class: object.class || 'uwf-validate'
+    class: object.class || 'uwf-validate',
+    checkForm: _checkForm
   }
+
+  function _checkForm () {}
 
   var validateHandler = function (event) {
     var target = event.target;
