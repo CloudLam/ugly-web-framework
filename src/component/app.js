@@ -71,7 +71,7 @@ function Application (object) {
     var datepicker = new DatePicker();
 
     // Validate
-    var validate = new Validate();
+    app.validate = new Validate();
 
     // Local Settings
     app.type = parseInt(localStorage.getItem('uwfAppType')) || 0;
