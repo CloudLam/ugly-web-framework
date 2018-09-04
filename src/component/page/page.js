@@ -200,7 +200,7 @@ function formInit (app) {
       files += '<label>' + event.target.files[i].name + '</label>';
     }
     event.target.parentNode.children[2].innerHTML = files;
-  };
+  }
 
   var fileDragHover = function (event) {
     event.stopPropagation();
