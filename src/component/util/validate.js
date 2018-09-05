@@ -10,7 +10,7 @@ function Validate (object) {
     checkForm: _checkForm
   }
 
-  function _checkForm () {}
+  function _checkForm (form) {}
 
   var validateHandler = function (event) {
     var target = event.target;
