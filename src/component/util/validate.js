@@ -10,7 +10,9 @@ function Validate (object) {
     checkForm: _checkForm
   }
 
-  function _checkForm (form) {}
+  function _checkForm (form) {
+    for (var i = 0; i < form.elements.length; i++) {}
+  }
 
   var validateHandler = function (event) {
     var target = event.target;
