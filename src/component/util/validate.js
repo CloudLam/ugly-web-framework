@@ -12,6 +12,7 @@ function Validate (object) {
 
   function _checkForm (form) {
     for (var i = 0; i < form.elements.length; i++) {}
+    return false;
   }
 
   var validateHandler = function (event) {
