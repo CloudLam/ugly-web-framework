@@ -11,11 +11,16 @@ function Validate (object) {
   }
 
   function _checkForm (form) {
-    for (var i = 0; i < form.elements.length; i++) {}
+    for (var i = 0; i < form.elements.length; i++) {
+      if (form.elements[i].hasAttribute('validate')) {
+        form.elements[i].focus();
+        form.elements[i].blur();
+      }
+    }
     return false;
   }
 
-  var validateHandler = function (event) {
+  var validateHandler = function (event, form) {
     var target = event.target;
     if (target.tagName.toLowerCase() !== 'input' && 
       target.tagName.toLowerCase() !== 'select' && 
