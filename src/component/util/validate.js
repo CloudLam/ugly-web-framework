@@ -11,13 +11,17 @@ function Validate (object) {
   }
 
   function _checkForm (form) {
+    var flag = true;
     for (var i = 0; i < form.elements.length; i++) {
       if (form.elements[i].hasAttribute('validate')) {
         form.elements[i].focus();
         form.elements[i].blur();
+        if (form.elements[i].hasAttribute('invalid')) {
+          flag = false;
+        }
       }
     }
-    return false;
+    return flag;
   }
 
   var validateHandler = function (event, form) {
