@@ -193,6 +193,7 @@ function formInit (app) {
   }
 
   var file = document.getElementById('file');
+  var form = document.getElementsByTagName('form')[0];
 
   var fileSelectHandler = function (event) {
     var files = '';
@@ -211,4 +212,9 @@ function formInit (app) {
   file.addEventListener('dropover', fileDragHover, false);
   file.addEventListener('dropleave', fileDragHover, false);
   file.addEventListener('drop', fileSelectHandler, false);
+
+  form.onsubmit = function (event) {
+    var flag = app.validate.checkForm(this);
+    return false;
+  }
 }
