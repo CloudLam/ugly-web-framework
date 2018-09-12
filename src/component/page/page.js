@@ -215,6 +215,11 @@ function formInit (app) {
 
   form.onsubmit = function (event) {
     var flag = app.validate.checkForm(this);
+    if (flag) {
+      var formObj = new Form({
+        node: this
+      });
+    }
     return false;
   }
 }
