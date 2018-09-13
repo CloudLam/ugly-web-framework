@@ -219,6 +219,7 @@ function formInit (app) {
       var formObj = new Form({
         node: this
       });
+      formObj.init();
     }
     return false;
   }
