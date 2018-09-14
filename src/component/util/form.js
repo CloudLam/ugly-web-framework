@@ -5,7 +5,7 @@
 function Form (object) {
   var form = {
     node: object.node || null,
-    data: null,
+    data: {},
     method: object.method || 'get',
     action: object.action || '',
     enctype: object.enctype || 'multipart/form-data',
@@ -56,6 +56,9 @@ function Form (object) {
   }
 
   function _setData (element) {
+    if (element.type.toUpperCase() == 'BUTTON') {
+      return;
+    }
     if (element.type.toUpperCase() == 'CHECKBOX') {
       this.data[element.name] = this.data[element.name] || [];
       if (element.checked) {
