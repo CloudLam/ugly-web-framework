@@ -43,7 +43,7 @@ function Form (object) {
       ajax({
         method: this.method,
         url: this.action,
-        data: new FormData(this.node[0]),
+        data: new FormData(this.node),
         type: this.enctype,
         processData: false,
         success: function(result) {
