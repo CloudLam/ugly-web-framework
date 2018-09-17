@@ -11,3 +11,7 @@
 .uwf-input input[invalid] {
   border: 1px solid #ca202090;
 }
+
+.uwf-input label.uwf-validate {
+  padding: 0 1.0rem;
+}
