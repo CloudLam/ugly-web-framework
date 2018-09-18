@@ -1,15 +1,22 @@
 <div class="uwf-page uwf-form">
   <div class="uwf-input">
     <label for="old_pwd">Old</label>
-    <input type="password" name="old_pwd" id="old_pwd">
+    <input type="password" name="old_pwd" id="old_pwd" validate="{
+      'required': {'value': true, 'msg': 'Required'}
+    }">
   </div>
   <div class="uwf-input">
     <label for="new_pwd">New</label>
-    <input type="password" name="new_pwd" id="new_pwd">
+    <input type="password" name="new_pwd" id="new_pwd" validate="{
+      'required': {'value': true, 'msg': 'Required'}
+    }">
   </div>
   <div class="uwf-input">
     <label for="confirm_pwd">Confirm</label>
-    <input type="password" name="confirm_pwd" id="confirm_pwd">
+    <input type="password" name="confirm_pwd" id="confirm_pwd" validate="{
+      'required': {'value': true, 'msg': 'Required'},
+      'equalto': {'value': 'new_pwd', 'msg': 'Not equal'}
+    }">
   </div>
   <div class="uwf-input">
     <button type="button" class="green">Submit</button>
