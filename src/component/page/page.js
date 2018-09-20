@@ -220,7 +220,6 @@ function formInit (app) {
         node: this
       });
       formObj.init();
-      console.log(formObj);
     }
     return false;
   }
