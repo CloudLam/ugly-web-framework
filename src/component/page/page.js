@@ -29,7 +29,6 @@ function settingInit (app) {
   }
 
   var listHandler = function (event) {
-    console.log(event.target);
     if (event.target == sidebarType || event.target.parentNode == sidebarType) {
       return;
     }
