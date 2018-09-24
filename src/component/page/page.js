@@ -223,3 +223,5 @@ function formInit (app) {
     return false;
   }
 }
+
+function changepwdInit (app) {}
