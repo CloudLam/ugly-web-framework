@@ -224,4 +224,6 @@ function formInit (app) {
   }
 }
 
-function changepwdInit (app) {}
+function changepwdInit (app) {
+  var form = document.getElementsByTagName('form')[0];
+}
