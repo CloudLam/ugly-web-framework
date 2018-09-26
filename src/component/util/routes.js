@@ -101,7 +101,9 @@ function Routes (app) {
       load({
         node: app.board.card,
         url: './component/page/changepwd.html'
-      }, function (xhr, dom) {});
+      }, function (xhr, dom) {
+        changepwdInit(app);
+      });
     });
   });
 
