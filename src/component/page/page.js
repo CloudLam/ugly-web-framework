@@ -226,4 +226,8 @@ function formInit (app) {
 
 function changepwdInit (app) {
   var form = document.getElementsByTagName('form')[0];
+
+  form.onsubmit = function (event) {
+    var flag = app.validate.checkForm(this);
+  }
 }
