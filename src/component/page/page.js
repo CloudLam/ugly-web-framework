@@ -229,5 +229,6 @@ function changepwdInit (app) {
 
   form.onsubmit = function (event) {
     var flag = app.validate.checkForm(this);
+    if (flag) {}
   }
 }
