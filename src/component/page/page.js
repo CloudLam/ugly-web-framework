@@ -192,7 +192,7 @@ function formInit (app) {
   }
 
   var file = document.getElementById('file');
-  var form = document.getElementsByTagName('form')[0];
+  var form = document.getElementById('uwf_form');
 
   var fileSelectHandler = function (event) {
     var files = '';
@@ -225,7 +225,7 @@ function formInit (app) {
 }
 
 function changepwdInit (app) {
-  var form = document.getElementsByTagName('form')[0];
+  var form = document.getElementById('changepwd_form');
 
   form.onsubmit = function (event) {
     var flag = app.validate.checkForm(this);
