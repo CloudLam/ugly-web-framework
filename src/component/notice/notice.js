@@ -10,6 +10,9 @@ function Notice (object) {
   var notice = {
     node: null,
     init: _init,
+    alert: _alert,
+    comfirm: _confirm,
+    toast: _toast,
     add: _add
   }
 
