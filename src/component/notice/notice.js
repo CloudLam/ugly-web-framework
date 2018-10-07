@@ -23,6 +23,8 @@ function Notice (object) {
     _listenerInit.call(notice);
   }
 
+  function _alert () {}
+
   function _add (type, code, message) {
     var html = '<div class="' + type + 
       '" code="' + code + 
