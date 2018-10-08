@@ -25,6 +25,8 @@ function Notice (object) {
 
   function _alert () {}
 
+  function _confirm () {}
+
   function _add (type, code, message) {
     var html = '<div class="' + type + 
       '" code="' + code + 
