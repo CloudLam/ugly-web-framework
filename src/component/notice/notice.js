@@ -27,7 +27,7 @@ function Notice (object) {
 
   function _confirm () {}
 
-  function _toast () {}
+  function _toast (type, code, message) {}
 
   function _add (type, code, message) {
     var html = '<div class="' + type + 
