@@ -25,7 +25,7 @@ function Notice (object) {
 
   function _alert () {}
 
-  function _confirm () {}
+  function _confirm (code, message) {}
 
   function _toast (type, code, message) {}
 
