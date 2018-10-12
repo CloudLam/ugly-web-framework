@@ -23,7 +23,7 @@ function Notice (object) {
     _listenerInit.call(notice);
   }
 
-  function _alert () {}
+  function _alert (code, message) {}
 
   function _confirm (code, message) {}
 
