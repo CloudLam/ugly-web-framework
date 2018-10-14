@@ -12,8 +12,7 @@ function Notice (object) {
     init: _init,
     alert: _alert,
     comfirm: _confirm,
-    toast: _toast,
-    add: _add
+    toast: _toast
   }
 
   function _init () {
@@ -28,15 +27,6 @@ function Notice (object) {
   function _confirm (code, message) {}
 
   function _toast (type, code, message) {
-    var html = '<div class="' + type + 
-      '" code="' + code + 
-      '"><p>' + message + 
-      '</p><span>&#215;</span>' + 
-      '</div>';
-    notice.node.appendChild(parseDOM(html)[0]);
-  }
-
-  function _add (type, code, message) {
     var html = '<div class="' + type + 
       '" code="' + code + 
       '"><p>' + message + 
