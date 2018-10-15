@@ -27,7 +27,7 @@ function Notice (object) {
   function _confirm (code, message) {}
 
   function _toast (type, code, message) {
-    var html = '<div class="' + type + 
+    var html = '<div class="toast ' + type + 
       '" code="' + code + 
       '"><p>' + message + 
       '</p><span>&#215;</span>' + 
