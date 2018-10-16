@@ -8,7 +8,7 @@
   padding: 0.5rem 1.0rem;
 }
 
-.uwf-notice div {
+.uwf-notice div.toast {
   padding: 0.5rem;
   border: 1px solid rgba(150, 150, 150, 0.7);
   border-radius: 2px;
@@ -16,39 +16,39 @@
   line-height: 1.0rem;
 }
 
-.uwf-notice div:hover {
+.uwf-notice div.toast:hover {
   opacity: 0.7;
 }
 
-.uwf-notice div + div {
+.uwf-notice div.toast + div.toast {
   margin-top: 0.5rem;
 }
 
-.uwf-notice div.error {
+.uwf-notice div.toast.error {
   color: #b22222;
   background-color: #ffdddd;
   border: 1px solid rgba(178, 34, 34, 0.5);
 }
 
-.uwf-notice div.info {
+.uwf-notice div.toast.info {
   color: #1e90ff;
   background-color: #eaf2fd;
   border: 1px solid rgba(30, 144, 255, 0.5);
 }
 
-.uwf-notice div.success {
+.uwf-notice div.toast.success {
   color: #228b22;
   background-color: #dfffdf;
   border: 1px solid rgba(34, 139, 34, 0.5);
 }
 
-.uwf-notice div.warning {
+.uwf-notice div.toast.warning {
   color: #daa520;
   background-color: #fffaeb;
   border: 1px solid rgba(218, 165, 32, 0.5);
 }
 
-.uwf-notice div p {
+.uwf-notice div.toast p {
   display: inline-block;
   margin: 0;
   padding: 0;
@@ -57,7 +57,7 @@
   word-wrap: normal;
 }
 
-.uwf-notice div span {
+.uwf-notice div.toast span {
   float: right;
   font-size: 1.2rem;
   font-weight: bold;
