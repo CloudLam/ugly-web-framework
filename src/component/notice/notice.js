@@ -22,7 +22,9 @@ function Notice (object) {
     _listenerInit.call(notice);
   }
 
-  function _alert (code, message) {}
+  function _alert (code, message) {
+    var html = ''
+  }
 
   function _confirm (code, message) {}
 
