@@ -23,7 +23,8 @@ function Notice (object) {
   }
 
   function _alert (code, message) {
-    var html = ''
+    var html = '';
+    notice.node.appendChild(parseDOM(html)[0]);
   }
 
   function _confirm (code, message) {}
