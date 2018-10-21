@@ -23,7 +23,10 @@ function Notice (object) {
   }
 
   function _alert (code, message) {
-    var html = '<div class="alert" code="' + code + '></div>';
+    var html = '<div class="alert" code="' + code + 
+      '><p>' + message +
+      '</p>' +
+      '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
   }
 
