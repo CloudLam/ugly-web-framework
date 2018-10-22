@@ -30,7 +30,10 @@ function Notice (object) {
     notice.node.appendChild(parseDOM(html)[0]);
   }
 
-  function _confirm (code, message) {}
+  function _confirm (code, message) {
+    var html = '';
+    notice.node.appendChild(parseDOM(html)[0]);
+  }
 
   function _toast (type, code, message) {
     var html = '<div class="toast ' + type + 
