@@ -25,7 +25,7 @@ function Notice (object) {
   function _alert (code, message) {
     var html = '<div class="alert" code="' + code + 
       '><p>' + message +
-      '</p>' +
+      '</p><span>&#215;</span>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
   }
