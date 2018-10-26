@@ -33,7 +33,7 @@ function Notice (object) {
   function _confirm (code, message) {
     var html = '<div class="confirm" code="' + code + 
       '><p>' + message +
-      '</p>' +
+      '</p><span>&#215;</span>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
   }
