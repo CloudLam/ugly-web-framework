@@ -23,17 +23,21 @@ function Notice (object) {
   }
 
   function _alert (code, message) {
-    var html = '<div class="alert" code="' + code + 
+    var html = '<div class="mask">' + 
+      '<div class="alert" code="' + code + 
       '"><span>ALERT<span><p>' + message +
       '</p><span>&#215;</span>' +
+      '</div>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
   }
 
   function _confirm (code, message) {
-    var html = '<div class="confirm" code="' + code + 
+    var html = '<div class="mask">' + 
+      '<div class="confirm" code="' + code + 
       '"><span>CONFIRM<span><p>' + message +
       '</p><span>&#215;</span>' +
+      '</div>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
   }
