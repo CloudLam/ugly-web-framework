@@ -6,6 +6,19 @@
   right: 0;
   width: 20rem;
   padding: 0.5rem 1.0rem;
+  z-index: 999;
+}
+
+.uwf-notice div.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #a7a7a777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .uwf-notice div.toast {
