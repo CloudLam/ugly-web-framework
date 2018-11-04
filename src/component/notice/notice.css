@@ -24,6 +24,12 @@
 .uwf-notice div.alert,
 .uwf-notice div.confirm {
   position: relative;
+  background-color: #ffffff;
+  width: 25.0rem;
+  height: 15.0rem;
+  border: 1px solid rgba(150, 150, 150, 0.7);
+  box-shadow: 1px 1px 0 rgba(150, 150, 150, 0.5);
+  border-radius: 2px;
 }
 
 .uwf-notice div.toast {
