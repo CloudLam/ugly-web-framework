@@ -37,7 +37,8 @@ function Notice (object) {
     var html = '<div class="mask">' + 
       '<div class="confirm" code="' + code + 
       '"><span>CONFIRM<span><p>' + message +
-      '</p><span>&#215;</span>' +
+      '</p><button>Yes</button><button>No</button>' +
+      '<span>&#215;</span>' +
       '</div>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
