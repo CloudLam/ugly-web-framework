@@ -25,7 +25,7 @@ function Notice (object) {
   function _alert (code, message) {
     var html = '<div class="mask">' + 
       '<div class="alert" code="' + code + 
-      '"><span>ALERT<span><p>' + message +
+      '"><span>ALERT</span><p>' + message +
       '</p><button>OK</button>' +
       '<span>&#215;</span>' +
       '</div>' +
@@ -36,7 +36,7 @@ function Notice (object) {
   function _confirm (code, message) {
     var html = '<div class="mask">' + 
       '<div class="confirm" code="' + code + 
-      '"><span>CONFIRM<span><p>' + message +
+      '"><span>CONFIRM</span><p>' + message +
       '</p><button>Yes</button><button>No</button>' +
       '<span>&#215;</span>' +
       '</div>' +
