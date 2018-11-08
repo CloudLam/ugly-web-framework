@@ -32,7 +32,8 @@
   border-radius: 2px;
 }
 
-.uwf-notice div.alert button {
+.uwf-notice div.alert button,
+.uwf-notice div.confirm button {
   position: absolute;
   right: 1.0rem;
   bottom: 1.0rem;
