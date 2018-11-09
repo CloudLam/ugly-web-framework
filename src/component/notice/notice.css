@@ -37,6 +37,12 @@
   position: absolute;
   right: 1.0rem;
   bottom: 1.0rem;
+  height: 2.0rem;
+  border: 1px solid #dfdfdf;
+  background-color: #ffffff;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 0.3rem;
 }
 
 .uwf-notice div.toast {
