@@ -11,7 +11,7 @@ function Notice (object) {
     node: null,
     init: _init,
     alert: _alert,
-    comfirm: _confirm,
+    confirm: _confirm,
     toast: _toast
   }
 
@@ -35,9 +35,8 @@ function Notice (object) {
   function _confirm (code, message) {
     var html = '<div class="mask">' + 
       '<div class="confirm" code="' + code + 
-      '"><span>CONFIRM</span><p>' + message +
+      '"><span>CONFIRM</span><span>&#215;</span><p>' + message +
       '</p><button>Yes</button><button>No</button>' +
-      '<span>&#215;</span>' +
       '</div>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
