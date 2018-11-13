@@ -33,6 +33,26 @@
   padding: 1.0rem;
 }
 
+.uwf-notice div.alert span:first-child {
+  display: inline-block;
+  width: 100%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.uwf-notice div.alert span:nth-child(2),
+.uwf-notice div.confirm span:nth-child(2) {
+  position: absolute;
+  right: 1.0rem;
+  top: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .uwf-notice div.alert button,
 .uwf-notice div.confirm button {
   position: absolute;
@@ -100,9 +120,7 @@
   word-wrap: normal;
 }
 
-.uwf-notice div.toast span,
-.uwf-notice div.alert span:nth-child(2),
-.uwf-notice div.confirm span:nth-child(2) {
+.uwf-notice div.toast span {
   float: right;
   font-size: 1.2rem;
   font-weight: bold;
