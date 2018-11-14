@@ -33,7 +33,8 @@
   padding: 1.0rem;
 }
 
-.uwf-notice div.alert span:first-child {
+.uwf-notice div.alert span:first-child,
+.uwf-notice div.confirm span:first-child {
   display: inline-block;
   width: 100%;
   height: 1.5rem;
