@@ -54,7 +54,8 @@
   cursor: pointer;
 }
 
-.uwf-notice div.alert p {
+.uwf-notice div.alert p,
+.uwf-notice div.confirm p {
   margin: 0;
   padding: 1.0rem 0;
 }
