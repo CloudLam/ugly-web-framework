@@ -59,6 +59,7 @@
   margin: 0;
   padding: 1.0rem 0;
   font-size: 1.0rem;
+  word-break: break-all;
 }
 
 .uwf-notice div.alert button,
