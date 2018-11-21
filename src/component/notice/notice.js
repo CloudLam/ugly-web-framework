@@ -53,7 +53,7 @@ function Notice (object) {
 
   function _listenerInit () {
     this.node.addEventListener('click', function (event) {
-      if (event.target.tagName.toLowerCase() == 'span') {
+      if (event.target.tagName.toLowerCase() === 'span') {
         event.target.parentNode.parentNode.removeChild(event.target.parentNode);
       }
     }, false);
