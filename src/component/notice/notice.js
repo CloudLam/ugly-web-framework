@@ -55,7 +55,9 @@ function Notice (object) {
     this.node.addEventListener('click', function (event) {
       if (event.target.tagName.toLowerCase() === 'span' &&
         event.target.className.toLowerCase() === 'close') {
-        event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+        if (['toast'].indexOf(event.target.parentNode.className.toLowerCase() > -1)) {
+          event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+        }
       }
     }, false);
   }
