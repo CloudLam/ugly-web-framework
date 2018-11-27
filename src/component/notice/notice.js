@@ -66,6 +66,10 @@ function Notice (object) {
         event.target.parentNode.className.toLowerCase().indexOf('alert') > -1 ) {
         event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
       }
+      if (event.target.tagName.toLowerCase() === 'button' &&
+        event.target.parentNode.className.toLowerCase().indexOf('confirm') > -1 ) {
+        event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+      }
     }, false);
   }
 
