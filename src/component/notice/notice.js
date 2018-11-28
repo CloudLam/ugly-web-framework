@@ -36,7 +36,7 @@ function Notice (object) {
     var html = '<div class="mask">' + 
       '<div class="confirm" code="' + code + 
       '"><span>CONFIRM</span><span class="close">&#215;</span><p>' + message +
-      '</p><button>Yes</button><button>No</button>' +
+      '</p><button for="yes">Yes</button><button for="no">No</button>' +
       '</div>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
@@ -68,7 +68,12 @@ function Notice (object) {
       }
       if (event.target.tagName.toLowerCase() === 'button' &&
         event.target.parentNode.className.toLowerCase().indexOf('confirm') > -1 ) {
-        event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+        if (event.target.getAttribute('for') === 'yes') {
+          event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+        }
+        if (event.target.getAttribute('for') === 'no') {
+          event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+        }
       }
     }, false);
   }
