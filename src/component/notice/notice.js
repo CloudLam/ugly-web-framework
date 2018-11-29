@@ -23,21 +23,28 @@ function Notice (object) {
   }
 
   function _alert (code, message) {
-    var html = '<div class="mask">' + 
-      '<div class="alert" code="' + code + 
-      '"><span>ALERT</span><span class="close">&#215;</span><p>' + message +
-      '</p><button>OK</button>' +
-      '</div>' +
+    var html = 
+      '<div class="mask">' + 
+        '<div class="alert" code="' + code + '">' + 
+          '<span>ALERT</span>' + 
+          '<span class="close">&#215;</span>' + 
+          '<p>' + message + '</p>' + 
+          '<button>OK</button>' +
+        '</div>' + 
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
   }
 
   function _confirm (code, message) {
-    var html = '<div class="mask">' + 
-      '<div class="confirm" code="' + code + 
-      '"><span>CONFIRM</span><span class="close">&#215;</span><p>' + message +
-      '</p><button>Yes</button><button>No</button>' +
-      '</div>' +
+    var html = 
+      '<div class="mask">' + 
+        '<div class="confirm" code="' + code + '">' + 
+          '<span>CONFIRM</span>' + 
+          '<span class="close">&#215;</span>' + 
+          '<p>' + message + '</p>' + 
+          '<button for="yes">Yes</button>' + 
+          '<button for="no">No</button>' +
+        '</div>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
   }
