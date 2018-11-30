@@ -35,7 +35,7 @@ function Notice (object) {
     notice.node.appendChild(parseDOM(html)[0]);
   }
 
-  function _confirm (code, message) {
+  function _confirm (code, message, callback) {
     var html = 
       '<div class="mask">' + 
         '<div class="confirm" code="' + code + '">' + 
