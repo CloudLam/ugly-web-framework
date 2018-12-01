@@ -12,7 +12,8 @@ function Notice (object) {
     init: _init,
     alert: _alert,
     confirm: _confirm,
-    toast: _toast
+    toast: _toast,
+    callback: null
   }
 
   function _init () {
