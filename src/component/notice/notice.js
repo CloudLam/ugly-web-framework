@@ -48,6 +48,7 @@ function Notice (object) {
         '</div>' +
       '</div>';
     notice.node.appendChild(parseDOM(html)[0]);
+    this.callback = callback;
   }
 
   function _toast (type, code, message) {
