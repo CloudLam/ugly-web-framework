@@ -77,12 +77,11 @@ function Notice (object) {
       }
       if (event.target.tagName.toLowerCase() === 'button' &&
         event.target.parentNode.className.toLowerCase().indexOf('confirm') > -1 ) {
-        if (event.target.getAttribute('for') === 'yes') {
-          event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+        if (event.target.getAttribute('for') === 'yes' && notice.callback) {
+          notice.callback()
         }
-        if (event.target.getAttribute('for') === 'no') {
-          event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
-        }
+        event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+        notice.callback = null;
       }
     }, false);
   }
