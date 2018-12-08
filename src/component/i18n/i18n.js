@@ -2,4 +2,4 @@
 
 'use strict';
 
-function i18n () {}
+function i18n (object) {}
