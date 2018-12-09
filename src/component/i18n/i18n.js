@@ -2,4 +2,6 @@
 
 'use strict';
 
-function i18n (object) {}
+function i18n (object) {
+  object = object || {};
+}
