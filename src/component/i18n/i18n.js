@@ -5,7 +5,9 @@
 function i18n (object) {
   object = object || {};
 
-  var i18n = {}
+  var i18n = {
+    language: object.language || 'en'
+  }
 
   return i18n
 }
