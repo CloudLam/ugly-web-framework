@@ -9,5 +9,5 @@ function i18n (object) {
     language: object.language || 'en'
   }
 
-  return i18n
+  return i18n;
 }
