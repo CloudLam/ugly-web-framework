@@ -6,7 +6,8 @@ function i18n (object) {
   object = object || {};
 
   var i18n = {
-    language: object.language || 'en'
+    language: object.language || 'en',
+    init: _init
   }
 
   return i18n;
