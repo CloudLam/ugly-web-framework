@@ -10,5 +10,7 @@ function i18n (object) {
     init: _init
   }
 
+  function _init () {}
+
   return i18n;
 }
