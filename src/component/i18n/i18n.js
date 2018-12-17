@@ -10,6 +10,8 @@ function i18n (object) {
     init: _init
   }
 
+  var prop = {}
+
   function _init () {}
 
   return i18n;
