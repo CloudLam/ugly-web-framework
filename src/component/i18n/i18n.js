@@ -6,11 +6,12 @@ function i18n (object) {
   object = object || {};
 
   var i18n = {
-    language: object.language || 'en',
     init: _init
   }
 
-  var prop = {}
+  var prop = {
+    language: object.language || 'en',
+  }
 
   function _init () {}
 
