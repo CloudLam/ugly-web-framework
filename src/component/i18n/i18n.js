@@ -12,6 +12,7 @@ function i18n (object) {
   var prop = {
     language: object.language || 'en',
   }
+  Object.defineProperties(i18n, {});
 
   function _init () {}
 
