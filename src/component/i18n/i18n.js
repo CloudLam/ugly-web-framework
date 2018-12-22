@@ -14,7 +14,8 @@ function i18n (object) {
   }
   Object.defineProperties(i18n, {
     'language': {
-      get: function () {}
+      get: function () {},
+      set: function () {}
     }
   });
 
