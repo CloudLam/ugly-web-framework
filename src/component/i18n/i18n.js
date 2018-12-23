@@ -13,7 +13,10 @@ function i18n (object) {
     language: object.language || 'en',
   }
   Object.defineProperties(i18n, {
-    'language': {}
+    'language': {
+      get: function () {},
+      set: function () {}
+    }
   });
 
   function _init () {}
