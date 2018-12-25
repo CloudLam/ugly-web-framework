@@ -17,7 +17,7 @@ function i18n (object) {
       get: function () {
         return prop.language;
       },
-      set: function () {}
+      set: function (value) {}
     }
   });
 
