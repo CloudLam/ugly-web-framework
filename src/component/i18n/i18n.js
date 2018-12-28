@@ -19,6 +19,7 @@ function i18n (object) {
       },
       set: function (value) {
         prop.language = value;
+        _setLanguage.call(this);
       }
     }
   });
