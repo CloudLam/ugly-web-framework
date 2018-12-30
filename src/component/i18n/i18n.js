@@ -26,5 +26,7 @@ function i18n (object) {
 
   function _init () {}
 
+  function _setLanguage () {}
+
   return i18n;
 }
