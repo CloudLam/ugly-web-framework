@@ -5,6 +5,8 @@
 function i18n (object) {
   object = object || {};
 
+  var supported = ['cn', 'en'];
+
   var i18n = {
     init: _init
   }
