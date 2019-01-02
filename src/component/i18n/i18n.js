@@ -20,7 +20,9 @@ function i18n (object) {
         return prop.language;
       },
       set: function (value) {
-        prop.language = value;
+        if (supported.indexOf(value) > -1) {
+          prop.language = value;
+        }
         _setLanguage.call(this);
       }
     }
